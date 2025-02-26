@@ -1,0 +1,98 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Feb 25, 2025, 2:04:31 PM
+    Author     : ACER
+*/
+
+.custom-pane {
+ -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+ 
+    -fx-padding: 10px;
+}
+.custom-pane1 {
+    -fx-background-color: #f2f2f2; 
+    -fx-border-color: #dcdcdc; 
+    -fx-padding: 10px;
+}
+
+.pane {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+   
+}
+.pay {
+  
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.table-header {
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+}
+
+.tree-table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+}
+
+.tree-table-row-cell {
+    -fx-border-width: 0px;
+}
+.tree-table-view .column-header-background {
+    -fx-background-color: #F04E3C; 
+    -fx-background-insets: 0; 
+    -fx-padding: 0; 
+}
+.tree-table-view .tree-table-cell {
+    -fx-alignment: center; 
+    -fx-text-alignment: center; 
+}
+
+.tree-table-view .column-header {
+    -fx-background-color: #F04E3C;
+    -fx-border-width: 0; 
+}
+
+.tree-table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.tree-table-view .column-header .filler {
+    -fx-background-color: #F04E3C; 
+}
+.text {
+    -fx-background-color: transparent; 
+    -fx-border-width: 0 0 2 0; 
+    -fx-border-color: #000; 
+    -fx-border-radius: 0;
+}
+.jfx-date-picker {
+    -fx-background-color: white; 
+    -fx-border-color: #ccc;
+    -fx-border-radius: 2px;
+    -fx-padding: 2px;
+}
+
+.jfx-date-picker .text-field {
+    -fx-background-color: white; 
+    -fx-text-fill: black; 
+}
+
+.jfx-date-picker .arrow-button {
+    -fx-background-color: white; 
+}
+
+.jfx-date-picker .arrow-button .jfx-svg-glyph {
+    -fx-fill: black; 
+}
+

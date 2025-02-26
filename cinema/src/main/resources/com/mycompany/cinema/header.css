@@ -1,0 +1,17 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Feb 22, 2025, 11:44:38 AM
+    Author     : ACER
+*/
+
+.loki{
+    -fx-background-color: #1c1c1c;
+    -fx-padding: 20;
+    -fx-text-fill:#fff;
+}
+.menu-item:hover {
+    -fx-underline: true;
+}

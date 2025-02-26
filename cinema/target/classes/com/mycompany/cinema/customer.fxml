@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cinema.CustomerController">
+    <children>
+        <HBox prefHeight="700.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            
+            <!-- Sidebar (Thanh menu bên trái) -->
+          <VBox maxWidth="250.0" minWidth="250.0" prefWidth="250.0" HBox.hgrow="NEVER">
+               <fx:include source="header.fxml" />
+</VBox>
+
+            
+            <!-- Nội dung chính, co giãn khi phóng to -->
+            <StackPane style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+            <children>
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                     <Label fx:id="fullNameLabel" layoutX="1039.0" layoutY="26.0" prefHeight="17.0" prefWidth="107.0">
+                        <font>
+                           <Font name="Corbel Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="989.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-user-100%20(1).png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="936.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-bell%20(1).gif" />
+                        </image>
+                     </ImageView>
+                     <AnchorPane fx:id="cus_form" layoutX="588.0" layoutY="77.0" prefHeight="619.0" prefWidth="517.0">
+                        <children>
+                           <JFXTreeTableView fx:id="cus_tableview" layoutX="-1.0" prefHeight="619.0" prefWidth="517.0" stylesheets="@addmovies.css" />
+                        </children>
+                     </AnchorPane>
+                     <AnchorPane fx:id="cus_form1" layoutX="70.0" layoutY="77.0" prefHeight="619.0" prefWidth="517.0" styleClass="custom-pane1" stylesheets="@addmovies.css">
+                        <children>
+                           <JFXButton fx:id="cus_delete" layoutX="362.0" layoutY="79.0" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: red;" styleClass="hulk" stylesheets="@addmovies.css" text="Delete" />
+                           <JFXButton fx:id="cus_clear" layoutX="362.0" layoutY="184.0" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #FF69B4;" styleClass="hulk" stylesheets="@addmovies.css" text="Clear" />
+                           <ImageView fitHeight="11.0" fitWidth="17.0" layoutX="382.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../image/icons8-delete-64.png" />
+                              </image>
+                           </ImageView>
+                           <ImageView fitHeight="17.0" fitWidth="26.0" layoutX="379.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../image/icons8-clear-24.png" />
+                              </image>
+                           </ImageView>
+                           <AnchorPane fx:id="cus_form2" layoutX="28.0" layoutY="14.0" prefHeight="273.0" prefWidth="287.0" styleClass="pane" stylesheets="@addmovies.css">
+                              <children>
+                                 <TextField layoutX="86.0" layoutY="56.0" promptText="#Ticket" styleClass="text" stylesheets="@addmovies.css" />
+                                 <TextField layoutX="86.0" layoutY="101.0" promptText="Movie Title" styleClass="text" stylesheets="@addmovies.css" />
+                                 <TextField layoutX="86.0" layoutY="147.0" promptText="Date Checked" styleClass="text" stylesheets="@addmovies.css" />
+                                 <TextField layoutX="86.0" layoutY="190.0" promptText="Time Checked:" styleClass="text" stylesheets="@addmovies.css" />
+                                 <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="56.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/icons8-ticket-48.png" />
+                                    </image>
+                                 </ImageView>
+                                 <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="52.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/icons8-date-78.png" />
+                                    </image>
+                                 </ImageView>
+                                 <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="56.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/icons8-time-30.png" />
+                                    </image>
+                                 </ImageView>
+                                 <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="56.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/icons8-title-50.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </AnchorPane>
+                        </children>
+                     </AnchorPane>
+                     <TextField layoutX="620.0" layoutY="23.0" promptText="Search" />
+                     <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="588.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-search-30.png" />
+                        </image>
+                     </ImageView>
+                  </children>
+               </AnchorPane>
+            </children></StackPane>
+        </HBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="258.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cinema.HeaderController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="loki" stylesheets="@header.css">
+         <children>
+            <Label fx:id="usernameLabel" layoutX="64.0" layoutY="129.0" prefHeight="23.0" prefWidth="131.0" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="15.0" />
+               </font>
+            </Label>
+            <HBox layoutX="5.0" layoutY="231.0" prefHeight="42.0" prefWidth="146.0">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-home-60.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="menu_home" onMouseClicked="#switchToHome" prefHeight="29.0" prefWidth="121.0" styleClass="menu-item" stylesheets="@header.css" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="9.0" layoutY="265.0" prefHeight="42.0" prefWidth="166.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-add-properties-50.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="menu_addmovies" onMouseClicked="#switchToaddmovies" prefHeight="29.0" prefWidth="141.0" styleClass="menu-item" stylesheets="@header.css" text="Booking Details" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="5.0" layoutY="316.0" prefHeight="42.0" prefWidth="166.0">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-tickets-68.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="menu_availablemovies" onMouseClicked="#switchToavailabel" prefHeight="29.0" prefWidth="142.0" styleClass="menu-item" stylesheets="@header.css" text="Book Tickets" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="5.0" layoutY="605.0" prefHeight="42.0" prefWidth="144.0">
+               <children>
+                  <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-logout-48%20(1).png" />
+                     </image>
+                  </ImageView>
+              <Label fx:id="menu_signout" onMouseClicked="#handleLogout" prefHeight="29.0" prefWidth="111.0" styleClass="menu-item" stylesheets="@header.css" text="Signout" textFill="WHITE">
+   <font>
+      <Font name="Arial Black" size="13.0" />
+   </font>
+</Label>
+
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="9.0" layoutY="358.0" prefHeight="42.0" prefWidth="166.0">
+               <children>
+                  <ImageView fitHeight="21.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-edit-property-50.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="menu_editscreening" onMouseClicked="#switchToeditsreening" prefHeight="29.0" prefWidth="146.0" styleClass="menu-item" stylesheets="@header.css" text="Edit Sreening" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="5.0" layoutY="410.0" prefHeight="42.0" prefWidth="146.0">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-customer-24.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="menu_customer" onMouseClicked="#switchTocustomer" prefHeight="29.0" prefWidth="121.0" styleClass="menu-item" stylesheets="@header.css" text="Customer" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="92.0" fitWidth="142.0" layoutX="59.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/logo_cgv%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
