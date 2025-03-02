@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +15,7 @@
         <HBox prefHeight="700.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             
             <!-- Sidebar (Thanh menu bên trái) -->
-            <VBox maxWidth="250.0" minWidth="250.0" prefWidth="250.0" HBox.hgrow="NEVER">
+            <VBox maxWidth="252.0" minWidth="199.0" prefHeight="800.0" prefWidth="200.0" HBox.hgrow="NEVER">
                 <fx:include source="header.fxml" />
             </VBox>
 
@@ -26,99 +23,334 @@
             <!-- Nội dung chính, co giãn khi phóng to -->
             <StackPane style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                 <children>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="loki" stylesheets="@header.css">
                   
                         <children>
-                            <Label fx:id="fullNameLabel" layoutX="1039.0" layoutY="26.0" prefHeight="17.0" prefWidth="107.0">
+                            <Label fx:id="fullNameLabel" layoutX="1077.0" layoutY="30.0" prefHeight="17.0" prefWidth="107.0" textFill="WHITE">
                                 <font>
-                                    <Font name="Corbel Bold" size="12.0" />
+                                    <Font name="Microsoft JhengHei UI Bold" size="12.0" />
                                 </font>
                             </Label>
-                            <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="989.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                            <ImageView fitHeight="36.0" fitWidth="41.0" layoutX="1029.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../../../image/icons8-user-100%20(1).png" />
+                                    <Image url="@../../../image/icons8-user-100%20(2).png" />
                                 </image>
                             </ImageView>
-                            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="936.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../../image/icons8-bell%20(1).gif" />
-                                </image>
-                            </ImageView>
-                            <AnchorPane fx:id="as_form" layoutX="19.0" layoutY="82.0" prefHeight="617.0" prefWidth="498.0" styleClass="custom-pane1" stylesheets="@addmovies.css">
-                                <children>
-                                    <AnchorPane fx:id="as_importimg" layoutX="146.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@addmovies.css">
-                                        <children>
-                                            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.4285714285714164" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.4285714285714164" AnchorPane.topAnchor="2.0" />
-                                        </children>
-                                    </AnchorPane>
-                                    <JFXButton fx:id="as_import" layoutX="190.0" layoutY="227.0" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #F04E3C;" styleClass="hulk" stylesheets="@addmovies.css" text="Import" />
-                                    <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="210.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../../../image/icons8-import-24.png" />
-                                        </image>
-                                    </ImageView>
-                                    <TextField fx:id="as_title" layoutX="82.0" layoutY="333.0" promptText="Movie Title" styleClass="text" stylesheets="@addmovies.css" />
-                                    <TextField fx:id="as_genres" layoutX="82.0" layoutY="393.0" promptText="Genre" styleClass="text" stylesheets="@addmovies.css" />
-                                    <TextField fx:id="as_duration" layoutX="82.0" layoutY="455.0" promptText="Duration" styleClass="text" stylesheets="@addmovies.css" />
-                                    <DatePicker fx:id="as_date" layoutX="74.0" layoutY="518.0" prefHeight="39.0" prefWidth="174.0" stylesheets="@addmovies.css" />
-                                    <ImageView fitHeight="18.0" fitWidth="26.0" layoutX="44.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../../../image/icons8-title-50.png" />
-                                        </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="18.0" fitWidth="26.0" layoutX="44.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../../../image/icons8-timesheet-48.png" />
-                                        </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="18.0" fitWidth="26.0" layoutX="44.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../../../image/icons8-movie-beginning-64.png" />
-                                        </image>
-                                    </ImageView>
-                                    <JFXButton fx:id="as_insert" layoutX="292.0" layoutY="328.0" prefHeight="35.0" prefWidth="143.0" style="-fx-background-color: black;" styleClass="hulk" stylesheets="@addmovies.css" text="Insert" />
-                                    <JFXButton fx:id="as_update" layoutX="292.0" layoutY="388.0" prefHeight="35.0" prefWidth="143.0" style="-fx-background-color: green;" styleClass="hulk" stylesheets="@addmovies.css" text="Edit" />
-                                    <JFXButton fx:id="as_delete" layoutX="292.0" layoutY="450.0" prefHeight="35.0" prefWidth="143.0" style="-fx-background-color: red;" styleClass="hulk" stylesheets="@addmovies.css" text="Delete" />
-                                    <JFXButton fx:id="as_clear" layoutX="291.0" layoutY="520.0" prefHeight="35.0" prefWidth="143.0" style="-fx-background-color: #FF69B4;" styleClass="hulk" text="Clear" />
-                           <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="323.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../image/icons8-delete-64.png" />
-                              </image>
-                           </ImageView>
-                           <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="322.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../image/icons8-edit-24.png" />
-                              </image>
-                           </ImageView>
-                           <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="322.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../image/icons8-clear-24.png" />
-                              </image>
-                           </ImageView>
-                           <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="321.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../image/icons8-done-50.png" />
-                              </image>
-                           </ImageView>
-                           <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="41.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../image/icons8-date-78.png" />
-                              </image>
-                           </ImageView>
-                                </children>
-                            </AnchorPane>
-                            <TextField fx:id="as_search" layoutX="548.0" layoutY="22.0" prefHeight="25.0" prefWidth="185.0" />
-                            <ImageView fitHeight="18.0" fitWidth="26.0" layoutX="517.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../../image/icons8-search-30.png" />
-                                </image>
-                            </ImageView>
-                            <AnchorPane fx:id="as_formtable" layoutX="518.0" layoutY="82.0" prefHeight="617.0" prefWidth="601.0" style="-fx-background-color: #fff;">
-                                <children>
-                                   <JFXTreeTableView fx:id="tableview" prefHeight="617.0" prefWidth="601.0" stylesheets="@addmovies.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-
-                                </children>
-                            </AnchorPane>
+                     <AnchorPane layoutY="79.0" prefHeight="718.0" prefWidth="1201.0" styleClass="hulk" stylesheets="@header.css">
+                        <children>
+                           <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/p11792633_v_h10_aa.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="316.0" layoutY="22.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/88ob05HjlzHGnS5iY4K4aOPZDej.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="911.0" layoutY="22.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/d51a9aa95c59aa41e1031b449a430162.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="614.0" layoutY="22.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/8298089.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="15.0" layoutY="330.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/p11792633_v_h10_aa.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="317.0" layoutY="330.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/paddington_ws_banner_taop.png" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="912.0" layoutY="330.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/review-train-to-busan-chuyen-tau-sinh-tu-phim-xac-song-thanh-cong-nhat-lang-dien-anh-2016-thumb.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="615.0" layoutY="330.0" prefHeight="255.0" prefWidth="276.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <ImageView fitHeight="150.0" fitWidth="241.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/yaRps1bMQLyz54M8ib5YdA2a2RZ-scaled.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="18.0" layoutY="175.0" text="American Heist" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="203.0" text="3 Shows per day">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="163.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="217.0" layoutY="201.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                        </children>
+                     </AnchorPane>
+                     <Label layoutX="14.0" layoutY="30.0" styleClass="movie-menu" stylesheets="@addmovies.css" text="Now Showing" textFill="WHITE" />
+                     
+                     <Label layoutX="141.0" layoutY="30.0" styleClass="movie-menu" stylesheets="@addmovies.css" text="Trending" />
+                     <Label layoutX="233.0" layoutY="31.0" styleClass="movie-menu" stylesheets="@addmovies.css" text="Booking Details" />
+                     <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="976.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-notification-32%20(1).png" />
+                        </image>
+                     </ImageView>
+                     <TextField layoutX="601.0" layoutY="24.0" prefHeight="26.0" prefWidth="237.0" promptText="Search" styleClass="search-field" stylesheets="@home.css" />
+                     <ImageView fitHeight="19.0" fitWidth="23.0" layoutX="809.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-search-30%20(1).png" />
+                        </image>
+                     </ImageView>
                         </children>
                     </AnchorPane>
                 </children>

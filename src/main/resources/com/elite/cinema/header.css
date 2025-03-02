@@ -8,10 +8,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 .loki{
-    -fx-background-color: #1c1c1c;
-    -fx-padding: 20;
+    -fx-background-color: #181818  ;
+
     -fx-text-fill:#fff;
 }
+.hulk{
+
+    -fx-background-color: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-border-radius: 20px 0px 0px 0px;
+   
+    -fx-background-radius: 20px 0px 0px 0px;
+     -fx-text-fill:#fff;
+}
+.menu-item {
+    -fx-text-fill: #aaaaaa; 
+    -fx-font-size: 14px;
+    -fx-border-width: 0 0 1px 0; 
+    -fx-border-style: solid;
+    -fx-border-color: transparent; 
+    -fx-transition: all 0.3s ease-in-out;
+}
+
 .menu-item:hover {
-    -fx-underline: true;
+    -fx-border-color: #FF3B5C;
+    -fx-text-fill: white; 
 }

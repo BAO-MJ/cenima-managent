@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.HomeController">
@@ -14,39 +16,574 @@
         <HBox prefHeight="700.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             
             <!-- Sidebar (Thanh menu bên trái) -->
-            <VBox fx:id="sidebar" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" HBox.hgrow="NEVER">
+            <VBox fx:id="sidebar" maxWidth="250.0" minWidth="200.0" prefHeight="700.0" prefWidth="200.0" HBox.hgrow="NEVER">
               <fx:include source="header.fxml" />
             </VBox>
             
             <!-- Nội dung chính, co giãn khi phóng to -->
             <StackPane style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                 <children>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #181818;">
                         <children>
-                            <Label fx:id="fullNameLabel" layoutX="1039.0" layoutY="26.0" prefHeight="17.0" prefWidth="107.0">
+                            <Label fx:id="fullNameLabel" layoutX="1077.0" layoutY="30.0" prefHeight="17.0" prefWidth="107.0" textFill="WHITE">
                                 <font>
-                                    <Font name="Corbel Bold" size="12.0" />
+                                    <Font name="Microsoft YaHei UI Bold" size="12.0" />
                                 </font>
                             </Label>
-                            <ImageView fitHeight="32.0" fitWidth="36.0" layoutX="989.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                            <ImageView fitHeight="36.0" fitWidth="41.0" layoutX="1029.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../../../image/icons8-user-100%20(1).png" />
+                                    <Image url="@../../../image/icons8-user-100%20(2).png" />
                                 </image>
                             </ImageView>
-                            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="936.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../../../image/icons8-bell%20(1).gif" />
-                                </image>
-                            </ImageView>
-                     <AnchorPane layoutX="-2.0" layoutY="79.0" prefHeight="166.0" prefWidth="1150.0">
+                     <AnchorPane layoutY="79.0" prefHeight="718.0" prefWidth="1201.0" style="-fx-background-color: black;" styleClass="hulk" stylesheets="@header.css" AnchorPane.bottomAnchor="2.7142857142856656" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="78.85714285714278">
                         <children>
-                           <ImageView fitHeight="166.0" fitWidth="1152.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../image/bill.png" />
-                              </image>
-                           </ImageView>
-                        </children>
-                     </AnchorPane>
+                           <AnchorPane layoutX="626.0" layoutY="28.0" prefHeight="97.0" prefWidth="237.0" styleClass="card2" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="14.0" layoutY="14.0" text="0" textFill="WHITE">
+                                    <font>
+                                       <Font name="Arial Bold" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="17.0" layoutY="40.0" text="Total Seats booked" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="11.0" />
+                                    </font>
+                                 </Label>
+                                 <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="189.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
+                                    <image>
+                                       <Image url="@../../../image/icons8-movie-theater-50.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="14.0" layoutY="28.0" prefHeight="97.0" prefWidth="237.0" styleClass="card1" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="14.0" layoutY="14.0" text="0" textFill="WHITE">
+                                    <font>
+                                       <Font name="Arial Bold" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="17.0" layoutY="40.0" text="Today's Total Show" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="11.0" />
+                                    </font>
+                                 </Label>
+                                 <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="189.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
+                                    <image>
+                                       <Image url="@../../../image/icons8-clapperboard-100.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="322.0" layoutY="28.0" prefHeight="97.0" prefWidth="237.0" styleClass="card" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="14.0" layoutY="14.0" text="0" textFill="WHITE">
+                                    <font>
+                                       <Font name="Arial Bold" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="17.0" layoutY="40.0" text="Total Order" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="11.0" />
+                                    </font>
+                                 </Label>
+                                 <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="189.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
+                                    <image>
+                                       <Image url="@../../../image/icons8-timesheet-50.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="928.0" layoutY="28.0" prefHeight="97.0" prefWidth="237.0" styleClass="card3" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="14.0" layoutY="14.0" text="\$0.0" textFill="WHITE">
+                                    <font>
+                                       <Font name="Arial Bold" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="17.0" layoutY="40.0" text="Total Revenue" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="11.0" />
+                                    </font>
+                                 </Label>
+                                 <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="187.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
+                                    <image>
+                                       <Image url="@../../../image/icons8-revenue-68.png" />
+                                    </image>
+                                 </ImageView>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="14.0" layoutY="458.0" prefHeight="245.0" prefWidth="550.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="109.0" text="Current Status" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="15.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="14.0" layoutY="51.0" prefHeight="81.0" prefWidth="126.0" styleClass="cardcurrent" stylesheets="@home.css">
+                                    <children>
+                                       <Line endX="128.99996948242188" endY="6.103515625E-5" layoutX="-8.0" layoutY="25.0" startX="10.999984741210938" styleClass="line" />
+                                       <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="89.0" text="Screen 1" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="23.0" layoutY="32.0" text="Doctor Strange" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="12.0" layoutY="58.0" text="01.15 PM-02.45 PM" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="212.0" layoutY="51.0" prefHeight="81.0" prefWidth="126.0" styleClass="cardcurrent" stylesheets="@home.css">
+                                    <children>
+                                       <Line endX="128.99996948242188" endY="6.103515625E-5" layoutX="-8.0" layoutY="25.0" startX="10.999984741210938" styleClass="line" />
+                                       <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="89.0" text="Screen 2" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="16.0" layoutY="33.0" text="Train To Busan" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="12.0" layoutY="58.0" text="01.15PM-02.45 PM" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="409.0" layoutY="51.0" prefHeight="81.0" prefWidth="126.0" styleClass="cardcurrent" stylesheets="@home.css">
+                                    <children>
+                                       <Line endX="128.99996948242188" endY="6.103515625E-5" layoutX="-8.0" layoutY="25.0" startX="10.999984741210938" styleClass="line" />
+                                       <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="89.0" text="Screen 3" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="32.0" layoutY="33.0" text="Avengers" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="12.0" layoutY="58.0" text="03.00 PM-06.22 PM" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="14.0" layoutY="149.0" prefHeight="81.0" prefWidth="126.0" styleClass="cardcurrent" stylesheets="@home.css">
+                                    <children>
+                                       <Line endX="128.99996948242188" endY="6.103515625E-5" layoutX="-8.0" layoutY="25.0" startX="10.999984741210938" styleClass="line" />
+                                       <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="89.0" text="Screen 4" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="18.0" layoutY="33.0" text="American Heist" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="12.0" layoutY="58.0" text="02.15 PM-04.19 PM" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="212.0" layoutY="149.0" prefHeight="81.0" prefWidth="126.0" styleClass="cardcurrent" stylesheets="@home.css">
+                                    <children>
+                                       <Line endX="128.99996948242188" endY="6.103515625E-5" layoutX="-8.0" layoutY="25.0" startX="10.999984741210938" styleClass="line" />
+                                       <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="89.0" text="Screen 5" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="23.0" layoutY="32.0" text="Paddington" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="12.0" layoutY="58.0" text="01.15PM-02.45 PM" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="409.0" layoutY="149.0" prefHeight="81.0" prefWidth="126.0" styleClass="cardcurrent" stylesheets="@home.css">
+                                    <children>
+                                       <Line endX="128.99996948242188" endY="6.103515625E-5" layoutX="-8.0" layoutY="25.0" startX="10.999984741210938" styleClass="line" />
+                                       <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="89.0" text="Screen 6" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="30.0" layoutY="33.0" text="AnnaBelle" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                       <Label layoutX="12.0" layoutY="58.0" text="01.15PM-02.45 PM" textFill="WHITE">
+                                          <font>
+                                             <Font name="Microsoft YaHei UI" size="12.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane layoutX="14.0" layoutY="150.0" prefHeight="285.0" prefWidth="550.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="111.0" layoutY="103.0" text="Biểu đồ" textFill="RED" />
+                                 <Label layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="168.0" text="Most Booked Shows" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="15.0" />
+                                    </font>
+                                 </Label>
+                                 <AnchorPane layoutX="412.0" layoutY="11.0" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #1e1e1e;" styleClass="iron" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="All" />
+                                       <ImageView fitHeight="12.0" fitWidth="14.0" layoutX="59.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../image/icons8-expand-arrow-16.png" />
+                                          </image>
+                                       </ImageView>
+                                    </children>
+                                 </AnchorPane>
+                              </children></AnchorPane>
+                           <AnchorPane layoutX="600.0" layoutY="150.0" prefHeight="554.0" prefWidth="566.0" styleClass="thor" stylesheets="@home.css">
+                              <children>
+                                 <Label layoutX="12.0" layoutY="12.0" prefHeight="20.0" prefWidth="168.0" text="Current Running Shows" textFill="WHITE">
+                                    <font>
+                                       <Font name="Microsoft JhengHei UI" size="15.0" />
+                                    </font>
+                                 </Label>
+                                 <ImageView fitHeight="38.0" fitWidth="68.0" layoutX="12.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../../../image/yaRps1bMQLyz54M8ib5YdA2a2RZ-scaled.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="89.0" layoutY="51.0" text="Avengers" textFill="WHITE" />
+                                 <Label layoutX="89.0" layoutY="70.0" text="3 Shows per day" />
+                                 <AnchorPane layoutX="283.0" layoutY="60.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="379.0" layoutY="60.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="466.0" layoutY="60.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@home.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <ImageView fx:id="img1" fitHeight="38.0" fitWidth="68.0" layoutX="12.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" styleClass="bao">
+                                    <image>
+                                       <Image url="@../../../image/p11792633_v_h10_aa.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="89.0" layoutY="116.0" text="American Heist" textFill="WHITE" />
+                                 <Label layoutX="89.0" layoutY="135.0" text="7 Shows per day" />
+                                 <AnchorPane layoutX="283.0" layoutY="110.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="379.0" layoutY="125.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="466.0" layoutY="125.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="283.0" layoutY="137.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <ImageView fx:id="img11" fitHeight="38.0" fitWidth="68.0" layoutX="12.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" styleClass="bao">
+                                    <image>
+                                       <Image url="@../../../image/8298089.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="89.0" layoutY="189.0" text="Doctor Strange" textFill="WHITE" />
+                                 <Label layoutX="89.0" layoutY="208.0" text="2 Shows per day" />
+                                 <AnchorPane layoutX="283.0" layoutY="183.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="379.0" layoutY="198.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="466.0" layoutY="198.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="283.0" layoutY="210.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <ImageView fx:id="img111" fitHeight="32.0" fitWidth="68.0" layoutX="14.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" styleClass="bao">
+                                    <image>
+                                       <Image url="@../../../image/paddington_ws_banner_taop.png" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="91.0" layoutY="261.0" text="Paddington" textFill="WHITE" />
+                                 <Label layoutX="91.0" layoutY="280.0" text="4 Shows per day" />
+                                 <AnchorPane layoutX="285.0" layoutY="255.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="381.0" layoutY="270.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="468.0" layoutY="270.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="285.0" layoutY="282.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <ImageView fx:id="img1111" fitHeight="38.0" fitWidth="68.0" layoutX="14.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true" styleClass="bao">
+                                    <image>
+                                       <Image url="@../../../image/d51a9aa95c59aa41e1031b449a430162.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="91.0" layoutY="332.0" text="AnnaBelle" textFill="WHITE" />
+                                 <Label layoutX="91.0" layoutY="351.0" text="1 Shows per day" />
+                                 <AnchorPane layoutX="285.0" layoutY="326.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="381.0" layoutY="341.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="468.0" layoutY="341.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="285.0" layoutY="353.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <ImageView fx:id="img11111" fitHeight="38.0" fitWidth="68.0" layoutX="14.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true" styleClass="bao">
+                                    <image>
+                                       <Image url="@../../../image/review-train-to-busan-chuyen-tau-sinh-tu-phim-xac-song-thanh-cong-nhat-lang-dien-anh-2016-thumb.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="91.0" layoutY="394.0" text="Train To Busan" textFill="WHITE" />
+                                 <Label layoutX="91.0" layoutY="413.0" text="5 Shows per day" />
+                                 <AnchorPane layoutX="285.0" layoutY="388.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="381.0" layoutY="403.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="468.0" layoutY="403.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="285.0" layoutY="415.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <ImageView fx:id="img111111" fitHeight="38.0" fitWidth="68.0" layoutX="14.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true" styleClass="bao">
+                                    <image>
+                                       <Image url="@../../../image/88ob05HjlzHGnS5iY4K4aOPZDej.jpg" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="91.0" layoutY="457.0" text="The Nun" textFill="WHITE" />
+                                 <Label layoutX="91.0" layoutY="476.0" text="6 Shows per day" />
+                                 <AnchorPane layoutX="285.0" layoutY="451.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="2D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="381.0" layoutY="466.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="Vietnamese" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="468.0" layoutY="466.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #1e1e1e;" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="21.0" layoutY="4.0" text="English" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="285.0" layoutY="478.0" prefHeight="19.0" prefWidth="41.0" style="-fx-background-color: #1e1e1e;" styleClass="rounded" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="1.0" prefHeight="17.0" prefWidth="15.0" text="3D" textFill="WHITE">
+                                          <font>
+                                             <Font size="8.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane layoutX="473.0" layoutY="11.0" prefHeight="26.0" prefWidth="59.0" style="-fx-background-color: #1e1e1e;" styleClass="iron" stylesheets="@header.css">
+                                    <children>
+                                       <Label layoutX="13.0" layoutY="4.0" text="All" />
+                                       <ImageView fitHeight="12.0" fitWidth="14.0" layoutX="37.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../image/icons8-expand-arrow-16.png" />
+                                          </image>
+                                       </ImageView>
+                                    </children>
+                                 </AnchorPane>
+                              </children>
+                           </AnchorPane>
+                        </children></AnchorPane>
+                     <TextField layoutX="600.0" layoutY="22.0" prefHeight="26.0" prefWidth="237.0" promptText="Search" styleClass="search-field" stylesheets="@home.css" />
+                     <ImageView fitHeight="19.0" fitWidth="23.0" layoutX="807.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-search-30%20(1).png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="976.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../image/icons8-notification-32%20(1).png" />
+                        </image>
+                     </ImageView>
                         </children>
                     </AnchorPane>
                 </children>

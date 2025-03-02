@@ -1,0 +1,131 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Feb 28, 2025, 8:28:05 PM
+    Author     : ACER
+*/
+
+.thor{
+    -fx-background-color: #181818;
+ -fx-text-fill:#fff;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.card {
+    -fx-background-color: #03A9F4; 
+    -fx-background-radius: 8px;
+    -fx-border-radius: 5px;
+
+
+}
+
+.card:hover {
+    -fx-background-color: #0288D1; 
+    -fx-cursor: hand;
+
+
+}
+
+
+.card1 {
+    -fx-background-color: #E91E63; 
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+
+
+
+    -fx-background-radius: 8px;
+}
+.card1:hover {
+    -fx-background-color: #C2185B; 
+    -fx-cursor: hand;
+}
+.card2 {
+    -fx-background-color: #F44336; 
+    -fx-background-radius: 8px;
+    -fx-border-radius: 5px;
+
+
+}
+
+.card2:hover {
+    -fx-background-color: #D32F2F; 
+    -fx-cursor: hand;
+
+
+}
+
+
+
+.card3 {
+    -fx-background-color: #4DB6AC; 
+    -fx-background-radius: 8px;
+    -fx-border-radius: 5px;
+
+
+}
+
+.card3:hover {
+    -fx-background-color: #009688; 
+    -fx-cursor: hand;
+
+
+}
+
+.cardcurrent {
+
+    -fx-border-color: #FFFFFF7F ; /* Màu viền xám nhạt */
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 10px; /* Bo tròn góc */
+    -fx-background-color: transparent; /* Nền trong suốt */
+}
+
+
+.cardcurrent-title {
+    -fx-text-fill: #fff; /* Màu chữ trắng */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.cardcurrent-time {
+    -fx-text-fill: #888; /* Màu chữ xám đậm */
+    -fx-font-size: 12px;
+}
+
+.line {
+    -fx-stroke: #FFFFFF7F;
+    -fx-stroke-width: 1.5px;
+    -fx-start-margin: 0px;
+    -fx-end-margin: 0px;
+}
+
+.image-view {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: transparent;
+}
+
+.rounded{
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+.iron{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #FFFFFF7F;
+}
+
+.search-field {
+    -fx-background-color: black;
+    -fx-background-radius: 20;
+    -fx-border-color: #FF3B5C;
+    -fx-border-radius: 20;
+    -fx-border-width: 0.2;
+    -fx-text-fill: white;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+   
+}

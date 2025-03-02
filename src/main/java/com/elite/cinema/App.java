@@ -45,7 +45,6 @@ public class App extends Application {
         if (fxmlLoader.getLocation() == null) {
             throw new IOException("Could not find FXML file: " + fxml + ".fxml");
         }
-
         return fxmlLoader.load();
     }
 
