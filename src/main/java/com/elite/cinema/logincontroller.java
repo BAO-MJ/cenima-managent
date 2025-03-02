@@ -84,12 +84,12 @@ public class logincontroller {
     @FXML
     private AnchorPane formforgotpass;
 
-    @FXML
-    public void initialize() {
-        formlogin.setVisible(true);
-        formsignup.setVisible(false);
-        formforgotpass.setVisible(false);
-    }
+    // @FXML
+    // public void initialize() {
+    //     formlogin.setVisible(true);
+    //     formsignup.setVisible(false);
+    //     formforgotpass.setVisible(false);
+    // }
 
     public void addUser() {
         String fullname = sp_fullname.getText().trim();
