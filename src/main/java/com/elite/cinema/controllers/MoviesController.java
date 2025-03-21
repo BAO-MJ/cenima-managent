@@ -156,7 +156,7 @@ public class MoviesController extends MainController {
         if (movie.getPoster() != null) {
             moviePoster.setImage(ImageHelper.byteArrayToImage(movie.getPoster()));
         } else {
-            moviePoster.setImage(new Image(Objects.requireNonNull(getClass().getResource("/image/default-poster.png")).toString()));
+            moviePoster.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/default-poster.png"))));
         }
 
         movieTitle.setText(movie.getTitle());

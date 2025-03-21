@@ -88,6 +88,8 @@ public class LayoutController extends BaseController {
             root.setX((bounds.getWidth() - root.getWidth()) / 2);
             root.setY((bounds.getHeight() - root.getHeight()) / 2);
         });
+
+        onHomeClicked();
     }
 
     public void onHomeClicked() { switchScene("admin-home.fxml"); }

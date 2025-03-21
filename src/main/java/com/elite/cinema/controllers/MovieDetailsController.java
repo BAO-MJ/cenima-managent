@@ -5,6 +5,7 @@ import static com.elite.cinema.models.Tables.SCREENINGS;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -189,7 +190,7 @@ public class MovieDetailsController extends MainController {
         title.setText(movie.getTitle());
         director.setText(movie.getDirector());
         genre.setText(movie.getGenre());
-        releaseDate.setText(movie.getReleaseDate().toString());
+        releaseDate.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(movie.getReleaseDate()));
         duration.setText(movie.getDuration().toString() + " minutes");
         language.setText(movie.getNativeLanguage() ? "Vietnamese" : "Foreign");
         contentRating.setText(ratingMap.get(movie.getRating()));

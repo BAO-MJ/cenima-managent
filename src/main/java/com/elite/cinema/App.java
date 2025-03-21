@@ -34,7 +34,7 @@ public class App extends Application {
         // User-Agent stylesheet
 
         var sceneManager = new SceneManager(stage);
-        sceneManager.switchScene("/com/elite/cinema/layout.fxml");
+        sceneManager.switchScene("/com/elite/cinema/login.fxml");
 
         stage.setWidth(800);
         stage.setHeight(400);

@@ -126,6 +126,7 @@ public class ChooseDateController {
     }
 
     public void setSchedule(SortedMap<LocalDate, MovieSchedule> schedule) {
+        nextClicked = false;
         for (int i = 0; i < 14; i++) {
             this.schedule[i] = schedule.getOrDefault(startDate.plusDays(i), new MovieSchedule());
         }

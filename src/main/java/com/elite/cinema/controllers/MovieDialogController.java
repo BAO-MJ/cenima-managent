@@ -104,11 +104,12 @@ public class MovieDialogController {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                setDisable(date.isBefore(LocalDate.now().plusDays(14)));
+                setDisable(date.isBefore(LocalDate.now().plusDays(1)));
             }
         });
 
-        releaseDatePicker.setValue(LocalDate.now());
+        releaseDatePicker.setValue(LocalDate.now().plusDays(1));
+        endDatePicker.setValue(releaseDatePicker.getValue());
 
         releaseDatePicker.setOnAction(_ -> {
             if (releaseDatePicker.getValue() != null && releaseDatePicker.getValue().isAfter(endDatePicker.getValue())) {
@@ -118,9 +119,17 @@ public class MovieDialogController {
                 @Override
                 public void updateItem(LocalDate date, boolean empty) {
                     super.updateItem(date, empty);
-                    setDisable(date.isBefore(DateHelper.minDate(LocalDate.now(), releaseDatePicker.getValue())));
+                    setDisable(date.isBefore(DateHelper.maxDate(LocalDate.now(), releaseDatePicker.getValue())));
                 }
             });
+        });
+
+        endDatePicker.setDayCellFactory(_ -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(date.isBefore(DateHelper.maxDate(LocalDate.now(), releaseDatePicker.getValue())));
+            }
         });
     }
 
@@ -151,6 +160,7 @@ public class MovieDialogController {
 
         releaseDatePicker.setValue(movieRecord.getReleaseDate());
         releaseDatePicker.setDisable(Duration.between(LocalDate.now().atStartOfDay(), movieRecord.getReleaseDate().atStartOfDay()).toDays() < 14);
+        endDatePicker.setValue(movieRecord.getEndDate());
         endDatePicker.setDayCellFactory(_ -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {

@@ -71,7 +71,7 @@ public class Refreshments extends TableImpl<RefreshmentsRecord> {
     /**
      * The column <code>cinema.refreshments.image</code>.
      */
-    public final TableField<RefreshmentsRecord, byte[]> IMAGE = createField(DSL.name("image"), SQLDataType.BLOB.nullable(false), this, "");
+    public final TableField<RefreshmentsRecord, byte[]> IMAGE = createField(DSL.name("image"), SQLDataType.BLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.BLOB)), this, "");
 
     /**
      * The column <code>cinema.refreshments.price</code>.

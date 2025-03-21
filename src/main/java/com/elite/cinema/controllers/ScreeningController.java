@@ -312,14 +312,14 @@ public class ScreeningController extends MainController implements Initializable
                     hourSlots[hour].setAvailable(minute, selectedMovie.getId(), ULong.valueOf(id), selectedDate, displayTypeComboBox.getValue(), translationTypeComboBox.getValue());
                 }
                 else if (id < 0) {
-                    if (LocalDate.now().until(selectedDate, ChronoUnit.DAYS) > 14)
-                    {
+//                    if (LocalDate.now().until(selectedDate, ChronoUnit.DAYS) > 14)
+//                    {
                         hourSlots[hour].setSelected(minute, ULong.valueOf(-id));
-                    }
-                    else
-                    {
-                        hourSlots[hour].setLocked(minute);
-                    }
+//                    }
+//                    else
+//                    {
+//                        hourSlots[hour].setLocked(minute);
+//                    }
                 }
                 else {
                     hourSlots[hour].setUnavailable(minute);

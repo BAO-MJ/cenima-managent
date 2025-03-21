@@ -1,9 +1,6 @@
 package com.elite.cinema.ui;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -17,6 +14,8 @@ import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.enums.ScreeningsDisplayType;
 import com.elite.cinema.models.enums.ScreeningsTranslationType;
 import com.elite.cinema.models.tables.pojos.Screenings;
+
+import static com.elite.cinema.models.Tables.RESERVATIONS;
 
 /**
  * Represents a panel showing one hour of screening times with buttons for every
@@ -114,6 +113,25 @@ public class ScreeningHourPanel extends VBox {
         button.setDisable(false);
         button.setStyle("-fx-background-color: #FFA500");
         button.setOnAction(_ -> {
+            if (DbSet.getContext().fetchExists(RESERVATIONS, RESERVATIONS.SCREENING_ID.eq(screeningId)))
+            {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Reservation Exists");
+                alert.setHeaderText(null);
+                alert.setContentText("There is already at least a reservation with this screening, deleting this screening time would delete those reservations. Do you want to continue?");
+
+                ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+                ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+
+                alert.getButtonTypes().setAll(noButton, yesButton);
+                alert.initOwner(this.getScene().getWindow());
+                alert.showAndWait();
+
+                if (alert.getResult().getButtonData() == ButtonBar.ButtonData.NO) {
+                    return;
+                }
+            }
+
             var movieName = DbSet.movies().fetchOneById(DbSet.screenings().fetchOneById(screeningId).getMovieId()).getTitle();
             DbSet.screenings().deleteById(screeningId);
             if (action != null) {
@@ -121,13 +139,6 @@ public class ScreeningHourPanel extends VBox {
             }
             showAlert("Screening Removed", String.format("Removed screening of %s at %02d:%02d", movieName, hour, minute));
         });
-    }
-
-    public void setLocked(int minute) {
-        Button button = getButtonForTime(minute);
-        button.setDisable(false);
-        button.setStyle("-fx-background-color: #FF0000");
-        button.setOnAction(null);
     }
 
     public void setUnavailable(int minute) {

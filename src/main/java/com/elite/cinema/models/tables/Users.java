@@ -136,7 +136,7 @@ public class Users extends TableImpl<UsersRecord> {
 
     @Override
     public List<UniqueKey<UsersRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_USERS_EMAIL, Keys.KEY_USERS_PHONE_NUMBER);
+        return Arrays.asList(Keys.KEY_USERS_EMAIL);
     }
 
     @Override

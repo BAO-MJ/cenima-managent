@@ -48,8 +48,7 @@ public class AvailableMoviesController extends MainController implements Initial
 
         // Get now showing movies (movies with screenings on or after today)
         List<Movies> nowShowingMovies = DbSet.getContext()
-                .selectDistinct(MOVIES.asterisk())
-                .from(MOVIES)
+                .selectFrom(MOVIES)
                 .where(MOVIES.RELEASE_DATE.le(LocalDate.now()).and(MOVIES.END_DATE.ge(LocalDate.now())))
                 .orderBy(MOVIES.TITLE)
                 .fetchInto(Movies.class);

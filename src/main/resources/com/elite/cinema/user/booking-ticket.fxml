@@ -9,7 +9,6 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -42,11 +41,6 @@
             </Label>
         </HBox>
         <HBox spacing="10.0">
-            <AnchorPane style="-fx-border-color: white; -fx-border-radius: 5px;">
-                <ImageView fitHeight="131.0" fitWidth="150.0" layoutX="0.800000011920929" layoutY="0.800000011920929" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../../../image/88ob05HjlzHGnS5iY4K4aOPZDej.jpg" />
-                </ImageView>
-            </AnchorPane>
             <VBox HBox.hgrow="ALWAYS">
                 <Label fx:id="movieTitle" text="Title" textFill="SNOW" wrapText="true" VBox.vgrow="ALWAYS">
                     <font>

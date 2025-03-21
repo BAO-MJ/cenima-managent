@@ -102,20 +102,6 @@ public class UsersDao extends DAOImpl<UsersRecord, com.elite.cinema.models.table
     }
 
     /**
-     * Fetch a unique record that has <code>phone_number = value</code>
-     */
-    public com.elite.cinema.models.tables.pojos.Users fetchOneByPhoneNumber(String value) {
-        return fetchOne(Users.USERS.PHONE_NUMBER, value);
-    }
-
-    /**
-     * Fetch a unique record that has <code>phone_number = value</code>
-     */
-    public Optional<com.elite.cinema.models.tables.pojos.Users> fetchOptionalByPhoneNumber(String value) {
-        return fetchOptional(Users.USERS.PHONE_NUMBER, value);
-    }
-
-    /**
      * Fetch records that have <code>dob BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */

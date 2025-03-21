@@ -211,7 +211,7 @@ public class Movies extends TableImpl<MoviesRecord> {
     @Override
     public List<Check<MoviesRecord>> getChecks() {
         return Arrays.asList(
-            Internal.createCheck(this, DSL.name("CC1"), "`release_date` < `end_date`", true)
+            Internal.createCheck(this, DSL.name("CC1"), "`release_date` <= `end_date`", true)
         );
     }
 

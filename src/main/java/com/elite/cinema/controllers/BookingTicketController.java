@@ -4,9 +4,7 @@ import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.tables.pojos.*;
 import com.elite.cinema.models.tables.records.ReservationsRecord;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleSetProperty;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
+import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -81,9 +79,9 @@ public class BookingTicketController extends MainController implements Initializ
 
     private static final NumberFormat CurrencyFormatter = NumberFormat.getNumberInstance(Locale.forLanguageTag("vi-VN"));
 
-    private final ObservableSet<Seat> selectedRegularSeats = new SimpleSetProperty<>();
-    private final ObservableSet<Seat> selectedVipSeats = new SimpleSetProperty<>();
-    private final ObservableSet<Seat> selectedReclinerSeats = new SimpleSetProperty<>();
+    private final ObservableList<Seat> selectedRegularSeats = FXCollections.observableArrayList();
+    private final ObservableList<Seat> selectedVipSeats = FXCollections.observableArrayList();
+    private final ObservableList<Seat> selectedReclinerSeats = FXCollections.observableArrayList();
 
     private final Image availableSeatImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/seat-available.png")));
     private final Image selectedSeatImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/seat-selected.png")));
@@ -100,17 +98,17 @@ public class BookingTicketController extends MainController implements Initializ
         // Set up seat grid event handlers
         setupSeatGrid();
 
-        selectedRegularSeats.addListener((SetChangeListener<? super Seat>) _ -> {
-            regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), toMoneyValue(reclinerSeatModel.getPrice().longValue())));
+        selectedRegularSeats.addListener((ListChangeListener<? super Seat>) _ -> {
+            regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), toMoneyValue(regularSeatModel.getPrice().longValue())));
             updatePricing();
         });
 
-        selectedVipSeats.addListener((SetChangeListener<? super Seat>) _ -> {
-            vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), toMoneyValue(reclinerSeatModel.getPrice().longValue())));
+        selectedVipSeats.addListener((ListChangeListener<? super Seat>) _ -> {
+            vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), toMoneyValue(vipSeatModel.getPrice().longValue())));
             updatePricing();
         });
 
-        selectedReclinerSeats.addListener((SetChangeListener<? super Seat>) _ -> {
+        selectedReclinerSeats.addListener((ListChangeListener<? super Seat>) _ -> {
             reclinerPrice.setText(String.format("%d x %s", selectedReclinerSeats.size(), toMoneyValue(reclinerSeatModel.getPrice().longValue())));
             updatePricing();
         });
@@ -147,6 +145,14 @@ public class BookingTicketController extends MainController implements Initializ
         {
             throw new IllegalStateException("Seat models not found");
         }
+
+        selectedRegularSeats.clear();
+        selectedVipSeats.clear();
+        selectedReclinerSeats.clear();
+
+        regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), toMoneyValue(regularSeatModel.getPrice().longValue())));
+        vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), toMoneyValue(vipSeatModel.getPrice().longValue())));
+        reclinerPrice.setText(String.format("%d x %s", selectedReclinerSeats.size(), toMoneyValue(reclinerSeatModel.getPrice().longValue())));
 
         setScreening((Screenings)params);
         refreshService = Executors.newSingleThreadScheduledExecutor();
@@ -185,13 +191,17 @@ public class BookingTicketController extends MainController implements Initializ
             }
         }
 
-        for (ReservedSeats seat : seats)
+        for (ReservedSeats seat: seats)
         {
             int row = seat.getRow().intValue();
             int col = seat.getColumn().intValue();
 
             seatViews[row][col].setUserData(seat.getReservationId().equals(reservation.getId()) ? SeatStatus.SELECTED : SeatStatus.RESERVED);
         }
+
+        selectedRegularSeats.clear();
+        selectedVipSeats.clear();
+        selectedReclinerSeats.clear();
 
         for (int i = 0; i < ROWS; i++)
         {
@@ -206,6 +216,22 @@ public class BookingTicketController extends MainController implements Initializ
                     case SELECTED -> selectedSeatImage;
                     case RESERVED -> reservedSeatImage;
                 });
+
+                if (seat.getUserData() == SeatStatus.SELECTED)
+                {
+                    if (i <= 3)
+                    {
+                        selectedRegularSeats.add(new Seat(i, j));
+                    }
+                    else if (i <= 7)
+                    {
+                        selectedVipSeats.add(new Seat(i, j));
+                    }
+                    else
+                    {
+                        selectedReclinerSeats.add(new Seat(i, j));
+                    }
+                }
             }
         }
 
@@ -309,6 +335,7 @@ public class BookingTicketController extends MainController implements Initializ
     private Label createSeatLabel(Seat seat)
     {
         Label seatLabel = new Label(seat.toString());
+        seatLabel.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/elite/cinema/user/booking-ticket.css")).toExternalForm());
         seatLabel.getStyleClass().add("seat-label");
         seatLabel.setTextFill(javafx.scene.paint.Color.WHITE);
         return seatLabel;
@@ -354,9 +381,9 @@ public class BookingTicketController extends MainController implements Initializ
     @FXML
     private void onCancelPressed()
     {
-        // Handle cancellation (e.g., go back to previous page)
-        System.out.println("Booking cancelled");
-        // Implementation could navigate back to previous screen
+        var movie = Objects.requireNonNull(DbSet.movies().findById(screening.getMovieId()));
+        reservation.delete();
+        changeScene.accept("user/movie-details.fxml", movie);
     }
 
     @FXML
