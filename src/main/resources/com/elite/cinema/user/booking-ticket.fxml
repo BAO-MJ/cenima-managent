@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="600.0" prefHeight="600.0" prefWidth="1040.0" style="-fx-background-radius: 0px;" styleClass="hulk" stylesheets="@header.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.BookingTicketController">
+    <VBox spacing="10.0">
+        <Label text="Book Ticket" textFill="SNOW">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER_LEFT" spacing="5.0">
+            <Label fx:id="roomName" text="Screen 4 " textFill="#bbbbbb">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Label>
+         <Circle fill="#bbbbbb" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="screeningTime" text="02:00 PM(18 Feb 2025)" textFill="#bbbbbb">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Label>
+        </HBox>
+        <HBox spacing="10.0">
+            <AnchorPane style="-fx-border-color: white; -fx-border-radius: 5px;">
+                <ImageView fitHeight="131.0" fitWidth="150.0" layoutX="0.800000011920929" layoutY="0.800000011920929" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../../../image/88ob05HjlzHGnS5iY4K4aOPZDej.jpg" />
+                </ImageView>
+            </AnchorPane>
+            <VBox HBox.hgrow="ALWAYS">
+                <Label fx:id="movieTitle" text="Title" textFill="SNOW" wrapText="true" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="movieDisplay" layoutX="10.0" layoutY="10.0" text="Display: 2D" textFill="#bbbbbb" />
+                <Label fx:id="movieTranslation" layoutX="10.0" layoutY="33.0" text="Translation: Subtitle" textFill="#bbbbbb" />
+            </VBox>
+        </HBox>
+        <GridPane fx:id="seatsGrid" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="50.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Label alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" text="Regular (20$/-)" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.rowIndex="7">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="8">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="D" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="8">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="9">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="C" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="9">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="10">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="B" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="10">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="11" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="11">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="A" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="11">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <Label alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" text="VIP (20$/-)" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="3">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="3">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="H" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="4">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="G" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="5">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="F" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="6">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <Label alignment="BOTTOM_CENTER" text="E" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="6">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font>
+            </Label>
+         <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="132.0" maxWidth="1.7976931348623157E308" text="Recliner (20$/-)" textFill="WHITE" GridPane.columnSpan="2147483647">
+            <font>
+               <Font size="13.0" />
+            </font>
+         </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="16.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="54.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="129.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="167.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="204.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="243.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="280.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="317.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-selected.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="356.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="393.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="10" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="468.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="12" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="41.0" layoutX="505.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.rowIndex="1">
+                <Image url="@../../../../icons/seat-available.png" />
+            </ImageView>
+         <Label alignment="BOTTOM_CENTER" layoutX="550.0" layoutY="229.0" text="I" textFill="#bbbbbb" GridPane.columnIndex="14" GridPane.rowIndex="1">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="554.0" layoutY="275.0" text="14" textFill="#bbbbbb" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="298.0" text="13" textFill="#bbbbbb" GridPane.columnIndex="1" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="12" textFill="#bbbbbb" GridPane.columnIndex="2" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="11" textFill="#bbbbbb" GridPane.columnIndex="3" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="10" textFill="#bbbbbb" GridPane.columnIndex="4" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="9" textFill="#bbbbbb" GridPane.columnIndex="5" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="8" textFill="#bbbbbb" GridPane.columnIndex="6" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="7" textFill="#bbbbbb" GridPane.columnIndex="7" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="6" textFill="#bbbbbb" GridPane.columnIndex="8" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="5" textFill="#bbbbbb" GridPane.columnIndex="9" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="27.0" layoutY="10.0" text="4" textFill="#bbbbbb" GridPane.columnIndex="10" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="24.0" layoutY="298.0" text="3" textFill="#bbbbbb" GridPane.columnIndex="11" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="24.0" layoutY="10.0" text="2" textFill="#bbbbbb" GridPane.columnIndex="12" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+         <Label alignment="BOTTOM_CENTER" layoutX="24.0" layoutY="10.0" text="1" textFill="#bbbbbb" GridPane.columnIndex="13" GridPane.rowIndex="12">
+            <font>
+               <Font name="System Bold" size="15.0" />
+            </font>
+         </Label>
+        </GridPane>
+        <VBox alignment="CENTER">
+            <QuadCurve controlY="100.0" endX="250.0" startX="-250.0" stroke="#ff0055" strokeType="INSIDE" strokeWidth="5.0">
+            <VBox.margin>
+               <Insets right="30.0" />
+            </VBox.margin></QuadCurve>
+        </VBox>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                <Circle fill="#2b3d4e" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                <Label text="Available" textFill="WHITE" />
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="7.0" spacing="5.0" GridPane.columnIndex="1">
+                <Circle fill="#e64b87" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                <Label text="Selected" textFill="WHITE" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="7.0" spacing="5.0" GridPane.columnIndex="2">
+                <Circle fill="#fafafa" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+                <Label text="Reserved" textFill="WHITE" />
+            </HBox>
+        </GridPane>
+    </VBox>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="450.0" prefWidth="450.0" HBox.hgrow="ALWAYS">
+        <VBox prefWidth="450.0" spacing="15.0" styleClass="thor" stylesheets="@home.css">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <Label text="Ticket Order" textFill="SNOW">
+                <font>
+                    <Font name="Microsoft JhengHei UI" size="17.0" />
+                </font>
+            </Label>
+            <Line endX="313.0" startX="-100.0" style="-fx-stroke: #555555; -fx-stroke-width: 1; -fx-stroke-dash-array: 5 5;" VBox.vgrow="ALWAYS" />
+            <HBox spacing="15.0">
+                <Label text="Order ID" textFill="WHITE">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="orderId" text="#123456" textFill="#bbbbbb">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+            </HBox>
+            <Label text="Selected Seats" textFill="SNOW">
+                <font>
+                    <Font name="Microsoft JhengHei UI" size="15.0" />
+                </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Regular" textFill="#bbbbbb">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="regularPrice" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="0 x 40.000 VNĐ" textFill="#bbbbbb" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <FlowPane fx:id="regularSeats" hgap="15.0" vgap="10.0">
+                <Label styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="72.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="133.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="195.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="87.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="394.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="10.0" layoutY="46.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="87.0" layoutY="46.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+            </FlowPane>
+            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="148.0">
+                <Label text="VIP" textFill="#bbbbbb">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="vipPrice" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="0 x 40.000 VNĐ" textFill="#bbbbbb" HBox.hgrow="ALWAYS" />
+            </HBox>
+         <FlowPane fx:id="vipSeats" hgap="15.0" layoutX="20.0" layoutY="184.0" vgap="10.0">
+            <children>
+               <Label styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="10.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="72.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="133.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="195.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="87.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="394.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="10.0" layoutY="46.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="87.0" layoutY="46.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+            </children>
+         </FlowPane>
+            <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="261.0">
+                <Label text="Recliner" textFill="#bbbbbb">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="reclinerPrice" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="0 x 40.000 VNĐ" textFill="#bbbbbb" HBox.hgrow="ALWAYS" />
+            </HBox>
+         <FlowPane fx:id="reclinerSeats" hgap="15.0" layoutX="20.0" layoutY="629.0" vgap="10.0">
+            <children>
+               <Label styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="10.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="72.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="133.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="195.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="87.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="394.0" layoutY="10.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="10.0" layoutY="46.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="87.0" layoutY="46.0" styleClass="seat-label" stylesheets="@booking-ticket.css" text="G-5" textFill="WHITE">
+                  <font>
+                     <Font size="13.0" />
+                  </font>
+               </Label>
+            </children>
+         </FlowPane>
+         <Separator />
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Subtotal" textFill="#bbbbbb">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="subtotal" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="0 x 40.000 VNĐ" textFill="#bbbbbb" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Tax (10% VAT)" textFill="#bbbbbb">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="tax" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="0 x 40.000 VNĐ" textFill="#bbbbbb" HBox.hgrow="ALWAYS" />
+            </HBox>
+         <Separator layoutX="20.0" layoutY="488.0" />
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Grand Total" textFill="SNOW">
+                    <font>
+                        <Font name="Microsoft JhengHei UI" size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="grandTotal" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="120.000 VNĐ" textFill="WHITE" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font size="17.0" />
+                    </font>
+                </Label>
+            </HBox>
+            <VBox spacing="15.0" style="-fx-background-color: black;" styleClass="pane" stylesheets="@availablemovies.css">
+                <VBox.margin>
+                    <Insets />
+                </VBox.margin>
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                <Label text="Payment" textFill="SNOW">
+                    <font>
+                        <Font name="Microsoft JhengHei UI" size="15.0" />
+                    </font>
+                </Label>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <RadioButton mnemonicParsing="false" text="Cash" textFill="#bbbbbb">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="paymentGroup" />
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" text="QR" textFill="#bbbbbb" toggleGroup="$paymentGroup" GridPane.columnIndex="1" />
+                    <RadioButton mnemonicParsing="false" text="Credit Card" textFill="#bbbbbb" toggleGroup="$paymentGroup" GridPane.columnIndex="2" />
+                </GridPane>
+            </VBox>
+            <HBox spacing="20.0">
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onCancelPressed" styleClass="cancel-button" stylesheets="@availablemovies.css" text="Cancel" textFill="WHITE" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onConfirmPressed" styleClass="confirm-button" stylesheets="@availablemovies.css" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</HBox>

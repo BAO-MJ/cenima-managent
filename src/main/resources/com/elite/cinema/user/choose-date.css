@@ -1,0 +1,58 @@
+.date {
+    -fx-background-color:  #181818;
+    -fx-border-color: #555555;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px;
+}
+
+.date .label {
+    -fx-text-fill: #555555;
+}
+
+.date:selected {
+    -fx-background-color: #FF3B5C;
+    -fx-border-color: #FF3B5C;
+}
+
+.date:selected .label {
+    -fx-text-fill: white;
+}
+
+.date #day {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.colorful-button {
+    -fx-background-color: linear-gradient(to right, #ff4b2b, #ff416c);
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: white;
+}
+
+.colorful-pill {
+    -fx-background-color: #181818;
+    -fx-border-color: #555555;
+    -fx-background-radius: 1000000px;
+    -fx-border-radius: 1000000px;
+    -fx-text-fill: #555555;
+}
+
+.colorful-pill:selected {
+    -fx-background-color: linear-gradient(to right, #ff4b2b, #ff416c);
+    -fx-text-fill: white;
+}
+
+.arrow .ikonli-font-icon {
+    -fx-icon-color: #555555;
+    -fx-icon-size: 32px;
+}
+
+.arrow:hover .ikonli-font-icon {
+    -fx-icon-color: white;
+}
+
+.close-button {
+    -fx-icon-size: 36px;
+}

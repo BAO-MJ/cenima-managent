@@ -1,0 +1,59 @@
+#title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+#duration {
+    -fx-font-size: 20px;
+}
+
+#subinfo .label {
+    -fx-font-size: 16px;
+}
+
+#poster {
+    -fx-background-color: black;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+#moviesTable {
+    -fx-background-color: #1d1d1d;
+}
+
+/* Main layout elements */
+
+.h2 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.h3 {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Table styling */
+.table-view .column-header {
+    -fx-font-weight: bold;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: #0366d6;
+}
+
+/* Split pane styling */
+.split-pane {
+    -fx-background-color: transparent;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: #e1e4e8;
+    -fx-padding: 0 1px 0 1px;
+}
+
+/* Form panel styling */
+.grid-pane {
+    -fx-background-color: transparent;
+}

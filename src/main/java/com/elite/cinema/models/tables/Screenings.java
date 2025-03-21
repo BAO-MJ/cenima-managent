@@ -7,7 +7,10 @@ package com.elite.cinema.models.tables;
 import com.elite.cinema.models.Cinema;
 import com.elite.cinema.models.Indexes;
 import com.elite.cinema.models.Keys;
+import com.elite.cinema.models.enums.ScreeningsDisplayType;
+import com.elite.cinema.models.enums.ScreeningsTranslationType;
 import com.elite.cinema.models.tables.Movies.MoviesPath;
+import com.elite.cinema.models.tables.Reservations.ReservationsPath;
 import com.elite.cinema.models.tables.ScreeningRooms.ScreeningRoomsPath;
 import com.elite.cinema.models.tables.records.ScreeningsRecord;
 
@@ -81,6 +84,16 @@ public class Screenings extends TableImpl<ScreeningsRecord> {
      * The column <code>cinema.screenings.screening_time</code>.
      */
     public final TableField<ScreeningsRecord, LocalDateTime> SCREENING_TIME = createField(DSL.name("screening_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+
+    /**
+     * The column <code>cinema.screenings.display_type</code>.
+     */
+    public final TableField<ScreeningsRecord, ScreeningsDisplayType> DISPLAY_TYPE = createField(DSL.name("display_type"), SQLDataType.VARCHAR(2).nullable(false).asEnumDataType(ScreeningsDisplayType.class), this, "");
+
+    /**
+     * The column <code>cinema.screenings.translation_type</code>.
+     */
+    public final TableField<ScreeningsRecord, ScreeningsTranslationType> TRANSLATION_TYPE = createField(DSL.name("translation_type"), SQLDataType.VARCHAR(8).nullable(false).asEnumDataType(ScreeningsTranslationType.class), this, "");
 
     private Screenings(Name alias, Table<ScreeningsRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -166,7 +179,7 @@ public class Screenings extends TableImpl<ScreeningsRecord> {
 
     @Override
     public List<UniqueKey<ScreeningsRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_SCREENINGS_MOVIE_ID_ROOM_ID_SCREENING_TIME);
+        return Arrays.asList(Keys.KEY_SCREENINGS_MOVIE_ID_SCREENING_TIME_DISPLAY_TYPE_TRANSLATION_TYPE, Keys.KEY_SCREENINGS_ROOM_ID_SCREENING_TIME);
     }
 
     @Override
@@ -197,6 +210,19 @@ public class Screenings extends TableImpl<ScreeningsRecord> {
             _screeningRooms = new ScreeningRoomsPath(this, Keys.FK__SCREENING_ROOMS, null);
 
         return _screeningRooms;
+    }
+
+    private transient ReservationsPath _reservations;
+
+    /**
+     * Get the implicit to-many join path to the
+     * <code>cinema.reservations</code> table
+     */
+    public ReservationsPath reservations() {
+        if (_reservations == null)
+            _reservations = new ReservationsPath(this, null, Keys.FK_RESERVATIONS_SCREENINGS.getInverseKey());
+
+        return _reservations;
     }
 
     @Override

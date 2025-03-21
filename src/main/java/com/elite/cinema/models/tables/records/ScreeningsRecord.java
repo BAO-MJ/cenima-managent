@@ -4,6 +4,8 @@
 package com.elite.cinema.models.tables.records;
 
 
+import com.elite.cinema.models.enums.ScreeningsDisplayType;
+import com.elite.cinema.models.enums.ScreeningsTranslationType;
 import com.elite.cinema.models.tables.Screenings;
 
 import java.time.LocalDateTime;
@@ -77,6 +79,34 @@ public class ScreeningsRecord extends UpdatableRecordImpl<ScreeningsRecord> {
         return (LocalDateTime) get(3);
     }
 
+    /**
+     * Setter for <code>cinema.screenings.display_type</code>.
+     */
+    public void setDisplayType(ScreeningsDisplayType value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for <code>cinema.screenings.display_type</code>.
+     */
+    public ScreeningsDisplayType getDisplayType() {
+        return (ScreeningsDisplayType) get(4);
+    }
+
+    /**
+     * Setter for <code>cinema.screenings.translation_type</code>.
+     */
+    public void setTranslationType(ScreeningsTranslationType value) {
+        set(5, value);
+    }
+
+    /**
+     * Getter for <code>cinema.screenings.translation_type</code>.
+     */
+    public ScreeningsTranslationType getTranslationType() {
+        return (ScreeningsTranslationType) get(5);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -100,13 +130,32 @@ public class ScreeningsRecord extends UpdatableRecordImpl<ScreeningsRecord> {
     /**
      * Create a detached, initialised ScreeningsRecord
      */
-    public ScreeningsRecord(ULong id, ULong movieId, ULong roomId, LocalDateTime screeningTime) {
+    public ScreeningsRecord(ULong id, ULong movieId, ULong roomId, LocalDateTime screeningTime, ScreeningsDisplayType displayType, ScreeningsTranslationType translationType) {
         super(Screenings.SCREENINGS);
 
         setId(id);
         setMovieId(movieId);
         setRoomId(roomId);
         setScreeningTime(screeningTime);
+        setDisplayType(displayType);
+        setTranslationType(translationType);
         resetTouchedOnNotNull();
+    }
+
+    /**
+     * Create a detached, initialised ScreeningsRecord
+     */
+    public ScreeningsRecord(com.elite.cinema.models.tables.pojos.Screenings value) {
+        super(Screenings.SCREENINGS);
+
+        if (value != null) {
+            setId(value.getId());
+            setMovieId(value.getMovieId());
+            setRoomId(value.getRoomId());
+            setScreeningTime(value.getScreeningTime());
+            setDisplayType(value.getDisplayType());
+            setTranslationType(value.getTranslationType());
+            resetTouchedOnNotNull();
+        }
     }
 }

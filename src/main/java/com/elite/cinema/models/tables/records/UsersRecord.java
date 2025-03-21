@@ -51,16 +51,16 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> {
     }
 
     /**
-     * Setter for <code>cinema.users.phoneNumber</code>.
+     * Setter for <code>cinema.users.phone_number</code>.
      */
-    public void setPhonenumber(String value) {
+    public void setPhoneNumber(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>cinema.users.phoneNumber</code>.
+     * Getter for <code>cinema.users.phone_number</code>.
      */
-    public String getPhonenumber() {
+    public String getPhoneNumber() {
         return (String) get(2);
     }
 
@@ -143,16 +143,34 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> {
     /**
      * Create a detached, initialised UsersRecord
      */
-    public UsersRecord(ULong id, String name, String phonenumber, LocalDate dob, String email, String password, UsersType type) {
+    public UsersRecord(ULong id, String name, String phoneNumber, LocalDate dob, String email, String password, UsersType type) {
         super(Users.USERS);
 
         setId(id);
         setName(name);
-        setPhonenumber(phonenumber);
+        setPhoneNumber(phoneNumber);
         setDob(dob);
         setEmail(email);
         setPassword(password);
         setType(type);
         resetTouchedOnNotNull();
+    }
+
+    /**
+     * Create a detached, initialised UsersRecord
+     */
+    public UsersRecord(com.elite.cinema.models.tables.pojos.Users value) {
+        super(Users.USERS);
+
+        if (value != null) {
+            setId(value.getId());
+            setName(value.getName());
+            setPhoneNumber(value.getPhoneNumber());
+            setDob(value.getDob());
+            setEmail(value.getEmail());
+            setPassword(value.getPassword());
+            setType(value.getType());
+            resetTouchedOnNotNull();
+        }
     }
 }

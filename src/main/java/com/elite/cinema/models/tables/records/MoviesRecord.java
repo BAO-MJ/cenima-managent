@@ -4,7 +4,10 @@
 package com.elite.cinema.models.tables.records;
 
 
+import com.elite.cinema.models.enums.MoviesRating;
 import com.elite.cinema.models.tables.Movies;
+
+import java.time.LocalDate;
 
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
@@ -62,6 +65,118 @@ public class MoviesRecord extends UpdatableRecordImpl<MoviesRecord> {
         return (UShort) get(2);
     }
 
+    /**
+     * Setter for <code>cinema.movies.rating</code>.
+     */
+    public void setRating(MoviesRating value) {
+        set(3, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.rating</code>.
+     */
+    public MoviesRating getRating() {
+        return (MoviesRating) get(3);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.genre</code>.
+     */
+    public void setGenre(String value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.genre</code>.
+     */
+    public String getGenre() {
+        return (String) get(4);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.director</code>.
+     */
+    public void setDirector(String value) {
+        set(5, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.director</code>.
+     */
+    public String getDirector() {
+        return (String) get(5);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.description</code>.
+     */
+    public void setDescription(String value) {
+        set(6, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.description</code>.
+     */
+    public String getDescription() {
+        return (String) get(6);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.poster</code>.
+     */
+    public void setPoster(byte[] value) {
+        set(7, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.poster</code>.
+     */
+    public byte[] getPoster() {
+        return (byte[]) get(7);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.native_language</code>.
+     */
+    public void setNativeLanguage(Boolean value) {
+        set(8, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.native_language</code>.
+     */
+    public Boolean getNativeLanguage() {
+        return (Boolean) get(8);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.release_date</code>.
+     */
+    public void setReleaseDate(LocalDate value) {
+        set(9, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.release_date</code>.
+     */
+    public LocalDate getReleaseDate() {
+        return (LocalDate) get(9);
+    }
+
+    /**
+     * Setter for <code>cinema.movies.end_date</code>.
+     */
+    public void setEndDate(LocalDate value) {
+        set(10, value);
+    }
+
+    /**
+     * Getter for <code>cinema.movies.end_date</code>.
+     */
+    public LocalDate getEndDate() {
+        return (LocalDate) get(10);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -85,12 +200,42 @@ public class MoviesRecord extends UpdatableRecordImpl<MoviesRecord> {
     /**
      * Create a detached, initialised MoviesRecord
      */
-    public MoviesRecord(ULong id, String title, UShort duration) {
+    public MoviesRecord(ULong id, String title, UShort duration, MoviesRating rating, String genre, String director, String description, byte[] poster, Boolean nativeLanguage, LocalDate releaseDate, LocalDate endDate) {
         super(Movies.MOVIES);
 
         setId(id);
         setTitle(title);
         setDuration(duration);
+        setRating(rating);
+        setGenre(genre);
+        setDirector(director);
+        setDescription(description);
+        setPoster(poster);
+        setNativeLanguage(nativeLanguage);
+        setReleaseDate(releaseDate);
+        setEndDate(endDate);
         resetTouchedOnNotNull();
+    }
+
+    /**
+     * Create a detached, initialised MoviesRecord
+     */
+    public MoviesRecord(com.elite.cinema.models.tables.pojos.Movies value) {
+        super(Movies.MOVIES);
+
+        if (value != null) {
+            setId(value.getId());
+            setTitle(value.getTitle());
+            setDuration(value.getDuration());
+            setRating(value.getRating());
+            setGenre(value.getGenre());
+            setDirector(value.getDirector());
+            setDescription(value.getDescription());
+            setPoster(value.getPoster());
+            setNativeLanguage(value.getNativeLanguage());
+            setReleaseDate(value.getReleaseDate());
+            setEndDate(value.getEndDate());
+            resetTouchedOnNotNull();
+        }
     }
 }

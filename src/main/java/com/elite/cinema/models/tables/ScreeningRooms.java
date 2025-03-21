@@ -65,11 +65,6 @@ public class ScreeningRooms extends TableImpl<ScreeningRoomsRecord> {
      */
     public final TableField<ScreeningRoomsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
-    /**
-     * The column <code>cinema.screening_rooms.type</code>.
-     */
-    public final TableField<ScreeningRoomsRecord, String> TYPE = createField(DSL.name("type"), SQLDataType.CLOB.nullable(false), this, "");
-
     private ScreeningRooms(Name alias, Table<ScreeningRoomsRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
     }

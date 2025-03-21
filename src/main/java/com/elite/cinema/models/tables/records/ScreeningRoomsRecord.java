@@ -47,20 +47,6 @@ public class ScreeningRoomsRecord extends UpdatableRecordImpl<ScreeningRoomsReco
         return (String) get(1);
     }
 
-    /**
-     * Setter for <code>cinema.screening_rooms.type</code>.
-     */
-    public void setType(String value) {
-        set(2, value);
-    }
-
-    /**
-     * Getter for <code>cinema.screening_rooms.type</code>.
-     */
-    public String getType() {
-        return (String) get(2);
-    }
-
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -84,12 +70,24 @@ public class ScreeningRoomsRecord extends UpdatableRecordImpl<ScreeningRoomsReco
     /**
      * Create a detached, initialised ScreeningRoomsRecord
      */
-    public ScreeningRoomsRecord(ULong id, String name, String type) {
+    public ScreeningRoomsRecord(ULong id, String name) {
         super(ScreeningRooms.SCREENING_ROOMS);
 
         setId(id);
         setName(name);
-        setType(type);
         resetTouchedOnNotNull();
+    }
+
+    /**
+     * Create a detached, initialised ScreeningRoomsRecord
+     */
+    public ScreeningRoomsRecord(com.elite.cinema.models.tables.pojos.ScreeningRooms value) {
+        super(ScreeningRooms.SCREENING_ROOMS);
+
+        if (value != null) {
+            setId(value.getId());
+            setName(value.getName());
+            resetTouchedOnNotNull();
+        }
     }
 }

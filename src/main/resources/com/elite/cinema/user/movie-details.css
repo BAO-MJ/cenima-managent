@@ -1,0 +1,22 @@
+.colorful-button {
+    -fx-background-color: linear-gradient(to right, #ff4b2b, #ff416c);
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.colorful-pill {
+    -fx-background-color: linear-gradient(to right, #ff4b2b, #ff416c);
+    -fx-background-radius: 15px;
+    -fx-text-fill: white;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.back-button {
+    -fx-icon-color: #555;
+    -fx-icon-size: 32px;
+}
+
+.back-button:hover {
+    -fx-icon-color: #bbb;
+}

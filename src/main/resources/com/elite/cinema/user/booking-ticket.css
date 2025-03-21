@@ -1,0 +1,6 @@
+.seat-label {
+    -fx-background-color: #2A3B4C;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 4px;
+    -fx-padding: 3px 20px;
+}

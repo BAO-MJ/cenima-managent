@@ -6,12 +6,16 @@ package com.elite.cinema.models.tables;
 
 import com.elite.cinema.models.Cinema;
 import com.elite.cinema.models.Keys;
-import com.elite.cinema.models.tables.MovieInformations.MovieInformationsPath;
+import com.elite.cinema.models.enums.MoviesRating;
 import com.elite.cinema.models.tables.Screenings.ScreeningsPath;
 import com.elite.cinema.models.tables.records.MoviesRecord;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+import org.jooq.Check;
 import org.jooq.Condition;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -31,6 +35,7 @@ import org.jooq.TableField;
 import org.jooq.TableOptions;
 import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
+import org.jooq.impl.Internal;
 import org.jooq.impl.SQLDataType;
 import org.jooq.impl.TableImpl;
 import org.jooq.types.ULong;
@@ -72,6 +77,46 @@ public class Movies extends TableImpl<MoviesRecord> {
      * The column <code>cinema.movies.duration</code>.
      */
     public final TableField<MoviesRecord, UShort> DURATION = createField(DSL.name("duration"), SQLDataType.SMALLINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.SMALLINTUNSIGNED)), this, "");
+
+    /**
+     * The column <code>cinema.movies.rating</code>.
+     */
+    public final TableField<MoviesRecord, MoviesRating> RATING = createField(DSL.name("rating"), SQLDataType.VARCHAR(3).nullable(false).asEnumDataType(MoviesRating.class), this, "");
+
+    /**
+     * The column <code>cinema.movies.genre</code>.
+     */
+    public final TableField<MoviesRecord, String> GENRE = createField(DSL.name("genre"), SQLDataType.CLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.CLOB)), this, "");
+
+    /**
+     * The column <code>cinema.movies.director</code>.
+     */
+    public final TableField<MoviesRecord, String> DIRECTOR = createField(DSL.name("director"), SQLDataType.CLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.CLOB)), this, "");
+
+    /**
+     * The column <code>cinema.movies.description</code>.
+     */
+    public final TableField<MoviesRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.CLOB)), this, "");
+
+    /**
+     * The column <code>cinema.movies.poster</code>.
+     */
+    public final TableField<MoviesRecord, byte[]> POSTER = createField(DSL.name("poster"), SQLDataType.BLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.BLOB)), this, "");
+
+    /**
+     * The column <code>cinema.movies.native_language</code>.
+     */
+    public final TableField<MoviesRecord, Boolean> NATIVE_LANGUAGE = createField(DSL.name("native_language"), SQLDataType.BIT.nullable(false), this, "");
+
+    /**
+     * The column <code>cinema.movies.release_date</code>.
+     */
+    public final TableField<MoviesRecord, LocalDate> RELEASE_DATE = createField(DSL.name("release_date"), SQLDataType.LOCALDATE.nullable(false), this, "");
+
+    /**
+     * The column <code>cinema.movies.end_date</code>.
+     */
+    public final TableField<MoviesRecord, LocalDate> END_DATE = createField(DSL.name("end_date"), SQLDataType.LOCALDATE.nullable(false), this, "");
 
     private Movies(Name alias, Table<MoviesRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -150,19 +195,6 @@ public class Movies extends TableImpl<MoviesRecord> {
         return Keys.KEY_MOVIES_PRIMARY;
     }
 
-    private transient MovieInformationsPath _movieInformations;
-
-    /**
-     * Get the implicit to-many join path to the
-     * <code>cinema.movie_informations</code> table
-     */
-    public MovieInformationsPath movieInformations() {
-        if (_movieInformations == null)
-            _movieInformations = new MovieInformationsPath(this, null, Keys.FK__MOVIES.getInverseKey());
-
-        return _movieInformations;
-    }
-
     private transient ScreeningsPath _screenings;
 
     /**
@@ -174,6 +206,13 @@ public class Movies extends TableImpl<MoviesRecord> {
             _screenings = new ScreeningsPath(this, null, Keys.FK__SCREENING_MOVIES.getInverseKey());
 
         return _screenings;
+    }
+
+    @Override
+    public List<Check<MoviesRecord>> getChecks() {
+        return Arrays.asList(
+            Internal.createCheck(this, DSL.name("CC1"), "`release_date` < `end_date`", true)
+        );
     }
 
     @Override

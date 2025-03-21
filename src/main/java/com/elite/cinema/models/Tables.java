@@ -4,10 +4,15 @@
 package com.elite.cinema.models;
 
 
-import com.elite.cinema.models.tables.MovieInformations;
 import com.elite.cinema.models.tables.Movies;
+import com.elite.cinema.models.tables.Refreshments;
+import com.elite.cinema.models.tables.RefreshmentsOrderDetails;
+import com.elite.cinema.models.tables.RefreshmentsOrders;
+import com.elite.cinema.models.tables.Reservations;
+import com.elite.cinema.models.tables.ReservedSeats;
 import com.elite.cinema.models.tables.ScreeningRooms;
 import com.elite.cinema.models.tables.Screenings;
+import com.elite.cinema.models.tables.Seats;
 import com.elite.cinema.models.tables.Users;
 
 
@@ -18,14 +23,34 @@ import com.elite.cinema.models.tables.Users;
 public class Tables {
 
     /**
-     * The table <code>cinema.movie_informations</code>.
-     */
-    public static final MovieInformations MOVIE_INFORMATIONS = MovieInformations.MOVIE_INFORMATIONS;
-
-    /**
      * The table <code>cinema.movies</code>.
      */
     public static final Movies MOVIES = Movies.MOVIES;
+
+    /**
+     * The table <code>cinema.refreshments</code>.
+     */
+    public static final Refreshments REFRESHMENTS = Refreshments.REFRESHMENTS;
+
+    /**
+     * The table <code>cinema.refreshments_order_details</code>.
+     */
+    public static final RefreshmentsOrderDetails REFRESHMENTS_ORDER_DETAILS = RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS;
+
+    /**
+     * The table <code>cinema.refreshments_orders</code>.
+     */
+    public static final RefreshmentsOrders REFRESHMENTS_ORDERS = RefreshmentsOrders.REFRESHMENTS_ORDERS;
+
+    /**
+     * The table <code>cinema.reservations</code>.
+     */
+    public static final Reservations RESERVATIONS = Reservations.RESERVATIONS;
+
+    /**
+     * The table <code>cinema.reserved_seats</code>.
+     */
+    public static final ReservedSeats RESERVED_SEATS = ReservedSeats.RESERVED_SEATS;
 
     /**
      * The table <code>cinema.screening_rooms</code>.
@@ -36,6 +61,11 @@ public class Tables {
      * The table <code>cinema.screenings</code>.
      */
     public static final Screenings SCREENINGS = Screenings.SCREENINGS;
+
+    /**
+     * The table <code>cinema.seats</code>.
+     */
+    public static final Seats SEATS = Seats.SEATS;
 
     /**
      * The table <code>cinema.users</code>.

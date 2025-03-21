@@ -1,0 +1,69 @@
+#layout {
+    /* -fx-background-color: #181818; */
+}
+
+#content {
+    -fx-background-color: black;
+    -fx-background-radius: 20px 0 0 0;
+}
+
+#menu {
+    -fx-spacing: 10px;
+}
+
+#menu .label, .icon-button .label {
+    -fx-font-weight: 700;
+    -fx-font-size: 14px;
+    -fx-text-fill: #aaaaaa;
+}
+
+.card {
+    -fx-background-radius: 10px;
+}
+
+.card .label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+.card .ikonli-font-icon {
+    -fx-opacity: 0.3;
+}
+
+#total-films {
+    -fx-background-color: #E91E63;
+}
+
+#total-orders {
+    -fx-background-color: #0288D1;
+}
+
+#total-seats {
+    -fx-background-color: #F44336;
+}
+
+#total-revenue {
+    -fx-background-color: #4DB6AC;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 14px;
+}
+
+.menu-button {
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+}
+
+.menu-button:hover {
+    -fx-text-fill: white;
+    -fx-border-color: #FF3B5C;
+}
+
+.menu-button .mfx-font-icon {
+    -mfx-color: #aaaaaa;
+}

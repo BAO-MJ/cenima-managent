@@ -5,5 +5,7 @@
     "[java]": {
         "editor.detectIndentation": true,
         "editor.formatOnSave": true
-    }
+    },
+    "css.lint.vendorPrefix": "ignore",
+    "java.search.scope": "main"
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="500.0" prefWidth="650.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.MovieDialogController">
+   <children>
+           
+                          <!-- Left Side - Poster -->
+           <VBox alignment="CENTER" prefWidth="200.0" spacing="15">
+               <ImageView fx:id="posterImageView" fitHeight="300.0" fitWidth="200.0" preserveRatio="true">
+            <image>
+               <Image url="@../../../image/default-poster.png" />
+            </image>
+            <viewport>
+               <Rectangle2D />
+            </viewport></ImageView>
+               <Button fx:id="uploadPosterButton" maxWidth="1.7976931348623157E308" onAction="#handlePosterUpload" styleClass="accent" text="Upload Poster" />
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+           </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+         <children>
+              <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                  <!-- Movie Information Tab -->
+                  <Tab text="Movie Information">
+                  <VBox spacing="10.0">
+                     <children>
+                             
+                                      <!-- Right Side - Info Fields -->
+                             <Label text="Title:" />
+                        <TextField fx:id="titleField" />
+                             
+                                      <Label text="Duration (minutes):" />
+                        <Spinner fx:id="durationField" editable="true" maxWidth="1.7976931348623157E308" />
+                             
+                                      <Label text="Content Rating:" />
+                             <ComboBox fx:id="ratingComboBox" prefWidth="Infinity" />
+                        <Label layoutX="10.0" layoutY="148.0" text="Language:" />
+                        <HBox>
+                           <children>
+                              <ToggleButton fx:id="foreignLanguageButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Foreign" HBox.hgrow="ALWAYS" />
+                              <ToggleButton fx:id="nativeLanguageButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Vietnamese" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="15.0">
+                           <children>
+                              <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Release Date" />
+                                    <DatePicker fx:id="releaseDatePicker" maxWidth="1.7976931348623157E308" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="End Date" />
+                                    <DatePicker fx:id="endDatePicker" maxWidth="1.7976931348623157E308" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+                  </Tab>
+                  
+                        <!-- Movie Description Tab -->
+                  <Tab text="Movie Description">
+                  <VBox spacing="10.0">
+                     <children>
+                             
+                                      <Label text="Genre:" />
+                        <TextField fx:id="genreField" />
+                             
+                                      <Label text="Director:" />
+                        <TextField fx:id="directorField" layoutX="10.0" layoutY="38.0" />
+                             
+                                      <Label text="Description:" />
+                             <TextArea fx:id="descriptionArea" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+                  </Tab>
+              </TabPane>
+            <HBox alignment="TOP_RIGHT" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#onSave" text="Save" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+</HBox>

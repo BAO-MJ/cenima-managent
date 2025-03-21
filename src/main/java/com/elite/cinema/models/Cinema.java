@@ -4,10 +4,15 @@
 package com.elite.cinema.models;
 
 
-import com.elite.cinema.models.tables.MovieInformations;
 import com.elite.cinema.models.tables.Movies;
+import com.elite.cinema.models.tables.Refreshments;
+import com.elite.cinema.models.tables.RefreshmentsOrderDetails;
+import com.elite.cinema.models.tables.RefreshmentsOrders;
+import com.elite.cinema.models.tables.Reservations;
+import com.elite.cinema.models.tables.ReservedSeats;
 import com.elite.cinema.models.tables.ScreeningRooms;
 import com.elite.cinema.models.tables.Screenings;
+import com.elite.cinema.models.tables.Seats;
 import com.elite.cinema.models.tables.Users;
 
 import java.util.Arrays;
@@ -33,14 +38,34 @@ public class Cinema extends SchemaImpl {
     public static final Cinema CINEMA = new Cinema();
 
     /**
-     * The table <code>cinema.movie_informations</code>.
-     */
-    public final MovieInformations MOVIE_INFORMATIONS = MovieInformations.MOVIE_INFORMATIONS;
-
-    /**
      * The table <code>cinema.movies</code>.
      */
     public final Movies MOVIES = Movies.MOVIES;
+
+    /**
+     * The table <code>cinema.refreshments</code>.
+     */
+    public final Refreshments REFRESHMENTS = Refreshments.REFRESHMENTS;
+
+    /**
+     * The table <code>cinema.refreshments_order_details</code>.
+     */
+    public final RefreshmentsOrderDetails REFRESHMENTS_ORDER_DETAILS = RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS;
+
+    /**
+     * The table <code>cinema.refreshments_orders</code>.
+     */
+    public final RefreshmentsOrders REFRESHMENTS_ORDERS = RefreshmentsOrders.REFRESHMENTS_ORDERS;
+
+    /**
+     * The table <code>cinema.reservations</code>.
+     */
+    public final Reservations RESERVATIONS = Reservations.RESERVATIONS;
+
+    /**
+     * The table <code>cinema.reserved_seats</code>.
+     */
+    public final ReservedSeats RESERVED_SEATS = ReservedSeats.RESERVED_SEATS;
 
     /**
      * The table <code>cinema.screening_rooms</code>.
@@ -51,6 +76,11 @@ public class Cinema extends SchemaImpl {
      * The table <code>cinema.screenings</code>.
      */
     public final Screenings SCREENINGS = Screenings.SCREENINGS;
+
+    /**
+     * The table <code>cinema.seats</code>.
+     */
+    public final Seats SEATS = Seats.SEATS;
 
     /**
      * The table <code>cinema.users</code>.
@@ -73,10 +103,15 @@ public class Cinema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            MovieInformations.MOVIE_INFORMATIONS,
             Movies.MOVIES,
+            Refreshments.REFRESHMENTS,
+            RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS,
+            RefreshmentsOrders.REFRESHMENTS_ORDERS,
+            Reservations.RESERVATIONS,
+            ReservedSeats.RESERVED_SEATS,
             ScreeningRooms.SCREENING_ROOMS,
             Screenings.SCREENINGS,
+            Seats.SEATS,
             Users.USERS
         );
     }

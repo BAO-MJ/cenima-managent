@@ -4,15 +4,25 @@
 package com.elite.cinema.models;
 
 
-import com.elite.cinema.models.tables.MovieInformations;
 import com.elite.cinema.models.tables.Movies;
+import com.elite.cinema.models.tables.Refreshments;
+import com.elite.cinema.models.tables.RefreshmentsOrderDetails;
+import com.elite.cinema.models.tables.RefreshmentsOrders;
+import com.elite.cinema.models.tables.Reservations;
+import com.elite.cinema.models.tables.ReservedSeats;
 import com.elite.cinema.models.tables.ScreeningRooms;
 import com.elite.cinema.models.tables.Screenings;
+import com.elite.cinema.models.tables.Seats;
 import com.elite.cinema.models.tables.Users;
-import com.elite.cinema.models.tables.records.MovieInformationsRecord;
 import com.elite.cinema.models.tables.records.MoviesRecord;
+import com.elite.cinema.models.tables.records.RefreshmentsOrderDetailsRecord;
+import com.elite.cinema.models.tables.records.RefreshmentsOrdersRecord;
+import com.elite.cinema.models.tables.records.RefreshmentsRecord;
+import com.elite.cinema.models.tables.records.ReservationsRecord;
+import com.elite.cinema.models.tables.records.ReservedSeatsRecord;
 import com.elite.cinema.models.tables.records.ScreeningRoomsRecord;
 import com.elite.cinema.models.tables.records.ScreeningsRecord;
+import com.elite.cinema.models.tables.records.SeatsRecord;
 import com.elite.cinema.models.tables.records.UsersRecord;
 
 import org.jooq.ForeignKey;
@@ -34,18 +44,30 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<MovieInformationsRecord> KEY_MOVIE_INFORMATIONS_PRIMARY = Internal.createUniqueKey(MovieInformations.MOVIE_INFORMATIONS, DSL.name("KEY_movie_informations_PRIMARY"), new TableField[] { MovieInformations.MOVIE_INFORMATIONS.MOVIE_ID }, true);
     public static final UniqueKey<MoviesRecord> KEY_MOVIES_PRIMARY = Internal.createUniqueKey(Movies.MOVIES, DSL.name("KEY_movies_PRIMARY"), new TableField[] { Movies.MOVIES.ID }, true);
+    public static final UniqueKey<RefreshmentsRecord> KEY_REFRESHMENTS_PRIMARY = Internal.createUniqueKey(Refreshments.REFRESHMENTS, DSL.name("KEY_refreshments_PRIMARY"), new TableField[] { Refreshments.REFRESHMENTS.ID }, true);
+    public static final UniqueKey<RefreshmentsOrderDetailsRecord> KEY_REFRESHMENTS_ORDER_DETAILS_PRIMARY = Internal.createUniqueKey(RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS, DSL.name("KEY_refreshments_order_details_PRIMARY"), new TableField[] { RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS.ORDER_ID, RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS.REFRESHMENT_ID }, true);
+    public static final UniqueKey<RefreshmentsOrdersRecord> KEY_REFRESHMENTS_ORDERS_PRIMARY = Internal.createUniqueKey(RefreshmentsOrders.REFRESHMENTS_ORDERS, DSL.name("KEY_refreshments_orders_PRIMARY"), new TableField[] { RefreshmentsOrders.REFRESHMENTS_ORDERS.ID }, true);
+    public static final UniqueKey<ReservationsRecord> KEY_RESERVATIONS_PRIMARY = Internal.createUniqueKey(Reservations.RESERVATIONS, DSL.name("KEY_reservations_PRIMARY"), new TableField[] { Reservations.RESERVATIONS.ID }, true);
+    public static final UniqueKey<ReservedSeatsRecord> KEY_RESERVED_SEATS_PRIMARY = Internal.createUniqueKey(ReservedSeats.RESERVED_SEATS, DSL.name("KEY_reserved_seats_PRIMARY"), new TableField[] { ReservedSeats.RESERVED_SEATS.RESERVATION_ID, ReservedSeats.RESERVED_SEATS.ROW, ReservedSeats.RESERVED_SEATS.COLUMN }, true);
     public static final UniqueKey<ScreeningRoomsRecord> KEY_SCREENING_ROOMS_PRIMARY = Internal.createUniqueKey(ScreeningRooms.SCREENING_ROOMS, DSL.name("KEY_screening_rooms_PRIMARY"), new TableField[] { ScreeningRooms.SCREENING_ROOMS.ID }, true);
-    public static final UniqueKey<ScreeningsRecord> KEY_SCREENINGS_MOVIE_ID_ROOM_ID_SCREENING_TIME = Internal.createUniqueKey(Screenings.SCREENINGS, DSL.name("KEY_screenings_movie_id_room_id_screening_time"), new TableField[] { Screenings.SCREENINGS.MOVIE_ID, Screenings.SCREENINGS.ROOM_ID, Screenings.SCREENINGS.SCREENING_TIME }, true);
+    public static final UniqueKey<ScreeningsRecord> KEY_SCREENINGS_MOVIE_ID_SCREENING_TIME_DISPLAY_TYPE_TRANSLATION_TYPE = Internal.createUniqueKey(Screenings.SCREENINGS, DSL.name("KEY_screenings_movie_id_screening_time_display_type_translation_type"), new TableField[] { Screenings.SCREENINGS.MOVIE_ID, Screenings.SCREENINGS.SCREENING_TIME, Screenings.SCREENINGS.DISPLAY_TYPE, Screenings.SCREENINGS.TRANSLATION_TYPE }, true);
     public static final UniqueKey<ScreeningsRecord> KEY_SCREENINGS_PRIMARY = Internal.createUniqueKey(Screenings.SCREENINGS, DSL.name("KEY_screenings_PRIMARY"), new TableField[] { Screenings.SCREENINGS.ID }, true);
+    public static final UniqueKey<ScreeningsRecord> KEY_SCREENINGS_ROOM_ID_SCREENING_TIME = Internal.createUniqueKey(Screenings.SCREENINGS, DSL.name("KEY_screenings_room_id_screening_time"), new TableField[] { Screenings.SCREENINGS.ROOM_ID, Screenings.SCREENINGS.SCREENING_TIME }, true);
+    public static final UniqueKey<SeatsRecord> KEY_SEATS_NAME = Internal.createUniqueKey(Seats.SEATS, DSL.name("KEY_seats_name"), new TableField[] { Seats.SEATS.NAME }, true);
+    public static final UniqueKey<SeatsRecord> KEY_SEATS_PRIMARY = Internal.createUniqueKey(Seats.SEATS, DSL.name("KEY_seats_PRIMARY"), new TableField[] { Seats.SEATS.ID }, true);
+    public static final UniqueKey<UsersRecord> KEY_USERS_EMAIL = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_email"), new TableField[] { Users.USERS.EMAIL }, true);
+    public static final UniqueKey<UsersRecord> KEY_USERS_PHONE_NUMBER = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_phone_number"), new TableField[] { Users.USERS.PHONE_NUMBER }, true);
     public static final UniqueKey<UsersRecord> KEY_USERS_PRIMARY = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_PRIMARY"), new TableField[] { Users.USERS.ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<MovieInformationsRecord, MoviesRecord> FK__MOVIES = Internal.createForeignKey(MovieInformations.MOVIE_INFORMATIONS, DSL.name("FK__movies"), new TableField[] { MovieInformations.MOVIE_INFORMATIONS.MOVIE_ID }, Keys.KEY_MOVIES_PRIMARY, new TableField[] { Movies.MOVIES.ID }, true, ForeignKeyRule.CASCADE, ForeignKeyRule.CASCADE);
+    public static final ForeignKey<RefreshmentsOrderDetailsRecord, RefreshmentsOrdersRecord> FK__REFRESHMENTS_DETAILS_ORDERS = Internal.createForeignKey(RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS, DSL.name("FK__refreshments_details_orders"), new TableField[] { RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS.ORDER_ID }, Keys.KEY_REFRESHMENTS_ORDERS_PRIMARY, new TableField[] { RefreshmentsOrders.REFRESHMENTS_ORDERS.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
+    public static final ForeignKey<RefreshmentsOrderDetailsRecord, RefreshmentsRecord> FK__REFRESHMENTS_REFRESHMENTS = Internal.createForeignKey(RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS, DSL.name("FK__refreshments_refreshments"), new TableField[] { RefreshmentsOrderDetails.REFRESHMENTS_ORDER_DETAILS.REFRESHMENT_ID }, Keys.KEY_REFRESHMENTS_PRIMARY, new TableField[] { Refreshments.REFRESHMENTS.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
+    public static final ForeignKey<ReservationsRecord, ScreeningsRecord> FK_RESERVATIONS_SCREENINGS = Internal.createForeignKey(Reservations.RESERVATIONS, DSL.name("FK_reservations_screenings"), new TableField[] { Reservations.RESERVATIONS.SCREENING_ID }, Keys.KEY_SCREENINGS_PRIMARY, new TableField[] { Screenings.SCREENINGS.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
+    public static final ForeignKey<ReservedSeatsRecord, ReservationsRecord> FK__RESERVATIONS = Internal.createForeignKey(ReservedSeats.RESERVED_SEATS, DSL.name("FK__reservations"), new TableField[] { ReservedSeats.RESERVED_SEATS.RESERVATION_ID }, Keys.KEY_RESERVATIONS_PRIMARY, new TableField[] { Reservations.RESERVATIONS.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
     public static final ForeignKey<ScreeningsRecord, MoviesRecord> FK__SCREENING_MOVIES = Internal.createForeignKey(Screenings.SCREENINGS, DSL.name("FK__screening_movies"), new TableField[] { Screenings.SCREENINGS.MOVIE_ID }, Keys.KEY_MOVIES_PRIMARY, new TableField[] { Movies.MOVIES.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
     public static final ForeignKey<ScreeningsRecord, ScreeningRoomsRecord> FK__SCREENING_ROOMS = Internal.createForeignKey(Screenings.SCREENINGS, DSL.name("FK__screening_rooms"), new TableField[] { Screenings.SCREENINGS.ROOM_ID }, Keys.KEY_SCREENING_ROOMS_PRIMARY, new TableField[] { ScreeningRooms.SCREENING_ROOMS.ID }, true, ForeignKeyRule.NO_ACTION, ForeignKeyRule.NO_ACTION);
 }

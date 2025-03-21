@@ -1,0 +1,25 @@
+.card {
+    -fx-background-radius: 10px;
+    -fx-background-color: #1c1c1c;
+}
+
+.card .label#title {
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+}
+
+.screening-rooms .room {
+    -fx-border-color: white;
+    -fx-border-radius: 10px;
+}
+
+.screening-rooms .label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.screening-rooms .pagination {
+    -fx-page-information-visible: false;
+}
