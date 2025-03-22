@@ -56,7 +56,6 @@ public class Keys {
     public static final UniqueKey<ScreeningsRecord> KEY_SCREENINGS_ROOM_ID_SCREENING_TIME = Internal.createUniqueKey(Screenings.SCREENINGS, DSL.name("KEY_screenings_room_id_screening_time"), new TableField[] { Screenings.SCREENINGS.ROOM_ID, Screenings.SCREENINGS.SCREENING_TIME }, true);
     public static final UniqueKey<SeatsRecord> KEY_SEATS_NAME = Internal.createUniqueKey(Seats.SEATS, DSL.name("KEY_seats_name"), new TableField[] { Seats.SEATS.NAME }, true);
     public static final UniqueKey<SeatsRecord> KEY_SEATS_PRIMARY = Internal.createUniqueKey(Seats.SEATS, DSL.name("KEY_seats_PRIMARY"), new TableField[] { Seats.SEATS.ID }, true);
-    public static final UniqueKey<UsersRecord> KEY_USERS_EMAIL = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_email"), new TableField[] { Users.USERS.EMAIL }, true);
     public static final UniqueKey<UsersRecord> KEY_USERS_PRIMARY = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_PRIMARY"), new TableField[] { Users.USERS.ID }, true);
 
     // -------------------------------------------------------------------------

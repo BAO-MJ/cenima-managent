@@ -10,9 +10,7 @@ import com.elite.cinema.models.enums.UsersType;
 import com.elite.cinema.models.tables.records.UsersRecord;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import org.jooq.Condition;
 import org.jooq.Field;
@@ -78,17 +76,17 @@ public class Users extends TableImpl<UsersRecord> {
     /**
      * The column <code>cinema.users.email</code>.
      */
-    public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50).nullable(false).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
+    public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>cinema.users.password</code>.
      */
-    public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(50).nullable(false).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
+    public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(50).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>cinema.users.type</code>.
      */
-    public final TableField<UsersRecord, UsersType> TYPE = createField(DSL.name("type"), SQLDataType.VARCHAR(5).nullable(false).asEnumDataType(UsersType.class), this, "");
+    public final TableField<UsersRecord, UsersType> TYPE = createField(DSL.name("type"), SQLDataType.VARCHAR(8).nullable(false).asEnumDataType(UsersType.class), this, "");
 
     private Users(Name alias, Table<UsersRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);
@@ -132,11 +130,6 @@ public class Users extends TableImpl<UsersRecord> {
     @Override
     public UniqueKey<UsersRecord> getPrimaryKey() {
         return Keys.KEY_USERS_PRIMARY;
-    }
-
-    @Override
-    public List<UniqueKey<UsersRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_USERS_EMAIL);
     }
 
     @Override

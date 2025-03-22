@@ -1,17 +1,17 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.utils;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import com.elite.cinema.controllers.BaseController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class SceneManager
 {
-    final Stage rootStage;
+    public final Stage rootStage;
     private String currentUrl = "";
 
     public SceneManager(Stage rootStage)
@@ -21,6 +21,7 @@ public class SceneManager
             throw new IllegalArgumentException();
         }
         this.rootStage = rootStage;
+        rootStage.setTitle("Cinema Manager");
     }
 
     public void setTitle(String title)
@@ -28,14 +29,7 @@ public class SceneManager
         rootStage.setTitle(title);
     }
 
-    private final Map<String, Scene> scenes = new HashMap<>();
-
-    public void switchScene(String url)
-    {
-        switchScene(url, true);
-    }
-
-    private Scene loadScene(String url)
+    private Pair<Scene, BaseController> loadScene(String url)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
         try
@@ -43,7 +37,7 @@ public class SceneManager
             Pane p = loader.load();
             BaseController controller = loader.getController();
             controller.setSceneManager(this);
-            return new Scene(p);
+            return new Pair<>(new Scene(p), controller);
         }
         catch (IOException ex)
         {
@@ -51,12 +45,15 @@ public class SceneManager
         }
     }
 
-    public void switchScene(String url, boolean cache)
+    public void switchScene(String url)
     {
         if (currentUrl.equals(url)) return;
         currentUrl = url;
 
-        Scene scene = cache ? scenes.computeIfAbsent(url, this::loadScene) : loadScene(url);
-        rootStage.setScene(scene);
+        Pair<Scene, BaseController> kv = loadScene(url);
+        rootStage.setScene(kv.getKey());
+        if (kv.getValue() != null) {
+            kv.getValue().ready();
+        }
     }
 }

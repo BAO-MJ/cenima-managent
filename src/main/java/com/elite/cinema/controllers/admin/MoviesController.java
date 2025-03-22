@@ -1,12 +1,12 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.admin;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import atlantafx.base.theme.Styles;
+import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.models.enums.MoviesRating;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import com.elite.cinema.utils.ComboBoxHelper;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +16,6 @@ import com.elite.cinema.utils.ImageHelper;
 import com.elite.cinema.db.DbSet;
 
 import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -31,7 +30,8 @@ import lombok.SneakyThrows;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-public class MoviesController extends MainController {
+public class MoviesController extends MainController
+{
     @FXML
     private TableView<Movies> moviesTable;
     @FXML
@@ -94,20 +94,7 @@ public class MoviesController extends MainController {
     private void setupFilters() {
         // Setup rating filter
         filterComboBox.setItems(FXCollections.observableArrayList(MoviesRating.values()));
-        filterComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(MoviesRating rating) {
-                return rating == null ? "All ratings" : rating.getLiteral();
-            }
-
-            @Override
-            public MoviesRating fromString(String string) {
-                for (var r : MoviesRating.values()) {
-                    if (r.getLiteral().equals(string)) return r;
-                }
-                return null;
-            }
-        });
+        filterComboBox.setConverter(ComboBoxHelper.getStringConverter(MoviesRating::getLiteral, "All Ratings"));
 
         // Add "All ratings" option
         filterComboBox.getItems().addFirst(null);

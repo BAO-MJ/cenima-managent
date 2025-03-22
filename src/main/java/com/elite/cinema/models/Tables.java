@@ -10,6 +10,7 @@ import com.elite.cinema.models.tables.RefreshmentsOrderDetails;
 import com.elite.cinema.models.tables.RefreshmentsOrders;
 import com.elite.cinema.models.tables.Reservations;
 import com.elite.cinema.models.tables.ReservedSeats;
+import com.elite.cinema.models.tables.Revenues;
 import com.elite.cinema.models.tables.ScreeningRooms;
 import com.elite.cinema.models.tables.Screenings;
 import com.elite.cinema.models.tables.Seats;
@@ -51,6 +52,11 @@ public class Tables {
      * The table <code>cinema.reserved_seats</code>.
      */
     public static final ReservedSeats RESERVED_SEATS = ReservedSeats.RESERVED_SEATS;
+
+    /**
+     * The table <code>cinema.revenues</code>.
+     */
+    public static final Revenues REVENUES = Revenues.REVENUES;
 
     /**
      * The table <code>cinema.screening_rooms</code>.

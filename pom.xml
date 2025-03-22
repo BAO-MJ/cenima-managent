@@ -22,16 +22,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>23.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.41.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jfoenix</groupId>
-            <artifactId>jfoenix</artifactId>
-            <version>9.0.10</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.palexdev/materialfx -->
         <dependency>
             <groupId>io.github.palexdev</groupId>
@@ -79,11 +69,6 @@
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-materialdesign2-pack</artifactId>
             <version>12.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.calendarfx</groupId>
-            <artifactId>view</artifactId>
-            <version>11.12.7</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
@@ -179,7 +164,7 @@
                         </database>
                         <target>
                             <packageName>com.elite.cinema.models</packageName>
-                            <directory>E:/EliteCinema/src/main/java</directory>
+                            <directory>src/main/java</directory>
                         </target>
                         <generate>
                             <daos>true</daos>

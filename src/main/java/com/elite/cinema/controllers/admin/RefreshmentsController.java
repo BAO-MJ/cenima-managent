@@ -1,8 +1,10 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.admin;
 
+import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.enums.RefreshmentsCategory;
 import com.elite.cinema.models.tables.pojos.Refreshments;
+import com.elite.cinema.utils.ComboBoxHelper;
 import com.elite.cinema.utils.ImageHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +26,8 @@ import java.nio.file.Path;
 
 import static com.elite.cinema.models.Tables.REFRESHMENTS;
 
-public class RefreshmentsController extends MainController {
+public class RefreshmentsController extends MainController
+{
     @FXML
     private TextField searchField, nameField;
     @FXML
@@ -62,20 +65,7 @@ public class RefreshmentsController extends MainController {
 
         // Add "All" option to filter
         filterComboBox.getItems().addFirst(null);
-        filterComboBox.setConverter(new StringConverter<>()
-        {
-            @Override
-            public String toString(RefreshmentsCategory category)
-            {
-                return category == null ? "All Categories" : category.toString();
-            }
-
-            @Override
-            public RefreshmentsCategory fromString(String string)
-            {
-                return null; // Not needed for combo box
-            }
-        });
+        filterComboBox.setConverter(ComboBoxHelper.getStringConverter(RefreshmentsCategory::getLiteral, "All Categories"));
 
         // Setup spinners
         priceSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1000, 100000, 1000, 1000));

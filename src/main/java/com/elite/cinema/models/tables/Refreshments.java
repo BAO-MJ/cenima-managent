@@ -16,6 +16,7 @@ import java.util.Collection;
 import org.jooq.Condition;
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.InverseForeignKey;
 import org.jooq.Name;
 import org.jooq.Path;
@@ -61,7 +62,7 @@ public class Refreshments extends TableImpl<RefreshmentsRecord> {
     /**
      * The column <code>cinema.refreshments.id</code>.
      */
-    public final TableField<RefreshmentsRecord, ULong> ID = createField(DSL.name("id"), SQLDataType.BIGINTUNSIGNED.nullable(false), this, "");
+    public final TableField<RefreshmentsRecord, ULong> ID = createField(DSL.name("id"), SQLDataType.BIGINTUNSIGNED.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>cinema.refreshments.name</code>.
@@ -148,6 +149,11 @@ public class Refreshments extends TableImpl<RefreshmentsRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : Cinema.CINEMA;
+    }
+
+    @Override
+    public Identity<RefreshmentsRecord, ULong> getIdentity() {
+        return (Identity<RefreshmentsRecord, ULong>) super.getIdentity();
     }
 
     @Override

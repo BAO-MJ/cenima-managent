@@ -120,14 +120,11 @@ public class ScreeningHourPanel extends VBox {
                 alert.setHeaderText(null);
                 alert.setContentText("There is already at least a reservation with this screening, deleting this screening time would delete those reservations. Do you want to continue?");
 
-                ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
-                ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
-
-                alert.getButtonTypes().setAll(noButton, yesButton);
+                alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
                 alert.initOwner(this.getScene().getWindow());
                 alert.showAndWait();
 
-                if (alert.getResult().getButtonData() == ButtonBar.ButtonData.NO) {
+                if (alert.getResult() == ButtonType.NO) {
                     return;
                 }
             }

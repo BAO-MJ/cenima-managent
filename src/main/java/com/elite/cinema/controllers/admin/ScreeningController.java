@@ -1,6 +1,7 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.admin;
 
 import com.elite.cinema.ScreeningInfo;
+import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.enums.ScreeningsDisplayType;
 import com.elite.cinema.models.enums.ScreeningsTranslationType;
@@ -9,6 +10,7 @@ import com.elite.cinema.schedule.ScreeningRoomSchedule;
 import com.elite.cinema.schedule.ScreeningTime;
 
 import com.elite.cinema.ui.ScreeningHourPanel;
+import com.elite.cinema.utils.ComboBoxHelper;
 import com.elite.cinema.utils.DateHelper;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
@@ -33,12 +35,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.elite.cinema.models.Tables.MOVIES;
@@ -60,24 +60,6 @@ public class ScreeningController extends MainController implements Initializable
     private ComboBox<ScreeningsTranslationType> translationTypeComboBox;
     @FXML
     private GridPane screeningHoursGrid;
-    @FXML
-    private TableView<ScreeningInfo> screeningTable;
-    @FXML
-    private TableColumn<ScreeningInfo, String> movieColumn;
-    @FXML
-    private TableColumn<ScreeningInfo, String> roomColumn;
-    @FXML
-    private TableColumn<ScreeningInfo, LocalDate> dateColumn;
-    @FXML
-    private TableColumn<ScreeningInfo, String> startTimeColumn;
-    @FXML
-    private TableColumn<ScreeningInfo, String> endTimeColumn;
-    @FXML
-    private TableColumn<ScreeningInfo, String> displayTypeColumn;
-    @FXML
-    private TableColumn<ScreeningInfo, String> translationTypeColumn;
-    @FXML
-    private Button deleteButton;
 
     private ScheduledExecutorService refreshService;
 
@@ -90,7 +72,6 @@ public class ScreeningController extends MainController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         // Setup UI components
         setupComboBoxes();
-        setupTableView();
         setupEventHandlers();
 
         for (int hour = 0; hour < 24; hour++) {
@@ -129,15 +110,7 @@ public class ScreeningController extends MainController implements Initializable
 
     private <T> void initializeComboBox(ComboBox<T> cmb, T[] items, Function<T, String> displayFunction) {
         cmb.setItems(FXCollections.observableArrayList(items));
-        cmb.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(T value) { return value == null ? "" : displayFunction.apply(value); }
-
-            @Override
-            public T fromString(String string) {
-                return null; // Not needed for ComboBox
-            }
-        });
+        cmb.setConverter(ComboBoxHelper.getStringConverter(displayFunction));
         cmb.getSelectionModel().selectFirst();
     }
 
@@ -148,45 +121,7 @@ public class ScreeningController extends MainController implements Initializable
                 ScreeningsTranslationType::getLiteral);
 
         // Setup movie combo box
-        movieComboBox.setConverter(new StringConverter<>()
-        {
-            @Override
-            public String toString(Movies movies)
-            {
-                return movies != null ? movies.getTitle() : "";
-            }
-
-            @Override
-            public Movies fromString(String s)
-            {
-                return null;
-            }
-        });
-    }
-
-    private void setupTableView() {
-        screeningTable.setItems(screenings);
-
-        movieColumn.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
-        roomColumn.setCellValueFactory(new PropertyValueFactory<>("roomName"));
-
-        dateColumn.setCellValueFactory(
-                data -> new SimpleObjectProperty<>(data.getValue().getScreeningTime().toLocalDate()));
-
-        startTimeColumn.setCellValueFactory(data -> new SimpleStringProperty(
-                data.getValue().getScreeningTime().toLocalTime().format(timeFormatter)));
-
-        endTimeColumn.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getEndTime().format(timeFormatter)));
-
-        displayTypeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDisplayType()));
-
-        translationTypeColumn
-                .setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTranslationType()));
-
-        // Enable delete button when row selected
-        screeningTable.getSelectionModel().selectedItemProperty()
-                .addListener((_, _, newSelection) -> deleteButton.setDisable(newSelection == null));
+        movieComboBox.setConverter(ComboBoxHelper.getStringConverter(Movies::getTitle));
     }
 
     private void setupEventHandlers() {
@@ -329,29 +264,6 @@ public class ScreeningController extends MainController implements Initializable
     }
 
     private record MovieScheduleParams(List<Integer> emptyTime, List<Pair<ULong, Integer>> existedTime) {}
-
-    public void deleteScreening() {
-        ScreeningInfo selectedScreening = screeningTable.getSelectionModel().getSelectedItem();
-        if (selectedScreening == null)
-            return;
-
-        // Confirm deletion
-        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmDialog.setTitle("Confirm Deletion");
-        confirmDialog.setHeaderText("Delete Screening");
-        confirmDialog.setContentText("Are you sure you want to delete the screening of \""
-                + selectedScreening.getMovieTitle() + "\" at "
-                + selectedScreening.getScreeningTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + "?");
-
-        Optional<ButtonType> result = confirmDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Delete from database
-            DbSet.screenings().deleteById(selectedScreening.getId());
-
-            // Refresh data
-            refreshData();
-        }
-    }
 
     @Override
     public void dispose()

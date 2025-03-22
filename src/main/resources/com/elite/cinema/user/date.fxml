@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.VBox?>
 
-<ToggleButton maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="date" stylesheets="@choose-date.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.MovieDateController">
+<ToggleButton maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="date" stylesheets="@choose-date.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.user.MovieDateController">
    <graphic>
       <VBox alignment="TOP_CENTER">
          <Label fx:id="date" text="Mon" />

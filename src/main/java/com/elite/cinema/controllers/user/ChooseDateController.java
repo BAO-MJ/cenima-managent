@@ -1,14 +1,11 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.user;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.elite.cinema.MovieScreening;
 import com.elite.cinema.models.enums.ScreeningsDisplayType;
@@ -17,16 +14,12 @@ import com.elite.cinema.schedule.MovieSchedule;
 
 import com.elite.cinema.ui.DateToggleButton;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.util.Pair;
-import lombok.SneakyThrows;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ChooseDateController {

@@ -1,11 +1,16 @@
 package com.elite.cinema.controllers;
 
-import javafx.application.Platform;
+import com.elite.cinema.App;
+import com.elite.cinema.models.enums.UsersType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.util.Pair;
 import lombok.SneakyThrows;
@@ -19,12 +24,58 @@ public class LayoutController extends BaseController {
     private StackPane content;
     private final Map<String, Pair<Pane, MainController>> scenes = new HashMap<>();
 
+    @FXML
+    private Button adminHome;
+
+    @FXML
+    private Button adminMovies;
+
+    @FXML
+    private Button staffMovies;
+
+    @FXML
+    private Button adminScreenings;
+
+    @FXML
+    private Button adminRefreshments;
+
+    @FXML
+    private Button users;
+
+    @FXML
+    private Button adminRevenueReports;
+
+    @FXML
+    private VBox menuButtons;
+
+
     private MainController mainController;
     private String path = "";
 
     public LayoutController()
     {
         preloadScenes();
+    }
+
+    public void ready() {
+        var root = getSceneManager().rootStage;
+        root.setWidth(1280);
+        root.setHeight(800);
+
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        root.setX((bounds.getWidth() - root.getWidth()) / 2);
+        root.setY((bounds.getHeight() - root.getHeight()) / 2);
+
+        if (App.user != null && App.user.getType() == UsersType.Admin)
+        {
+            menuButtons.getChildren().setAll(adminHome, adminMovies, adminScreenings, adminRefreshments, users, adminRevenueReports);
+            onHomeClicked();
+        }
+        else
+        {
+            menuButtons.getChildren().setAll(staffMovies, users);
+            onStaffMoviesClicked();
+        }
     }
 
     public void preloadScenes() {
@@ -78,31 +129,32 @@ public class LayoutController extends BaseController {
         }
     }
 
-    public void initialize() {
-        Platform.runLater(() -> {
-            var root = getSceneManager().rootStage;
-            root.setWidth(1280);
-            root.setHeight(800);
-
-            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
-            root.setX((bounds.getWidth() - root.getWidth()) / 2);
-            root.setY((bounds.getHeight() - root.getHeight()) / 2);
-        });
-
-        onHomeClicked();
-    }
-
     public void onHomeClicked() { switchScene("admin-home.fxml"); }
 
     public void onMoviesClicked() { switchScene("admin/movies.fxml"); }
 
-    public void onTicketsClicked() { switchScene("user/available-movies.fxml"); }
+    public void onStaffMoviesClicked() { switchScene("user/available-movies.fxml"); }
 
     public void onScreeningClicked() { switchScene("admin/screening.fxml"); }
 
     public void onRefreshmentsClicked() { switchScene("admin/refreshments.fxml"); }
 
-    public void onUserClicked() {
+    public void onUserClicked() { switchScene("admin/members.fxml"); }
 
+    public void onRevenueReportsClicked() { switchScene("admin/revenue-report.fxml"); }
+
+    public void onSignOutClicked() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Sign Out");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to sign out?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+        alert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == ButtonType.YES) {
+                App.user = null;
+                getSceneManager().switchScene("/com/elite/cinema/login.fxml");
+            }
+        });
     }
 }

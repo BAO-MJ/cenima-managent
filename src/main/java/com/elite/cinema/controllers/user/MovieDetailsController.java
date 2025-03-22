@@ -1,4 +1,4 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.user;
 
 import static com.elite.cinema.models.Tables.SCREENINGS;
 
@@ -9,7 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.models.enums.MoviesRating;
+import com.elite.cinema.utils.DateHelper;
 import com.elite.cinema.utils.ImageHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,7 +38,8 @@ import javafx.stage.StageStyle;
 import javafx.util.Pair;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class MovieDetailsController extends MainController {
+public class MovieDetailsController extends MainController
+{
 
     @FXML
     private Button bookTicketButton;
@@ -190,7 +193,7 @@ public class MovieDetailsController extends MainController {
         title.setText(movie.getTitle());
         director.setText(movie.getDirector());
         genre.setText(movie.getGenre());
-        releaseDate.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(movie.getReleaseDate()));
+        releaseDate.setText(DateHelper.formatDate(movie.getReleaseDate()));
         duration.setText(movie.getDuration().toString() + " minutes");
         language.setText(movie.getNativeLanguage() ? "Vietnamese" : "Foreign");
         contentRating.setText(ratingMap.get(movie.getRating()));

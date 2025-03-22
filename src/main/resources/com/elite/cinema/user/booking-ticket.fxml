@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="600.0" prefHeight="600.0" prefWidth="1040.0" style="-fx-background-radius: 0px;" styleClass="hulk" stylesheets="@header.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.BookingTicketController">
+<HBox maxHeight="600.0" prefHeight="600.0" prefWidth="1040.0" style="-fx-background-radius: 0px;" styleClass="hulk" stylesheets="@header.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.user.BookingTicketController">
     <VBox spacing="10.0">
         <Label text="Book Ticket" textFill="SNOW">
             <font>

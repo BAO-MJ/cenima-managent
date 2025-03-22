@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.jooq.Condition;
 import org.jooq.Field;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.PlainSQL;
 import org.jooq.QueryPart;
@@ -56,7 +57,7 @@ public class Seats extends TableImpl<SeatsRecord> {
     /**
      * The column <code>cinema.seats.id</code>.
      */
-    public final TableField<SeatsRecord, UInteger> ID = createField(DSL.name("id"), SQLDataType.INTEGERUNSIGNED.nullable(false), this, "");
+    public final TableField<SeatsRecord, UInteger> ID = createField(DSL.name("id"), SQLDataType.INTEGERUNSIGNED.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>cinema.seats.name</code>.
@@ -100,6 +101,11 @@ public class Seats extends TableImpl<SeatsRecord> {
     @Override
     public Schema getSchema() {
         return aliased() ? null : Cinema.CINEMA;
+    }
+
+    @Override
+    public Identity<SeatsRecord, UInteger> getIdentity() {
+        return (Identity<SeatsRecord, UInteger>) super.getIdentity();
     }
 
     @Override

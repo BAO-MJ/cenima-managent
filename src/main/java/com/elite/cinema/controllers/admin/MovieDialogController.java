@@ -1,8 +1,9 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.admin;
 
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.enums.MoviesRating;
 import com.elite.cinema.models.tables.pojos.Movies;
+import com.elite.cinema.utils.ComboBoxHelper;
 import com.elite.cinema.utils.DateHelper;
 import com.elite.cinema.utils.ImageHelper;
 
@@ -67,13 +68,7 @@ public class MovieDialogController {
     @FXML
     private void initialize() {
         ratingComboBox.getItems().addAll(MoviesRating.values());
-        ratingComboBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(MoviesRating rating) { return rating != null ? rating.getLiteral() : ""; }
-
-            @Override
-            public MoviesRating fromString(String string) { return MoviesRating.lookupLiteral(string); }
-        });
+        ratingComboBox.setConverter(ComboBoxHelper.getStringConverter(MoviesRating::getLiteral));
         ratingComboBox.setValue(MoviesRating.P);
 
         durationField.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Short.MAX_VALUE));

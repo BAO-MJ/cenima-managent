@@ -1,58 +1,26 @@
 package com.elite.cinema;
 
+import com.elite.cinema.models.tables.pojos.Users;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-import com.elite.cinema.controllers.SceneManager;
+import com.elite.cinema.utils.SceneManager;
 import com.elite.cinema.db.DbSet;
 
 import atlantafx.base.theme.PrimerDark;
 
 public class App extends Application {
-    private static Scene scene;
+
+    public static Users user;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
-        // UserAgentBuilder.builder()
-        // .themes(JavaFXThemes.MODENA) // Optional if you don't need JavaFX's default
-        // theme, still recommended though
-        // .themes(MaterialFXStylesheets.forAssemble(true)) // Adds the MaterialFX's
-        // default theme. The boolean argument is to include legacy controls
-        // .setDeploy(true) // Whether to deploy each theme's assets on a temporary dir
-        // on the disk
-        // .setResolveAssets(true) // Whether to try resolving @import statements and
-        // resources urls
-        // .build() // Assembles all the added themes into a single CSSFragment (very
-        // powerful class check its documentation)
-        // .setGlobal(); // Finally, sets the produced stylesheet as the global
-        // User-Agent stylesheet
 
         var sceneManager = new SceneManager(stage);
         sceneManager.switchScene("/com/elite/cinema/login.fxml");
 
-        stage.setWidth(800);
-        stage.setHeight(400);
-        stage.setResizable(false);
-        stage.setTitle("Cinema Application");
         stage.show();
-    }
-
-    public static void setRoot(String fxml) throws IOException { scene.setRoot(loadFXML(fxml)); }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/elite/cinema/" + fxml + ".fxml"));
-
-        if (fxmlLoader.getLocation() == null) {
-            throw new IOException("Could not find FXML file: " + fxml + ".fxml");
-        }
-
-        return fxmlLoader.load();
     }
 
     public static void main(String[] args) {

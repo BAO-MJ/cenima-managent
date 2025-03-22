@@ -49,4 +49,13 @@ public class DbSet {
     public static SeatsDao seats() {
         return new SeatsDao(context.configuration());
     }
+
+    public static UsersDao users() {
+        return new UsersDao(context.configuration());
+    }
+
+    public static RevenuesDao revenues()
+    {
+        return new RevenuesDao(context);
+    }
 }

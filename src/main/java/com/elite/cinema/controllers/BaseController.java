@@ -1,5 +1,7 @@
 package com.elite.cinema.controllers;
 
+import com.elite.cinema.utils.SceneManager;
+
 public abstract class BaseController
 {
     private SceneManager sceneManager;
@@ -17,5 +19,10 @@ public abstract class BaseController
     protected void dispose()
     {
         sceneManager = null;
+    }
+
+    public void ready()
+    {
+
     }
 }

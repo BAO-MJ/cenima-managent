@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane minHeight="580.0" prefHeight="580.0" prefWidth="1040.0" stylesheets="@crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.MoviesController">
+<BorderPane minHeight="580.0" prefHeight="580.0" prefWidth="1040.0" stylesheets="@crud.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.admin.MoviesController">
     <top>
         <VBox spacing="10.0">
             <padding>

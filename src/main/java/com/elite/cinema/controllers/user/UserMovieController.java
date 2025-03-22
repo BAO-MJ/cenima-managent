@@ -1,6 +1,7 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.user;
 
 import com.elite.cinema.models.tables.pojos.Movies;
+import com.elite.cinema.utils.DateHelper;
 import com.elite.cinema.utils.ImageHelper;
 
 import javafx.fxml.FXML;
@@ -35,7 +36,7 @@ public class UserMovieController {
     public void setMovie(Movies movie) {
         movieTitle.setText(movie.getTitle());
         movieDuration.setText(movie.getDuration() + " min");
-        moviePremiereDate.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(movie.getReleaseDate()));
+        moviePremiereDate.setText(DateHelper.formatDate(movie.getReleaseDate()));
 
         var ratingSprite = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/rating-sprite.png")));
         movieRating.setImage(ratingSprite);

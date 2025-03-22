@@ -17,7 +17,9 @@ public enum UsersType implements EnumType {
 
     Admin("Admin"),
 
-    Staff("Staff");
+    Staff("Staff"),
+
+    Customer("Customer");
 
     private final String literal;
 

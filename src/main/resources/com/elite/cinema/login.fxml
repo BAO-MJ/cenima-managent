@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -22,16 +22,16 @@
                   <Image url="@../../../image/vector-cinema-icons-concept.jpg" />
               </image>
           </ImageView>
-      <StackPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+      <StackPane maxHeight="-Infinity" HBox.hgrow="ALWAYS">
           <children>
-            <VBox fx:id="loginForm" alignment="CENTER_LEFT" spacing="10.0" visible="false">
+            <VBox fx:id="loginForm" alignment="CENTER_LEFT" spacing="10.0">
                <children>
                       <Label stylesheets="@login.css" text="Sign In">
                           <font>
                               <Font name="Arial Black" size="20.0" />
                           </font>
                       </Label>
-                      <TextField fx:id="loginUsername" prefHeight="25.0" prefWidth="268.0" promptText="Email or phone number" styleClass="text-field" stylesheets="@login.css" />
+                      <TextField fx:id="loginUsername" prefHeight="25.0" prefWidth="268.0" promptText="Email" styleClass="text-field" stylesheets="@login.css" />
                   <PasswordField fx:id="loginPassword" prefHeight="25.0" prefWidth="268.0" promptText="Password" stylesheets="@login.css" />
                   <MFXButton maxWidth="1.7976931348623157E308" onAction="#onLogin" styleClass="login-button" stylesheets="@login.css" text="Login" />
                       <Hyperlink onAction="#onOpenForgotPasswordForm" styleClass="forgot-password" stylesheets="@login.css" text="Forgot Password?" />
@@ -39,7 +39,7 @@
                   <MFXButton maxWidth="1.7976931348623157E308" onAction="#onOpenRegisterForm" styleClass="register-button" stylesheets="@login.css" text="Create a new Account" />
                </children>
             </VBox>
-            <VBox fx:id="signupForm" alignment="CENTER_LEFT" spacing="10.0">
+            <VBox fx:id="signupForm" alignment="CENTER_LEFT" spacing="10.0" visible="false">
                <children>
                       <Label prefHeight="29.0" prefWidth="91.0" stylesheets="@login.css" text="Sign Up">
                           <font>
@@ -50,11 +50,7 @@
                       <TextField fx:id="registerEmail" prefHeight="25.0" prefWidth="268.0" promptText="Email" styleClass="text-field" stylesheets="@login.css" />
                   <PasswordField fx:id="registerPassword" prefHeight="25.0" prefWidth="268.0" promptText="Password" stylesheets="@login.css" />
                       <TextField fx:id="registerPhone" prefHeight="25.0" prefWidth="268.0" promptText="Phone number" styleClass="text-field" stylesheets="@login.css" />
-                  <MFXCheckbox fx:id="registerTerms" text="I agree to the cinema terms of use">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </MFXCheckbox>
+                  <CheckBox fx:id="registerTerms" mnemonicParsing="false" text="I agree to the cinema terms of use" />
                   <MFXButton maxWidth="1.7976931348623157E308" onAction="#onRegister" styleClass="login-button" stylesheets="@login.css" text="Register" />
                   <MFXButton maxWidth="1.7976931348623157E308" onAction="#onReturnToLogin" styleClass="register-button" stylesheets="@login.css" text="Back to login page" />
                </children>
@@ -66,7 +62,7 @@
                         <Font name="Arial Black" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fp_email" prefHeight="25.0" prefWidth="268.0" promptText="Email or Phone number" styleClass="text-field" stylesheets="@login.css" />
+                  <TextField fx:id="fp_email" prefHeight="25.0" prefWidth="268.0" promptText="Email" styleClass="text-field" stylesheets="@login.css" />
                   <PasswordField fx:id="fp_pasword" prefHeight="38.0" prefWidth="268.0" promptText="New Password" stylesheets="@login.css" />
                   <PasswordField fx:id="fp_confirmpass" prefHeight="25.0" prefWidth="268.0" promptText="Confirm Password" stylesheets="@login.css" />
                   <MFXButton maxWidth="1.7976931348623157E308" onAction="#onPasswordChanged" styleClass="login-button" stylesheets="@login.css" text="Change Password" />

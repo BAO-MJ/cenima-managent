@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="1040.0" spacing="10.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.AvailableMoviesController">
+<VBox prefHeight="600.0" prefWidth="1040.0" spacing="10.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.user.AvailableMoviesController">
    <Label text="Movies" textFill="WHITE">
       <font>
          <Font name="System Bold" size="30.0" />

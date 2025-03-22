@@ -21,90 +21,98 @@
                         <Image url="@../../../image/favpng_photographic-film-cinema-logo.png" />
                     </image>
                 </ImageView>
-                <Label fx:id="usernameLabel" prefHeight="23.0" prefWidth="131.0" textFill="WHITE">
-                    <font>
-                        <Font name="Arial Black" size="15.0" />
-                    </font>
-                </Label>
-            <VBox>
+            <VBox spacing="10.0">
                <children>
                   <Label text="MENU" textFill="#bbbbbb">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <MFXButton alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onHomeClicked" styleClass="menu-button" stylesheets="@layout.css" text="Home">
-                     <VBox.margin>
-                        <Insets bottom="7.0" top="7.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../icons/home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onMoviesClicked" styleClass="menu-button" stylesheets="@layout.css" text="Movies">
-                     <VBox.margin>
-                        <Insets bottom="7.0" top="7.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../icons/movie.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onTicketsClicked" styleClass="menu-button" stylesheets="@layout.css" text="Tickets">
-                     <VBox.margin>
-                        <Insets bottom="7.0" top="7.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../icons/mid-tickets.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onScreeningClicked" styleClass="menu-button" stylesheets="@layout.css" text="Edit Screening">
-                     <VBox.margin>
-                        <Insets bottom="7.0" top="7.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../icons/foods-and-drinks.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
-                  <MFXButton alignment="TOP_LEFT" layoutX="40.0" layoutY="148.0" maxWidth="1.7976931348623157E308" onAction="#onRefreshmentsClicked" styleClass="menu-button" stylesheets="@layout.css" text="Edit Refreshments">
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../icons/foods-and-drinks.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets bottom="7.0" top="7.0" />
-                     </VBox.margin>
-                  </MFXButton>
-                  <MFXButton alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onUserClicked" styleClass="menu-button" stylesheets="@layout.css" text="User">
-                     <VBox.margin>
-                        <Insets bottom="7.0" top="7.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../icons/member.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MFXButton>
+                  <VBox fx:id="menuButtons" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                     <children>
+                        <MFXButton fx:id="adminHome" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onHomeClicked" styleClass="menu-button" stylesheets="@layout.css" text="Home">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="adminMovies" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onMoviesClicked" styleClass="menu-button" stylesheets="@layout.css" text="Movies">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/movie.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="staffMovies" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onStaffMoviesClicked" styleClass="menu-button" stylesheets="@layout.css" text="Movies">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/mid-tickets.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="adminScreenings" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onScreeningClicked" styleClass="menu-button" stylesheets="@layout.css" text="Screenings">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/foods-and-drinks.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="adminRefreshments" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onRefreshmentsClicked" styleClass="menu-button" stylesheets="@layout.css" text="Refreshments">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/foods-and-drinks.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </MFXButton>
+                        <MFXButton fx:id="users" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" onAction="#onUserClicked" styleClass="menu-button" stylesheets="@layout.css" text="User">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/member.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                        <MFXButton fx:id="adminRevenueReports" alignment="TOP_LEFT" layoutX="10.0" layoutY="202.0" maxWidth="1.7976931348623157E308" onAction="#onRevenueReportsClicked" styleClass="menu-button" stylesheets="@layout.css" text="Revenue Reports">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/profit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets left="30.0" />
@@ -112,7 +120,7 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                <children>
-                      <HBox alignment="CENTER" prefHeight="21.0" prefWidth="124.0" spacing="10.0" styleClass="icon-button" stylesheets="@layout.css">
+                      <HBox alignment="CENTER" onMouseClicked="#onSignOutClicked" prefHeight="21.0" prefWidth="124.0" spacing="10.0" styleClass="icon-button" stylesheets="@layout.css">
                           <children>
                               <MFXFontIcon description="fas-door-open" size="20.0">
                                   <color>

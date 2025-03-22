@@ -1,4 +1,4 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.user;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

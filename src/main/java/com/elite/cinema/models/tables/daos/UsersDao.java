@@ -132,20 +132,6 @@ public class UsersDao extends DAOImpl<UsersRecord, com.elite.cinema.models.table
     }
 
     /**
-     * Fetch a unique record that has <code>email = value</code>
-     */
-    public com.elite.cinema.models.tables.pojos.Users fetchOneByEmail(String value) {
-        return fetchOne(Users.USERS.EMAIL, value);
-    }
-
-    /**
-     * Fetch a unique record that has <code>email = value</code>
-     */
-    public Optional<com.elite.cinema.models.tables.pojos.Users> fetchOptionalByEmail(String value) {
-        return fetchOptional(Users.USERS.EMAIL, value);
-    }
-
-    /**
      * Fetch records that have <code>password BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */

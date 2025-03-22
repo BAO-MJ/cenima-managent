@@ -1,17 +1,22 @@
 package com.elite.cinema.controllers;
 
+import com.elite.cinema.App;
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.enums.UsersType;
 
 import static com.elite.cinema.models.Tables.*;
 
+import com.elite.cinema.models.tables.pojos.Users;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
+import org.jooq.User;
 
 public class LoginController extends BaseController {
     private static final String EMAIL_REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
@@ -25,7 +30,17 @@ public class LoginController extends BaseController {
     @FXML
     private VBox forgotPasswordForm;
 
-    public void initialize() { toggleForm(true, false, false); }
+    public void ready() {
+        var root = getSceneManager().rootStage;
+        root.setWidth(800);
+        root.setHeight(450);
+
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        root.setX((bounds.getWidth() - root.getWidth()) / 2);
+        root.setY((bounds.getHeight() - root.getHeight()) / 2);
+
+        toggleForm(true, false, false);
+    }
 
     @FXML
     private TextField loginUsername;
@@ -41,8 +56,8 @@ public class LoginController extends BaseController {
             return;
         }
 
-        if (!loginUsername.getText().matches(EMAIL_REGEX) && !loginUsername.getText().matches(PHONE_REGEX)) {
-            showAlert("Login error", "Invalid email address or phone number", AlertType.ERROR);
+        if (!loginUsername.getText().matches(EMAIL_REGEX)) {
+            showAlert("Login error", "Invalid email address", AlertType.ERROR);
             return;
         }
 
@@ -52,21 +67,23 @@ public class LoginController extends BaseController {
         }
 
         var user = context.selectFrom(USERS)
-                .where(USERS.EMAIL.eq(loginUsername.getText()).or(USERS.PHONE_NUMBER.eq(loginUsername.getText())))
-                .fetchOne();
+                .where(USERS.EMAIL.eq(loginUsername.getText()))
+                .fetchOneInto(Users.class);
 
         if (user == null) {
-            showAlert("Login error", "Username does not exists", AlertType.ERROR);
+            showAlert("Login error", "Invalid email", AlertType.ERROR);
             return;
         }
 
-        if (!user.getValue(USERS.PASSWORD).equals(loginPassword.getText())) {
+        if (!user.getPassword().equals(loginPassword.getText())) {
             showAlert("Login error", "Incorrect password", AlertType.ERROR);
             return;
         }
 
-        showAlert("Login successfully", String.format("Welcome, %s", user.getValue(USERS.NAME)), AlertType.INFORMATION);
-        
+        showAlert("Login successfully", String.format("Welcome, %s", user.getName()), AlertType.INFORMATION);
+
+        App.user = user;
+
         getSceneManager().switchScene("/com/elite/cinema/layout.fxml");
     }
 

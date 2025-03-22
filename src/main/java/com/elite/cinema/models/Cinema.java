@@ -10,6 +10,7 @@ import com.elite.cinema.models.tables.RefreshmentsOrderDetails;
 import com.elite.cinema.models.tables.RefreshmentsOrders;
 import com.elite.cinema.models.tables.Reservations;
 import com.elite.cinema.models.tables.ReservedSeats;
+import com.elite.cinema.models.tables.Revenues;
 import com.elite.cinema.models.tables.ScreeningRooms;
 import com.elite.cinema.models.tables.Screenings;
 import com.elite.cinema.models.tables.Seats;
@@ -68,6 +69,11 @@ public class Cinema extends SchemaImpl {
     public final ReservedSeats RESERVED_SEATS = ReservedSeats.RESERVED_SEATS;
 
     /**
+     * The table <code>cinema.revenues</code>.
+     */
+    public final Revenues REVENUES = Revenues.REVENUES;
+
+    /**
      * The table <code>cinema.screening_rooms</code>.
      */
     public final ScreeningRooms SCREENING_ROOMS = ScreeningRooms.SCREENING_ROOMS;
@@ -109,6 +115,7 @@ public class Cinema extends SchemaImpl {
             RefreshmentsOrders.REFRESHMENTS_ORDERS,
             Reservations.RESERVATIONS,
             ReservedSeats.RESERVED_SEATS,
+            Revenues.REVENUES,
             ScreeningRooms.SCREENING_ROOMS,
             Screenings.SCREENINGS,
             Seats.SEATS,

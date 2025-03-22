@@ -1,5 +1,6 @@
-package com.elite.cinema.controllers;
+package com.elite.cinema.controllers.user;
 
+import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.tables.pojos.Movies;
 import javafx.fxml.FXML;
