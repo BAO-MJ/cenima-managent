@@ -61,17 +61,17 @@ public class ReservedSeats extends TableImpl<ReservedSeatsRecord> {
     /**
      * The column <code>cinema.reserved_seats.reservation_id</code>.
      */
-    public final TableField<ReservedSeatsRecord, ULong> RESERVATION_ID = createField(DSL.name("reservation_id"), SQLDataType.BIGINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.BIGINTUNSIGNED)), this, "");
+    public final TableField<ReservedSeatsRecord, ULong> RESERVATION_ID = createField(DSL.name("reservation_id"), SQLDataType.BIGINTUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.BIGINTUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.reserved_seats.row</code>.
      */
-    public final TableField<ReservedSeatsRecord, UByte> ROW = createField(DSL.name("row"), SQLDataType.TINYINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.TINYINTUNSIGNED)), this, "");
+    public final TableField<ReservedSeatsRecord, UByte> ROW = createField(DSL.name("row"), SQLDataType.TINYINTUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.TINYINTUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.reserved_seats.column</code>.
      */
-    public final TableField<ReservedSeatsRecord, UByte> COLUMN = createField(DSL.name("column"), SQLDataType.TINYINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.TINYINTUNSIGNED)), this, "");
+    public final TableField<ReservedSeatsRecord, UByte> COLUMN = createField(DSL.name("column"), SQLDataType.TINYINTUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.TINYINTUNSIGNED)), this, "");
 
     private ReservedSeats(Name alias, Table<ReservedSeatsRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

@@ -1,5 +1,6 @@
 package com.elite.cinema.controllers.admin;
 
+import com.elite.cinema.App;
 import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.enums.UsersType;
@@ -49,6 +50,9 @@ public class MembersController extends MainController {
     @FXML private TextField customerPhoneField;
     @FXML private DatePicker customerDobPicker;
 
+    @FXML private TabPane memberTab;
+    @FXML private Tab staffTab, customerTab;
+
     @FXML private TitledPane staffForm, customerForm;
 
     private final ObservableList<Users> staffList = FXCollections.observableArrayList();
@@ -61,6 +65,11 @@ public class MembersController extends MainController {
 
     @Override
     public void ready(Object params) {
+        staffTab.setDisable(App.user.getType() != UsersType.Admin);
+        if (App.user.getType() != UsersType.Admin) {
+            memberTab.getSelectionModel().selectLast();
+        }
+
         setupStaffTable();
         setupCustomerTable();
         loadStaffData();

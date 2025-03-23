@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0" styleClass="card"
+      stylesheets="@booking-confirmation.css" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.elite.cinema.controllers.user.BookingConfirmationController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+   </padding>
+   <FontIcon fx:id="checkIcon" iconLiteral="far-check-circle" iconSize="64" styleClass="success-icon"/>
+   <Label styleClass="heading" text="Booking Confirmed!">
+      <font>
+         <Font name="System Bold" size="24.0"/>
+      </font>
+   </Label>
+   <Label text="Your booking has been successfully processed."/>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <VBox spacing="10.0" styleClass="info-container" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+         </padding>
+         <Label styleClass="section-header" text="Movie Details">
+            <font>
+               <Font name="System Bold" size="16.0"/>
+            </font>
+         </Label>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Movie:"/>
+            <Label fx:id="movieTitleLabel" styleClass="info-text" text="Movie Title"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Date:"/>
+            <Label fx:id="screeningDateLabel" styleClass="info-text" text="Screening Date"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Time:"/>
+            <Label fx:id="screeningTimeLabel" styleClass="info-text" text="Screening Time"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Room:"/>
+            <Label fx:id="roomLabel" styleClass="info-text" text="Room Name"/>
+         </HBox>
+      </VBox>
+      <VBox spacing="10.0" styleClass="info-container" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+         </padding>
+         <Label styleClass="section-header" text="Booking Information">
+            <font>
+               <Font name="System Bold" size="16.0"/>
+            </font>
+         </Label>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Order ID:"/>
+            <Label fx:id="orderIdLabel" styleClass="info-text" text="Order ID"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Seats:"/>
+            <Label fx:id="seatsLabel" styleClass="info-text" text="A1, A2, B3"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Total Amount:"/>
+            <Label fx:id="totalAmountLabel" styleClass="info-text" text="250,000 VNĐ"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Payment Method:"/>
+            <Label fx:id="paymentMethodLabel" styleClass="info-text" text="Credit Card"/>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Payment Status:"/>
+            <Label fx:id="paymentStatusLabel" styleClass="success-text" text="PAID"/>
+         </HBox>
+      </VBox>
+   </HBox>
+   <HBox alignment="CENTER" spacing="20.0">
+      <Button fx:id="printTicketsButton" mnemonicParsing="false" onAction="#onPrintTicketsAgain"
+              styleClass="secondary-button" text="Print Tickets Again">
+         <graphic>
+            <FontIcon iconLiteral="fas-print"/>
+         </graphic>
+      </Button>
+      <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonPressed" styleClass="primary-button"
+              text="Return to Home">
+         <graphic>
+            <FontIcon iconLiteral="fas-home"/>
+         </graphic>
+      </Button>
+   </HBox>
+</VBox>

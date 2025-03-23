@@ -73,12 +73,12 @@ public class Reservations extends TableImpl<ReservationsRecord> {
     /**
      * The column <code>cinema.reservations.total</code>.
      */
-    public final TableField<ReservationsRecord, UInteger> TOTAL = createField(DSL.name("total"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.INTEGERUNSIGNED)), this, "");
+    public final TableField<ReservationsRecord, UInteger> TOTAL = createField(DSL.name("total"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.INTEGERUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.reservations.paid</code>.
      */
-    public final TableField<ReservationsRecord, Boolean> PAID = createField(DSL.name("paid"), SQLDataType.BIT.nullable(false).defaultValue(DSL.field(DSL.raw("b'0'"), SQLDataType.BIT)), this, "");
+    public final TableField<ReservationsRecord, Boolean> PAID = createField(DSL.name("paid"), SQLDataType.BIT.nullable(false).defaultValue(DSL.inline("b'0'", SQLDataType.BIT)), this, "");
 
     private Reservations(Name alias, Table<ReservationsRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

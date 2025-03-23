@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox fx:id="container" alignment="CENTER" maxWidth="200.0" minWidth="180.0" styleClass="refreshment-item"
+      xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+    <ImageView fx:id="refreshmentImage" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true"/>
+    <Label fx:id="nameLabel" alignment="CENTER" text="Refreshment Name" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font name="System Bold" size="14.0"/>
+        </font>
+        <VBox.margin>
+            <Insets top="10.0"/>
+        </VBox.margin>
+    </Label>
+    <Label fx:id="priceLabel" styleClass="price-label" text="50,000 VNĐ">
+        <VBox.margin>
+            <Insets top="5.0"/>
+        </VBox.margin>
+    </Label>
+    <HBox alignment="CENTER" spacing="10.0">
+        <VBox.margin>
+            <Insets top="10.0"/>
+        </VBox.margin>
+        <Button fx:id="minusButton" mnemonicParsing="false" styleClass="quantity-button">
+            <graphic>
+                <FontIcon iconLiteral="fas-minus"/>
+            </graphic>
+        </Button>
+        <Label fx:id="quantityLabel" styleClass="quantity-label" text="0">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+        </Label>
+        <Button fx:id="plusButton" mnemonicParsing="false" styleClass="quantity-button">
+            <graphic>
+                <FontIcon iconLiteral="fas-plus"/>
+            </graphic>
+        </Button>
+    </HBox>
+</VBox>

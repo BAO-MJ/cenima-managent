@@ -6,6 +6,7 @@ import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.tables.pojos.Movies;
 import com.elite.cinema.utils.ComboBoxHelper;
 import com.elite.cinema.utils.DateHelper;
+import com.elite.cinema.utils.PriceFormatter;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
@@ -209,7 +210,7 @@ public class RevenueReportController extends MainController
                     setText(null);
                 } else
                 {
-                    setText(String.format("%d VNĐ", item));
+                    setText(PriceFormatter.format(item));
                 }
             }
         };
@@ -297,9 +298,9 @@ public class RevenueReportController extends MainController
 
         long averageRevenuePerScreening = totalRevenue / revenues.size();
 
-        totalRevenueLabel.setText(String.format("%d VNĐ", totalRevenue));
+        totalRevenueLabel.setText(PriceFormatter.format(totalRevenue));
         totalTicketsLabel.setText(String.valueOf(totalTickets));
-        avgRevenuePerScreeningLabel.setText(String.format("%d VNĐ", averageRevenuePerScreening));
+        avgRevenuePerScreeningLabel.setText(PriceFormatter.format(averageRevenuePerScreening));
 
 //        var popularMovie = context.select(MOVIES.TITLE)
 //                .from(MOVIES)

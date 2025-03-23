@@ -19,7 +19,7 @@ public class DbSet {
     public static void initialize() {
         HikariConfig config = new HikariConfig("hikari.properties");
         ds = new HikariDataSource(config);
-        context = DSL.using(ds, SQLDialect.MARIADB);
+        context = DSL.using(ds, SQLDialect.MYSQL);
     }
 
     public static MoviesDao movies() {

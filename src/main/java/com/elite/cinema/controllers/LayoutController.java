@@ -46,6 +46,9 @@ public class LayoutController extends BaseController {
     private Button adminRevenueReports;
 
     @FXML
+    private Button staffRefreshments;
+
+    @FXML
     private VBox menuButtons;
 
 
@@ -73,7 +76,7 @@ public class LayoutController extends BaseController {
         }
         else
         {
-            menuButtons.getChildren().setAll(staffMovies, users);
+            menuButtons.getChildren().setAll(staffMovies, users, staffRefreshments);
             onStaffMoviesClicked();
         }
     }
@@ -142,6 +145,8 @@ public class LayoutController extends BaseController {
     public void onUserClicked() { switchScene("admin/members.fxml"); }
 
     public void onRevenueReportsClicked() { switchScene("admin/revenue-report.fxml"); }
+
+    public void onStaffRefreshmentsClicked() { switchScene("user/refreshments-order.fxml"); }
 
     public void onSignOutClicked() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

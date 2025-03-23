@@ -67,17 +67,17 @@ public class Refreshments extends TableImpl<RefreshmentsRecord> {
     /**
      * The column <code>cinema.refreshments.name</code>.
      */
-    public final TableField<RefreshmentsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(255).nullable(false).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
+    public final TableField<RefreshmentsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(255).nullable(false).defaultValue(DSL.inline("''", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>cinema.refreshments.image</code>.
      */
-    public final TableField<RefreshmentsRecord, byte[]> IMAGE = createField(DSL.name("image"), SQLDataType.BLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.BLOB)), this, "");
+    public final TableField<RefreshmentsRecord, byte[]> IMAGE = createField(DSL.name("image"), SQLDataType.BLOB.defaultValue(DSL.inline("NULL", SQLDataType.BLOB)), this, "");
 
     /**
      * The column <code>cinema.refreshments.price</code>.
      */
-    public final TableField<RefreshmentsRecord, UInteger> PRICE = createField(DSL.name("price"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.INTEGERUNSIGNED)), this, "");
+    public final TableField<RefreshmentsRecord, UInteger> PRICE = createField(DSL.name("price"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.INTEGERUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.refreshments.category</code>.

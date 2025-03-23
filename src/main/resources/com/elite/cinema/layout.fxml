@@ -111,6 +111,15 @@
                               </ImageView>
                            </graphic>
                         </MFXButton>
+                        <MFXButton fx:id="staffRefreshments" alignment="TOP_LEFT" layoutX="10.0" layoutY="240.0" maxWidth="1.7976931348623157E308" onAction="#onStaffRefreshmentsClicked" styleClass="menu-button" stylesheets="@layout.css" text="Refreshments">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/profit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
                      </children>
                   </VBox>
                </children>

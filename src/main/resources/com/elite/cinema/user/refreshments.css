@@ -1,0 +1,214 @@
+/* General Styles */
+.background {
+    -fx-background-color: #1e1e1e;
+}
+
+.page-header {
+    -fx-background-color: #252525;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
+}
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.back-button:hover {
+    -fx-background-color: #333333;
+}
+
+.back-button .ikonli-font-icon {
+    -fx-fill: #e0e0e0;
+}
+
+/* Split Pane */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: #444444;
+    -fx-padding: 0 1 0 1;
+}
+
+.section-header {
+    -fx-background-color: #252525;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
+}
+
+.section-header .ikonli-font-icon {
+    -fx-icon-color: #64b5f6;
+}
+
+/* Refreshments Container */
+.refreshments-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.refreshments-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.refreshments-container {
+    -fx-background-color: transparent;
+}
+
+/* Refreshment Item */
+.refreshment-item {
+    -fx-background-color: #2d2d2d;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 1);
+    -fx-cursor: hand;
+}
+
+.refreshment-item:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 8, 0, 0, 2);
+    -fx-background-color: #333333;
+}
+
+.price-label {
+    -fx-text-fill: #64b5f6;
+    -fx-font-weight: bold;
+}
+
+.quantity-button {
+    -fx-background-color: #444444;
+    -fx-background-radius: 50%;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-cursor: hand;
+}
+
+.quantity-button:hover {
+    -fx-background-color: #555555;
+}
+
+.quantity-button .ikonli-font-icon {
+    -fx-fill: #e0e0e0;
+}
+
+.quantity-label {
+    -fx-min-width: 30px;
+    -fx-alignment: center;
+    -fx-text-fill: #e0e0e0;
+}
+
+/* Cart Panel */
+.cart-panel {
+    -fx-background-color: #252525;
+}
+
+.cart-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.cart-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.cart-items {
+    -fx-background-color: transparent;
+}
+
+/* Cart Item */
+.cart-item {
+    -fx-background-color: #333333;
+    -fx-background-radius: 5px;
+    -fx-border-color: #444444;
+    -fx-border-radius: 5px;
+}
+
+.item-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0e0e0;
+}
+
+.item-price {
+    -fx-text-fill: #9e9e9e;
+}
+
+.item-quantity {
+    -fx-text-fill: #9e9e9e;
+}
+
+.item-total {
+    -fx-font-weight: bold;
+    -fx-text-fill: #64b5f6;
+}
+
+.remove-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.remove-button:hover {
+    -fx-background-color: #4d2c2c;
+}
+
+.remove-button .ikonli-font-icon {
+    -fx-fill: #e57373;
+}
+
+/* Order Summary */
+.order-summary {
+    -fx-background-color: #333333;
+    -fx-background-radius: 5px;
+    -fx-border-color: #444444;
+    -fx-border-radius: 5px;
+}
+
+.price-text {
+    -fx-text-fill: #9e9e9e;
+}
+
+.total-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0e0e0;
+}
+
+.total-price {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64b5f6;
+}
+
+/* Buttons */
+.primary-button {
+    -fx-background-color: #1976D2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 15;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1565C0;
+}
+
+.primary-button .ikonli-font-icon {
+    -fx-fill: white;
+}
+
+.secondary-button {
+    -fx-background-color: #424242;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-weight: bold;
+    -fx-padding: 10 15;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #555555;
+}
+
+.secondary-button .ikonli-font-icon {
+    -fx-fill: #e0e0e0;
+}

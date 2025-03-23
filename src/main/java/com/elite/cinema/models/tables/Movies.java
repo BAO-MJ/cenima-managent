@@ -76,7 +76,7 @@ public class Movies extends TableImpl<MoviesRecord> {
     /**
      * The column <code>cinema.movies.duration</code>.
      */
-    public final TableField<MoviesRecord, UShort> DURATION = createField(DSL.name("duration"), SQLDataType.SMALLINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.SMALLINTUNSIGNED)), this, "");
+    public final TableField<MoviesRecord, UShort> DURATION = createField(DSL.name("duration"), SQLDataType.SMALLINTUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.SMALLINTUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.movies.rating</code>.
@@ -86,22 +86,22 @@ public class Movies extends TableImpl<MoviesRecord> {
     /**
      * The column <code>cinema.movies.genre</code>.
      */
-    public final TableField<MoviesRecord, String> GENRE = createField(DSL.name("genre"), SQLDataType.CLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.CLOB)), this, "");
+    public final TableField<MoviesRecord, String> GENRE = createField(DSL.name("genre"), SQLDataType.CLOB.defaultValue(DSL.inline("NULL", SQLDataType.CLOB)), this, "");
 
     /**
      * The column <code>cinema.movies.director</code>.
      */
-    public final TableField<MoviesRecord, String> DIRECTOR = createField(DSL.name("director"), SQLDataType.CLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.CLOB)), this, "");
+    public final TableField<MoviesRecord, String> DIRECTOR = createField(DSL.name("director"), SQLDataType.CLOB.defaultValue(DSL.inline("NULL", SQLDataType.CLOB)), this, "");
 
     /**
      * The column <code>cinema.movies.description</code>.
      */
-    public final TableField<MoviesRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.CLOB)), this, "");
+    public final TableField<MoviesRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB.defaultValue(DSL.inline("NULL", SQLDataType.CLOB)), this, "");
 
     /**
      * The column <code>cinema.movies.poster</code>.
      */
-    public final TableField<MoviesRecord, byte[]> POSTER = createField(DSL.name("poster"), SQLDataType.BLOB.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.BLOB)), this, "");
+    public final TableField<MoviesRecord, byte[]> POSTER = createField(DSL.name("poster"), SQLDataType.BLOB.defaultValue(DSL.inline("NULL", SQLDataType.BLOB)), this, "");
 
     /**
      * The column <code>cinema.movies.native_language</code>.

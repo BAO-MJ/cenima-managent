@@ -16,6 +16,7 @@ module com.elite.cinema {
     requires org.kordamp.ikonli.fontawesome5;
     requires org.kordamp.ikonli.javafx;
     requires jdk.compiler;
+    requires javafx.swing;
 
     opens com.elite.cinema.models.tables.pojos to org.jooq, javafx.base;
     opens com.elite.cinema.models.tables.records to org.jooq;
@@ -28,5 +29,7 @@ module com.elite.cinema {
     opens com.elite.cinema.ui to javafx.fxml;
     opens com.elite.cinema.controllers.user to javafx.fxml, javafx.base;
     opens com.elite.cinema.controllers.admin to javafx.fxml, javafx.base;
-    opens com.elite.cinema.utils to javafx.fxml;
+    opens com.elite.cinema.utils to javafx.fxml, net.sf.jasperreports.core;
+    requires net.sf.jasperreports.core;
+    requires net.sf.jasperreports.barcode4j;
 }

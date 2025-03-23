@@ -4,6 +4,8 @@ import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.db.DbSet;
 import com.elite.cinema.models.tables.pojos.*;
 import com.elite.cinema.models.tables.records.ReservationsRecord;
+import com.elite.cinema.utils.PriceFormatter;
+import com.elite.cinema.utils.TicketPrinter;
 import javafx.application.Platform;
 import javafx.collections.*;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.RadioButton;
 import org.jooq.types.UByte;
+import org.jooq.types.UInteger;
 
 import java.net.URL;
 import java.text.NumberFormat;
@@ -78,7 +81,7 @@ public class BookingTicketController extends MainController implements Initializ
     private static final int COLUMNS = 14;
     private static final int ROWS = 9;
 
-    private static final NumberFormat CurrencyFormatter = NumberFormat.getNumberInstance(Locale.forLanguageTag("vi-VN"));
+    private boolean saved;
 
     private final ObservableList<Seat> selectedRegularSeats = FXCollections.observableArrayList();
     private final ObservableList<Seat> selectedVipSeats = FXCollections.observableArrayList();
@@ -100,24 +103,19 @@ public class BookingTicketController extends MainController implements Initializ
         setupSeatGrid();
 
         selectedRegularSeats.addListener((ListChangeListener<? super Seat>) _ -> {
-            regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), toMoneyValue(regularSeatModel.getPrice().longValue())));
+            regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), PriceFormatter.format(regularSeatModel.getPrice().longValue())));
             updatePricing();
         });
 
         selectedVipSeats.addListener((ListChangeListener<? super Seat>) _ -> {
-            vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), toMoneyValue(vipSeatModel.getPrice().longValue())));
+            vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), PriceFormatter.format(vipSeatModel.getPrice().longValue())));
             updatePricing();
         });
 
         selectedReclinerSeats.addListener((ListChangeListener<? super Seat>) _ -> {
-            reclinerPrice.setText(String.format("%d x %s", selectedReclinerSeats.size(), toMoneyValue(reclinerSeatModel.getPrice().longValue())));
+            reclinerPrice.setText(String.format("%d x %s", selectedReclinerSeats.size(), PriceFormatter.format(reclinerSeatModel.getPrice().longValue())));
             updatePricing();
         });
-    }
-
-    private String toMoneyValue(long amount)
-    {
-        return CurrencyFormatter.format(amount) + " VNĐ";
     }
 
     private record Seat(int row, int col) {
@@ -132,6 +130,7 @@ public class BookingTicketController extends MainController implements Initializ
     @Override
     public void ready(Object params)
     {
+        saved = false;
         var seatModels = DbSet.seats().findAll();
         for (Seats seat: seatModels)
         {
@@ -151,9 +150,9 @@ public class BookingTicketController extends MainController implements Initializ
         selectedVipSeats.clear();
         selectedReclinerSeats.clear();
 
-        regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), toMoneyValue(regularSeatModel.getPrice().longValue())));
-        vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), toMoneyValue(vipSeatModel.getPrice().longValue())));
-        reclinerPrice.setText(String.format("%d x %s", selectedReclinerSeats.size(), toMoneyValue(reclinerSeatModel.getPrice().longValue())));
+        regularPrice.setText(String.format("%d x %s", selectedRegularSeats.size(), PriceFormatter.format(regularSeatModel.getPrice().longValue())));
+        vipPrice.setText(String.format("%d x %s", selectedVipSeats.size(), PriceFormatter.format(vipSeatModel.getPrice().longValue())));
+        reclinerPrice.setText(String.format("%d x %s", selectedReclinerSeats.size(), PriceFormatter.format(reclinerSeatModel.getPrice().longValue())));
 
         setScreening((Screenings)params);
         refreshService = Executors.newSingleThreadScheduledExecutor();
@@ -355,9 +354,21 @@ public class BookingTicketController extends MainController implements Initializ
         long grandTotalAmount = subtotalAmount + taxAmount;
 
         // Update total labels
-        subtotal.setText(toMoneyValue(subtotalAmount));
-        tax.setText(toMoneyValue(taxAmount));
-        grandTotal.setText(toMoneyValue(grandTotalAmount));
+        subtotal.setText(PriceFormatter.format(subtotalAmount));
+        tax.setText(PriceFormatter.format(taxAmount));
+        grandTotal.setText(PriceFormatter.format(grandTotalAmount));
+    }
+
+    private long calculateTotalValue()
+    {
+        long regularTotal = selectedRegularSeats.size() * regularSeatModel.getPrice().longValue();
+        long vipTotal = selectedVipSeats.size() * vipSeatModel.getPrice().longValue();
+        long reclinerTotal = selectedReclinerSeats.size() * reclinerSeatModel.getPrice().longValue();
+
+        // Calculate totals
+        long subtotalAmount = regularTotal + vipTotal + reclinerTotal;
+        long taxAmount = subtotalAmount / 10;
+        return subtotalAmount + taxAmount;
     }
 
     private void clearSeatSelections()
@@ -383,32 +394,46 @@ public class BookingTicketController extends MainController implements Initializ
     private void onCancelPressed()
     {
         var movie = Objects.requireNonNull(DbSet.movies().findById(screening.getMovieId()));
-        reservation.delete();
+        if (!saved)
+        {
+            reservation.delete();
+        }
         changeScene.accept("user/movie-details.fxml", movie);
     }
 
     @FXML
-    private void onConfirmPressed()
-    {
-        // Get selected payment method
-        RadioButton selectedPayment = (RadioButton)paymentGroup.getSelectedToggle();
-        if (selectedPayment == null)
-        {
-            // Show error - payment method required
-            System.out.println("Please select a payment method");
-            return;
-        }
-
+    private void onConfirmPressed() {
         // Check if any seats are selected
-        if (selectedRegularSeats.isEmpty() && selectedVipSeats.isEmpty() && selectedReclinerSeats.isEmpty())
-        {
+        if (selectedRegularSeats.isEmpty() && selectedVipSeats.isEmpty() && selectedReclinerSeats.isEmpty()) {
             System.out.println("Please select at least one seat");
             return;
         }
 
-        // Proceed with booking
-        System.out.println("Processing booking with " + selectedPayment.getText() + " payment");
-        // Implementation would save the booking to database
+        // Get selected payment method
+//        RadioButton selectedPayment = (RadioButton)paymentGroup.getSelectedToggle();
+//        String paymentMethod = selectedPayment != null ? selectedPayment.getText() : "Cash";
+
+        // Mark reservation as paid
+        reservation.setPaid(true);
+        reservation.setTotal(UInteger.valueOf(calculateTotalValue()));
+        reservation.update();
+        saved = true;
+
+        // Get all reserved seats for this reservation
+        List<ReservedSeats> seats = DbSet.getContext()
+                .selectFrom(RESERVED_SEATS)
+                .where(RESERVED_SEATS.RESERVATION_ID.eq(reservation.getId()))
+                .fetchInto(ReservedSeats.class);
+
+        // Get movie and room details
+        Movies movie = DbSet.movies().findById(screening.getMovieId());
+        ScreeningRooms room = DbSet.screeningRooms().findById(screening.getRoomId());
+
+        // Print individual tickets for each seat
+        TicketPrinter.printTickets(reservation.getId().longValue(), movie, screening, room, seats);
+
+        // Continue to confirmation page
+        changeScene.accept("user/booking-confirmation.fxml", reservation);
     }
 
     @Override

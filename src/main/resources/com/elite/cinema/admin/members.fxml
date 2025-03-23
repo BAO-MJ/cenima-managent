@@ -18,8 +18,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.admin.MembersController">
-    <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <Tab text="Staff">
+    <TabPane fx:id="memberTab" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Tab fx:id="staffTab" text="Staff">
             <BorderPane>
                 <top>
                     <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -89,7 +89,7 @@
                 </bottom>
             </BorderPane>
         </Tab>
-        <Tab text="Customers">
+        <Tab fx:id="customersTab" text="Customers">
             <BorderPane>
                 <top>
                     <HBox alignment="CENTER_LEFT" spacing="10">

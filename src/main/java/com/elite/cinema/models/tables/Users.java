@@ -61,7 +61,7 @@ public class Users extends TableImpl<UsersRecord> {
     /**
      * The column <code>cinema.users.name</code>.
      */
-    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(50).nullable(false).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
+    public final TableField<UsersRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(50).nullable(false).defaultValue(DSL.inline("''", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>cinema.users.phone_number</code>.
@@ -71,17 +71,17 @@ public class Users extends TableImpl<UsersRecord> {
     /**
      * The column <code>cinema.users.dob</code>.
      */
-    public final TableField<UsersRecord, LocalDate> DOB = createField(DSL.name("dob"), SQLDataType.LOCALDATE.defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.LOCALDATE)), this, "");
+    public final TableField<UsersRecord, LocalDate> DOB = createField(DSL.name("dob"), SQLDataType.LOCALDATE.defaultValue(DSL.inline("NULL", SQLDataType.LOCALDATE)), this, "");
 
     /**
      * The column <code>cinema.users.email</code>.
      */
-    public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
+    public final TableField<UsersRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("''", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>cinema.users.password</code>.
      */
-    public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(50).defaultValue(DSL.field(DSL.raw("''"), SQLDataType.VARCHAR)), this, "");
+    public final TableField<UsersRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(50).defaultValue(DSL.inline("''", SQLDataType.VARCHAR)), this, "");
 
     /**
      * The column <code>cinema.users.type</code>.

@@ -1,0 +1,136 @@
+package com.elite.cinema.utils;
+
+import com.elite.cinema.models.tables.pojos.*;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
+import net.sf.jasperreports.view.JasperViewer;
+
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.Copies;
+import java.io.InputStream;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+public class TicketPrinter {
+
+    public static void printTickets(long reservationId, Movies movie, Screenings screening, ScreeningRooms room, List<ReservedSeats> seats) {
+
+        try {
+            // Prepare data for each ticket
+            List<Map<String, String>> ticketsData = new ArrayList<>();
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+
+            for (ReservedSeats seat : seats) {
+                Map<String, String> ticketData = new HashMap<>();
+
+                // Basic reservation info
+                ticketData.put("orderId", Long.toString(reservationId));
+                ticketData.put("movieTitle", movie.getTitle());
+                ticketData.put("roomName", room.getName());
+                ticketData.put("screeningDate", DateHelper.formatDate(screening.getScreeningTime().toLocalDate()));
+                ticketData.put("screeningTime", screening.getScreeningTime().format(timeFormatter));
+
+                // Seat information
+                int row = seat.getRow().intValue();
+                int col = seat.getColumn().intValue();
+                String seatLabel = String.format("%c-%d", (char)('A' + row), col + 1);
+                ticketData.put("seatLabel", seatLabel);
+
+                // Determine seat type and price
+                String seatType;
+                if (row <= 3) {
+                    seatType = "Regular";
+                } else if (row <= 7) {
+                    seatType = "VIP";
+                } else {
+                    seatType = "Recliner";
+                }
+
+                ticketData.put("seatType", seatType);
+
+                // Add ticket code for barcode
+                ticketData.put("ticketCode", generateTicketCode(reservationId, row, col));
+
+                ticketsData.add(ticketData);
+            }
+
+            // Create the data source
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(ticketsData);
+
+            // Load report template
+            InputStream templateStream = TicketPrinter.class.getResourceAsStream("/ticket_template.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(templateStream);
+
+            // Fill the report
+            var jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), dataSource);
+
+            // Show preview and print dialog
+            showPreviewAndPrint(jasperPrint);
+
+        } catch (JRException e) {
+            showError("Error generating tickets", e.getMessage());
+        }
+    }
+
+    private static String generateTicketCode(Long reservationId, int row, int col) {
+        return String.format("%s-%02d-%02d", reservationId, row, col);
+    }
+
+    private static void showPreviewAndPrint(JasperPrint jasperPrint) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Print Tickets");
+        alert.setHeaderText("Your tickets are ready");
+        alert.setContentText("Would you like to preview or print your tickets?");
+
+        ButtonType previewButton = new ButtonType("Preview");
+        ButtonType printButton = new ButtonType("Print");
+        ButtonType cancelButton = new ButtonType("Cancel");
+
+        alert.getButtonTypes().setAll(previewButton, printButton, cancelButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()) {
+            if (result.get() == previewButton) {
+                // Show preview
+                JasperViewer.viewReport(jasperPrint, false);
+            } else if (result.get() == printButton) {
+                // Print directly
+                printReport(jasperPrint);
+            }
+        }
+    }
+
+    private static void printReport(JasperPrint jasperPrint) {
+        try {
+            JasperPrintManager.printReport(jasperPrint, true);
+            showSuccess("Printing", "Tickets sent to printer");
+        } catch (JRException e) {
+            showError("Printing Error", e.getMessage());
+        }
+    }
+
+    private static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private static void showSuccess(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}

@@ -1,0 +1,92 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="MovieTicket" language="java" columnCount="1" pageWidth="226" pageHeight="300" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0e5e843-9b8a-4dd3-9f3a-8c9225275ad8">
+	<property name="com.jaspersoft.studio.unit" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<query language="SQL"><![CDATA[]]></query>
+	<field name="orderId" class="java.lang.String"/>
+	<field name="movieTitle" class="java.lang.String"/>
+	<field name="roomName" class="java.lang.String"/>
+	<field name="screeningDate" class="java.lang.String"/>
+	<field name="screeningTime" class="java.lang.String"/>
+	<field name="seatLabel" class="java.lang.String"/>
+	<field name="seatType" class="java.lang.String"/>
+	<field name="ticketCode" class="java.lang.String"/>
+	<pageHeader height="50" splitType="Stretch">
+		<element kind="staticText" uuid="3c0f0901-9d5c-46dd-8f6e-8fd7648fe0c8" x="0" y="0" width="186" height="30" fontSize="18.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[ELITE CINEMA]]></text>
+		</element>
+		<element kind="staticText" uuid="30d2066d-b514-475f-8b5d-2f6e5e5c3a41" x="0" y="30" width="186" height="20" fontSize="10.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[MOVIE TICKET]]></text>
+		</element>
+	</pageHeader>
+	<detail>
+		<band height="180" splitType="Stretch">
+			<element kind="staticText" uuid="2b1d61f1-11f0-4f53-97c7-9e85f45b1381" x="0" y="0" width="60" height="15" fontSize="8.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Movie:]]></text>
+			</element>
+			<element kind="textField" uuid="7b7fa05c-f258-4a1d-8c87-3c2d17f7233f" x="60" y="0" width="126" height="15" fontSize="8.0" textAdjust="StretchHeight" vTextAlign="Middle">
+				<expression><![CDATA[$F{movieTitle}]]></expression>
+			</element>
+			<element kind="staticText" uuid="c41c0a14-2402-42d5-9219-9b5e1b6cb32a" x="0" y="15" width="60" height="15" fontSize="8.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Room:]]></text>
+			</element>
+			<element kind="textField" uuid="82df6c84-2535-4301-ba1d-0edc12f7ce40" x="60" y="15" width="126" height="15" fontSize="8.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{roomName}]]></expression>
+			</element>
+			<element kind="staticText" uuid="b62a85d8-7a42-46d7-9e95-9318f5bd1652" x="0" y="30" width="60" height="15" fontSize="8.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Date:]]></text>
+			</element>
+			<element kind="textField" uuid="de8e79f3-5532-436d-8a06-82b07783f65f" x="60" y="30" width="126" height="15" fontSize="8.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{screeningDate}]]></expression>
+			</element>
+			<element kind="staticText" uuid="af1afe21-9e7e-4e11-8dda-a32a4d4dae98" x="0" y="45" width="60" height="15" fontSize="8.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Time:]]></text>
+			</element>
+			<element kind="textField" uuid="28cd70f4-deac-4a95-9c9b-cdc584d3338d" x="60" y="45" width="126" height="15" fontSize="8.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{screeningTime}]]></expression>
+			</element>
+			<element kind="line" uuid="8a4fdb68-c7c5-4518-a57d-4a2f3c2343ba" x="0" y="65" width="186" height="1">
+				<pen lineStyle="Dashed"/>
+			</element>
+			<element kind="staticText" uuid="301bfe83-fce6-44fd-be82-519ff0e1b7cf" x="0" y="70" width="60" height="20" fontSize="12.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Seat:]]></text>
+			</element>
+			<element kind="textField" uuid="6ad5c3a6-4e3c-4ee3-8d0c-c24bc245a40b" x="60" y="70" width="126" height="20" fontSize="14.0" bold="true" vTextAlign="Middle">
+				<expression><![CDATA[$F{seatLabel}]]></expression>
+			</element>
+			<element kind="staticText" uuid="39d41aba-bfef-4a3e-8eaa-269c1760d6ca" x="0" y="90" width="60" height="15" fontSize="8.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Type:]]></text>
+			</element>
+			<element kind="textField" uuid="a8d38b53-2e28-453a-963e-f53a1f7e18f3" x="60" y="90" width="126" height="15" fontSize="8.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{seatType}]]></expression>
+			</element>
+			<element kind="line" uuid="fbce14eb-9826-489d-8d50-42477dd08fbd" x="0" y="105" width="186" height="1">
+				<pen lineStyle="Dashed"/>
+			</element>
+			<element kind="staticText" uuid="72a3edc7-9c64-48ea-8b10-542d95ef957d" x="0" y="110" width="60" height="15" fontSize="8.0" bold="true" vTextAlign="Middle">
+				<text><![CDATA[Order ID:]]></text>
+			</element>
+			<element kind="textField" uuid="e1a11650-f1e5-4a93-9e2e-b09c2eff64bb" x="60" y="110" width="126" height="15" fontSize="8.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{orderId}]]></expression>
+			</element>
+			<element kind="component" uuid="11e5a19b-a93b-4e8c-9891-a5dce7cb0f30" stretchType="NoStretch" x="0" y="130" width="186" height="40">
+				<component kind="barcode4j:Code128" moduleWidth="1.0" textPosition="bottom" quietZone="10.0">
+					<codeExpression><![CDATA[$F{ticketCode}]]></codeExpression>
+				</component>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<pageFooter height="25">
+		<element kind="staticText" uuid="c75c55fe-3bcc-4c28-88ca-28c89f62f845" x="0" y="0" width="186" height="25" fontSize="6.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Thank you for choosing Elite Cinema!
+Please arrive 15 minutes before showtime.
+This ticket is non-refundable and non-transferable.]]></text>
+		</element>
+	</pageFooter>
+</jasperReport>

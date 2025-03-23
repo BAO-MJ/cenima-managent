@@ -1,0 +1,40 @@
+/* booking-confirmation.css */
+
+/* Success icon */
+.success-icon {
+    -fx-icon-size: 64px;
+    -fx-icon-color: lime;
+}
+
+/* Heading text */
+.heading {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Info containers */
+.info-container {
+    -fx-background-radius: 5px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+}
+
+/* Section headers */
+.section-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Info text */
+.info-text {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+/* General label styles */
+Label {
+    -fx-text-fill: #555555;
+}
