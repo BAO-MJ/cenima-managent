@@ -72,7 +72,7 @@ public class RefreshmentsOrderDetails extends TableImpl<RefreshmentsOrderDetails
     /**
      * The column <code>cinema.refreshments_order_details.quantity</code>.
      */
-    public final TableField<RefreshmentsOrderDetailsRecord, UInteger> QUANTITY = createField(DSL.name("quantity"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.INTEGERUNSIGNED)), this, "");
+    public final TableField<RefreshmentsOrderDetailsRecord, UInteger> QUANTITY = createField(DSL.name("quantity"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.INTEGERUNSIGNED)), this, "");
 
     private RefreshmentsOrderDetails(Name alias, Table<RefreshmentsOrderDetailsRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

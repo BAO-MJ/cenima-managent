@@ -5,6 +5,7 @@ package com.elite.cinema.models.tables.pojos;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import org.jooq.types.ULong;
 
@@ -19,20 +20,24 @@ public class RefreshmentsOrders implements Serializable {
 
     private ULong id;
     private ULong total;
+    private LocalDateTime createdAt;
 
     public RefreshmentsOrders() {}
 
     public RefreshmentsOrders(RefreshmentsOrders value) {
         this.id = value.id;
         this.total = value.total;
+        this.createdAt = value.createdAt;
     }
 
     public RefreshmentsOrders(
         ULong id,
-        ULong total
+        ULong total,
+        LocalDateTime createdAt
     ) {
         this.id = id;
         this.total = total;
+        this.createdAt = createdAt;
     }
 
     /**
@@ -63,6 +68,20 @@ public class RefreshmentsOrders implements Serializable {
         this.total = total;
     }
 
+    /**
+     * Getter for <code>cinema.refreshments_orders.created_at</code>.
+     */
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    /**
+     * Setter for <code>cinema.refreshments_orders.created_at</code>.
+     */
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -84,6 +103,12 @@ public class RefreshmentsOrders implements Serializable {
         }
         else if (!this.total.equals(other.total))
             return false;
+        if (this.createdAt == null) {
+            if (other.createdAt != null)
+                return false;
+        }
+        else if (!this.createdAt.equals(other.createdAt))
+            return false;
         return true;
     }
 
@@ -93,6 +118,7 @@ public class RefreshmentsOrders implements Serializable {
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.total == null) ? 0 : this.total.hashCode());
+        result = prime * result + ((this.createdAt == null) ? 0 : this.createdAt.hashCode());
         return result;
     }
 
@@ -102,6 +128,7 @@ public class RefreshmentsOrders implements Serializable {
 
         sb.append(id);
         sb.append(", ").append(total);
+        sb.append(", ").append(createdAt);
 
         sb.append(")");
         return sb.toString();

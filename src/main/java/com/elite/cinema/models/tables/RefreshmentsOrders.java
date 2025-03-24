@@ -10,6 +10,7 @@ import com.elite.cinema.models.tables.Refreshments.RefreshmentsPath;
 import com.elite.cinema.models.tables.RefreshmentsOrderDetails.RefreshmentsOrderDetailsPath;
 import com.elite.cinema.models.tables.records.RefreshmentsOrdersRecord;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import org.jooq.Condition;
@@ -66,6 +67,11 @@ public class RefreshmentsOrders extends TableImpl<RefreshmentsOrdersRecord> {
      * The column <code>cinema.refreshments_orders.total</code>.
      */
     public final TableField<RefreshmentsOrdersRecord, ULong> TOTAL = createField(DSL.name("total"), SQLDataType.BIGINTUNSIGNED.nullable(false), this, "");
+
+    /**
+     * The column <code>cinema.refreshments_orders.created_at</code>.
+     */
+    public final TableField<RefreshmentsOrdersRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.LOCALDATETIME)), this, "");
 
     private RefreshmentsOrders(Name alias, Table<RefreshmentsOrdersRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

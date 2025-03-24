@@ -6,6 +6,8 @@ package com.elite.cinema.models.tables.records;
 
 import com.elite.cinema.models.tables.RefreshmentsOrders;
 
+import java.time.LocalDateTime;
+
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 import org.jooq.types.ULong;
@@ -47,6 +49,20 @@ public class RefreshmentsOrdersRecord extends UpdatableRecordImpl<RefreshmentsOr
         return (ULong) get(1);
     }
 
+    /**
+     * Setter for <code>cinema.refreshments_orders.created_at</code>.
+     */
+    public void setCreatedAt(LocalDateTime value) {
+        set(2, value);
+    }
+
+    /**
+     * Getter for <code>cinema.refreshments_orders.created_at</code>.
+     */
+    public LocalDateTime getCreatedAt() {
+        return (LocalDateTime) get(2);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -70,11 +86,12 @@ public class RefreshmentsOrdersRecord extends UpdatableRecordImpl<RefreshmentsOr
     /**
      * Create a detached, initialised RefreshmentsOrdersRecord
      */
-    public RefreshmentsOrdersRecord(ULong id, ULong total) {
+    public RefreshmentsOrdersRecord(ULong id, ULong total, LocalDateTime createdAt) {
         super(RefreshmentsOrders.REFRESHMENTS_ORDERS);
 
         setId(id);
         setTotal(total);
+        setCreatedAt(createdAt);
         resetTouchedOnNotNull();
     }
 
@@ -87,6 +104,7 @@ public class RefreshmentsOrdersRecord extends UpdatableRecordImpl<RefreshmentsOr
         if (value != null) {
             setId(value.getId());
             setTotal(value.getTotal());
+            setCreatedAt(value.getCreatedAt());
             resetTouchedOnNotNull();
         }
     }

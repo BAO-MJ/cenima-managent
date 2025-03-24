@@ -10,7 +10,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class DbSet {
-    private static HikariDataSource ds;
+
     @Getter
     private static DSLContext context;
 
@@ -18,7 +18,7 @@ public class DbSet {
 
     public static void initialize() {
         HikariConfig config = new HikariConfig("hikari.properties");
-        ds = new HikariDataSource(config);
+        HikariDataSource ds = new HikariDataSource(config);
         context = DSL.using(ds, SQLDialect.MARIADB);
     }
 
@@ -54,8 +54,15 @@ public class DbSet {
         return new UsersDao(context.configuration());
     }
 
-    public static RevenuesDao revenues()
+    public static RevenuesDao revenues() { return new RevenuesDao(context); }
+
+    public static RefreshmentsOrdersDao refreshmentsOrders()
     {
-        return new RevenuesDao(context);
+        return new RefreshmentsOrdersDao(context.configuration());
+    }
+
+    public static RefreshmentsOrderDetailsDao refreshmentsOrderDetails()
+    {
+        return new RefreshmentsOrderDetailsDao(context.configuration());
     }
 }

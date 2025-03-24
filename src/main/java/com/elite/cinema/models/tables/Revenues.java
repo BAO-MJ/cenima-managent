@@ -54,7 +54,7 @@ public class Revenues extends TableImpl<RevenuesRecord> {
     /**
      * The column <code>cinema.revenues.screening_id</code>.
      */
-    public final TableField<RevenuesRecord, ULong> SCREENING_ID = createField(DSL.name("screening_id"), SQLDataType.BIGINTUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.BIGINTUNSIGNED)), this, "");
+    public final TableField<RevenuesRecord, ULong> SCREENING_ID = createField(DSL.name("screening_id"), SQLDataType.BIGINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.BIGINTUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.revenues.movie_id</code>.
@@ -69,17 +69,17 @@ public class Revenues extends TableImpl<RevenuesRecord> {
     /**
      * The column <code>cinema.revenues.total_revenue</code>.
      */
-    public final TableField<RevenuesRecord, BigInteger> TOTAL_REVENUE = createField(DSL.name("total_revenue"), SQLDataType.DECIMAL_INTEGER(32).defaultValue(DSL.inline("NULL", SQLDataType.DECIMAL_INTEGER)), this, "");
+    public final TableField<RevenuesRecord, BigInteger> TOTAL_REVENUE = createField(DSL.name("total_revenue"), SQLDataType.DECIMAL_INTEGER(32).defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.DECIMAL_INTEGER)), this, "");
 
     /**
      * The column <code>cinema.revenues.total_tickets</code>.
      */
-    public final TableField<RevenuesRecord, BigInteger> TOTAL_TICKETS = createField(DSL.name("total_tickets"), SQLDataType.DECIMAL_INTEGER(42).defaultValue(DSL.inline("NULL", SQLDataType.DECIMAL_INTEGER)), this, "");
+    public final TableField<RevenuesRecord, BigInteger> TOTAL_TICKETS = createField(DSL.name("total_tickets"), SQLDataType.DECIMAL_INTEGER(42).defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.DECIMAL_INTEGER)), this, "");
 
     /**
      * The column <code>cinema.revenues.occupancy_rate</code>.
      */
-    public final TableField<RevenuesRecord, BigDecimal> OCCUPANCY_RATE = createField(DSL.name("occupancy_rate"), SQLDataType.DECIMAL(46, 4).defaultValue(DSL.inline("NULL", SQLDataType.DECIMAL)), this, "");
+    public final TableField<RevenuesRecord, BigDecimal> OCCUPANCY_RATE = createField(DSL.name("occupancy_rate"), SQLDataType.DECIMAL(46, 4).defaultValue(DSL.field(DSL.raw("NULL"), SQLDataType.DECIMAL)), this, "");
 
     private Revenues(Name alias, Table<RevenuesRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

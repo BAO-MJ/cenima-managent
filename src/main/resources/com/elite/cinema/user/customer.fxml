@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elite.cinema.controllers.user.CustomerController">
+    <Label text="Booking History">
+        <font>
+            <Font name="System Bold" size="17.0"/>
+        </font>
+    </Label>
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <Label text="Booking Date:"/>
+        <DatePicker fx:id="dateFilter" editable="false" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+      <columns>
+          <TableColumn fx:id="orderIdColumn" prefWidth="75.0" text="Order ID"/>
+          <TableColumn fx:id="movieColumn" prefWidth="75.0" text="Movie"/>
+          <TableColumn fx:id="roomColumn" prefWidth="75.0" text="Room"/>
+          <TableColumn fx:id="bookingTimeColumn" prefWidth="75.0" text="Booking Time"/>
+          <TableColumn fx:id="showTimeColumn" prefWidth="75.0" text="Show Time"/>
+          <TableColumn fx:id="seatsColumn" prefWidth="75.0" text="Seats"/>
+          <TableColumn fx:id="actionColumn" prefWidth="75.0" text="Action"/>
+      </columns>
+        <columnResizePolicy>
+          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+        </columnResizePolicy>
+    </TableView>
+</VBox>

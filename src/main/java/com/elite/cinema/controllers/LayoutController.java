@@ -8,6 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -51,6 +52,8 @@ public class LayoutController extends BaseController {
     @FXML
     private VBox menuButtons;
 
+    @FXML
+    private Label userName;
 
     private MainController mainController;
     private String path = "";
@@ -64,6 +67,8 @@ public class LayoutController extends BaseController {
         var root = getSceneManager().rootStage;
         root.setWidth(1280);
         root.setHeight(800);
+
+        userName.setText(App.user != null ? App.user.getName() : "");
 
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         root.setX((bounds.getWidth() - root.getWidth()) / 2);
@@ -147,6 +152,10 @@ public class LayoutController extends BaseController {
     public void onRevenueReportsClicked() { switchScene("admin/revenue-report.fxml"); }
 
     public void onStaffRefreshmentsClicked() { switchScene("user/refreshments-order.fxml"); }
+
+    public void onBookingHistoryClicked() { switchScene("user/customer.fxml"); }
+
+    public void onRefreshmentsHistoryClicked() { switchScene("user/customerfood.fxml"); }
 
     public void onSignOutClicked() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

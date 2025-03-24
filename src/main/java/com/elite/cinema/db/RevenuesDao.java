@@ -35,4 +35,20 @@ public class RevenuesDao
                 .groupBy(DSL.field("screening_date"), REVENUES.MOVIE_ID, MOVIES.TITLE)
                 .fetchInto(DailyRevenue.class);
     }
+
+    public List<DailyRevenue> dailyMovieRevenue()
+    {
+        return context.select(
+                        REVENUES.SCREENING_TIME.cast(LocalDate.class).as("screening_date"),
+                        REVENUES.MOVIE_ID,
+                        MOVIES.TITLE.as("movie_title"),
+                        coalesce(sum(REVENUES.TOTAL_TICKETS), 0).as("tickets_sold"),
+                        coalesce(sum(REVENUES.TOTAL_REVENUE), 0).as("revenue"),
+                        coalesce(avg(REVENUES.OCCUPANCY_RATE), 0).as("occupancy_rate")
+                )
+                .from(REVENUES)
+                .join(MOVIES).on(REVENUES.MOVIE_ID.eq(MOVIES.ID))
+                .groupBy(DSL.field("screening_date"), REVENUES.MOVIE_ID, MOVIES.TITLE)
+                .fetchInto(DailyRevenue.class);
+    }
 }

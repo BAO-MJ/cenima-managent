@@ -5,6 +5,7 @@ package com.elite.cinema.models.tables.pojos;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import org.jooq.types.UInteger;
 import org.jooq.types.ULong;
@@ -22,6 +23,7 @@ public class Reservations implements Serializable {
     private ULong screeningId;
     private UInteger total;
     private Boolean paid;
+    private LocalDateTime createdAt;
 
     public Reservations() {}
 
@@ -30,18 +32,21 @@ public class Reservations implements Serializable {
         this.screeningId = value.screeningId;
         this.total = value.total;
         this.paid = value.paid;
+        this.createdAt = value.createdAt;
     }
 
     public Reservations(
         ULong id,
         ULong screeningId,
         UInteger total,
-        Boolean paid
+        Boolean paid,
+        LocalDateTime createdAt
     ) {
         this.id = id;
         this.screeningId = screeningId;
         this.total = total;
         this.paid = paid;
+        this.createdAt = createdAt;
     }
 
     /**
@@ -100,6 +105,20 @@ public class Reservations implements Serializable {
         this.paid = paid;
     }
 
+    /**
+     * Getter for <code>cinema.reservations.created_at</code>.
+     */
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    /**
+     * Setter for <code>cinema.reservations.created_at</code>.
+     */
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -133,6 +152,12 @@ public class Reservations implements Serializable {
         }
         else if (!this.paid.equals(other.paid))
             return false;
+        if (this.createdAt == null) {
+            if (other.createdAt != null)
+                return false;
+        }
+        else if (!this.createdAt.equals(other.createdAt))
+            return false;
         return true;
     }
 
@@ -144,6 +169,7 @@ public class Reservations implements Serializable {
         result = prime * result + ((this.screeningId == null) ? 0 : this.screeningId.hashCode());
         result = prime * result + ((this.total == null) ? 0 : this.total.hashCode());
         result = prime * result + ((this.paid == null) ? 0 : this.paid.hashCode());
+        result = prime * result + ((this.createdAt == null) ? 0 : this.createdAt.hashCode());
         return result;
     }
 
@@ -155,6 +181,7 @@ public class Reservations implements Serializable {
         sb.append(", ").append(screeningId);
         sb.append(", ").append(total);
         sb.append(", ").append(paid);
+        sb.append(", ").append(createdAt);
 
         sb.append(")");
         return sb.toString();

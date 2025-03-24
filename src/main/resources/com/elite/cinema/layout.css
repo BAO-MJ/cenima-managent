@@ -29,6 +29,8 @@
 
 .card .ikonli-font-icon {
     -fx-opacity: 0.3;
+    -fx-fill: #fff;
+    -fx-icon-size: 64px;
 }
 
 #total-films {

@@ -179,7 +179,7 @@ public class ChooseDateController {
             throw new IllegalStateException("Unknown type selected");
         }
 
-        var buttons = availableTimes.stream().map(this::createTime).toList();
+        var buttons = availableTimes.stream().filter(t -> t.isAfter(LocalTime.now())).map(this::createTime).toList();
         times.getChildren().addAll(buttons);
         timeGroup.getToggles().setAll(buttons);
 

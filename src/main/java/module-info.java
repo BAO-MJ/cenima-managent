@@ -32,4 +32,5 @@ module com.elite.cinema {
     opens com.elite.cinema.utils to javafx.fxml, net.sf.jasperreports.core;
     requires net.sf.jasperreports.core;
     requires net.sf.jasperreports.barcode4j;
+    requires ecj;
 }

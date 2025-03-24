@@ -10,6 +10,7 @@ import com.elite.cinema.models.tables.ReservedSeats.ReservedSeatsPath;
 import com.elite.cinema.models.tables.Screenings.ScreeningsPath;
 import com.elite.cinema.models.tables.records.ReservationsRecord;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -73,12 +74,17 @@ public class Reservations extends TableImpl<ReservationsRecord> {
     /**
      * The column <code>cinema.reservations.total</code>.
      */
-    public final TableField<ReservationsRecord, UInteger> TOTAL = createField(DSL.name("total"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.INTEGERUNSIGNED)), this, "");
+    public final TableField<ReservationsRecord, UInteger> TOTAL = createField(DSL.name("total"), SQLDataType.INTEGERUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.INTEGERUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.reservations.paid</code>.
      */
-    public final TableField<ReservationsRecord, Boolean> PAID = createField(DSL.name("paid"), SQLDataType.BIT.nullable(false).defaultValue(DSL.inline("b'0'", SQLDataType.BIT)), this, "");
+    public final TableField<ReservationsRecord, Boolean> PAID = createField(DSL.name("paid"), SQLDataType.BIT.nullable(false).defaultValue(DSL.field(DSL.raw("b'0'"), SQLDataType.BIT)), this, "");
+
+    /**
+     * The column <code>cinema.reservations.created_at</code>.
+     */
+    public final TableField<ReservationsRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false).defaultValue(DSL.field(DSL.raw("current_timestamp()"), SQLDataType.LOCALDATETIME)), this, "");
 
     private Reservations(Name alias, Table<ReservationsRecord> aliased) {
         this(alias, aliased, (Field<?>[]) null, null);

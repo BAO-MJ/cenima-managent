@@ -1,12 +1,13 @@
 package com.elite.cinema.controllers.user;
 
 import atlantafx.base.theme.Styles;
-import com.elite.cinema.controllers.BaseController;
 import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.models.tables.pojos.Refreshments;
 import com.elite.cinema.db.DbSet;
+import com.elite.cinema.models.tables.pojos.RefreshmentsOrderDetails;
 import com.elite.cinema.utils.ImageHelper;
 import com.elite.cinema.utils.PriceFormatter;
+import com.elite.cinema.utils.RefreshmentReceiptPrinter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,12 +20,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.jooq.types.UInteger;
 import org.jooq.types.ULong;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.elite.cinema.models.Tables.REFRESHMENTS_ORDERS;
 
 public class RefreshmentsOrderController extends MainController {
 
@@ -154,7 +158,7 @@ public class RefreshmentsOrderController extends MainController {
 
                 // Set remove button action
                 Button removeButton = (Button) cartItem.lookup("#removeButton");
-                removeButton.setOnAction(e -> removeFromCart(refreshment));
+                removeButton.setOnAction(_ -> removeFromCart(refreshment));
 
                 // Load image if available
                 ImageView itemImage = (ImageView) cartItem.lookup("#itemImage");
@@ -262,14 +266,32 @@ public class RefreshmentsOrderController extends MainController {
             return;
         }
 
-        // TODO: Implement checkout process
-        // This would likely involve:
-        // 1. Creating an order record in the database
-        // 2. Creating order items for each refreshment in the cart
-        // 3. Navigating to a payment screen or confirmation screen
+
+        var order = DbSet.getContext().newRecord(REFRESHMENTS_ORDERS);
+        order.setTotal(ULong.valueOf(calculateSubtotal() + calculateSubtotal() / 10));
+        order.insert();
+
+        var refreshments = cart.entrySet().stream()
+                .map(entry -> new RefreshmentsOrderDetails(
+                        order.getId(),
+                        entry.getKey(),
+                        UInteger.valueOf(entry.getValue())
+                ))
+                .toList();
+
+        DbSet.refreshmentsOrderDetails().insert(refreshments);
+
+        // Print receipt
+        RefreshmentReceiptPrinter.printReceipt(
+                order.getId(),
+                cart,
+                refreshmentsList,
+                calculateSubtotal()
+        );
 
         showAlert("Success", "Order placed successfully!", Alert.AlertType.INFORMATION);
         onClearCart();
+        changeScene.accept("user/refreshments-order-success.fxml", null);
     }
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {

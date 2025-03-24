@@ -7,6 +7,7 @@ package com.elite.cinema.models.tables.daos;
 import com.elite.cinema.models.tables.RefreshmentsOrders;
 import com.elite.cinema.models.tables.records.RefreshmentsOrdersRecord;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,5 +83,20 @@ public class RefreshmentsOrdersDao extends DAOImpl<RefreshmentsOrdersRecord, com
      */
     public List<com.elite.cinema.models.tables.pojos.RefreshmentsOrders> fetchByTotal(ULong... values) {
         return fetch(RefreshmentsOrders.REFRESHMENTS_ORDERS.TOTAL, values);
+    }
+
+    /**
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.elite.cinema.models.tables.pojos.RefreshmentsOrders> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(RefreshmentsOrders.REFRESHMENTS_ORDERS.CREATED_AT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>created_at IN (values)</code>
+     */
+    public List<com.elite.cinema.models.tables.pojos.RefreshmentsOrders> fetchByCreatedAt(LocalDateTime... values) {
+        return fetch(RefreshmentsOrders.REFRESHMENTS_ORDERS.CREATED_AT, values);
     }
 }

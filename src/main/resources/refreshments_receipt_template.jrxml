@@ -1,0 +1,75 @@
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 7.0.2-31532122640f516c6d17238ae0e41a08113d5ac0  -->
+<jasperReport name="RefreshmentsReceipt" language="java" pageWidth="226" pageHeight="842" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00ea6863-5a0c-4329-afde-24ac2d1ae987">
+	<parameter name="OrderId" class="java.lang.String"/>
+	<parameter name="OrderDate" class="java.lang.String"/>
+	<parameter name="Subtotal" class="java.lang.String"/>
+	<parameter name="Tax" class="java.lang.String"/>
+	<parameter name="Total" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="quantity" class="java.lang.Integer"/>
+	<field name="price" class="java.lang.String"/>
+	<field name="total" class="java.lang.String"/>
+	<title height="120" splitType="Stretch">
+		<element kind="staticText" uuid="316a630f-69b3-40bd-b794-bf8764199bad" x="0" y="0" width="186" height="30" fontSize="18.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[ELITE CINEMA]]></text>
+		</element>
+		<element kind="staticText" uuid="96f4f3f0-fe05-418f-bcf0-569025b3c39a" x="0" y="70" width="186" height="20" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[REFRESHMENTS RECEIPT]]></text>
+		</element>
+		<element kind="textField" uuid="e5faafaa-b8de-4180-a521-c4bc3dcd2fd0" x="0" y="90" width="186" height="15" fontSize="10.0">
+			<expression><![CDATA["Order: #" + $P{OrderId}]]></expression>
+		</element>
+		<element kind="textField" uuid="ba7fcc64-06e6-4617-b59b-63cf6cce7ca8" x="0" y="105" width="186" height="15" fontSize="10.0">
+			<expression><![CDATA["Date: " + $P{OrderDate}]]></expression>
+		</element>
+	</title>
+	<columnHeader height="20" splitType="Stretch">
+		<element kind="staticText" uuid="560ad8b3-94ee-4220-b5a4-af0a119d1eb9" x="0" y="0" width="80" height="20" fontSize="10.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Item]]></text>
+		</element>
+		<element kind="staticText" uuid="28c19d5d-cc1d-4967-bf51-36e1218af9da" x="80" y="0" width="30" height="20" fontSize="10.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Qty]]></text>
+		</element>
+		<element kind="staticText" uuid="aac5b010-0b43-4a85-9d64-cdfe614f6be9" x="110" y="0" width="40" height="20" fontSize="10.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Price]]></text>
+		</element>
+		<element kind="staticText" uuid="f57f06d0-12d9-4833-be94-3ea91f243d27" x="150" y="0" width="36" height="20" fontSize="10.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Total]]></text>
+		</element>
+		<element kind="line" uuid="5598f476-e123-4f50-b880-c2ebbc378290" x="0" y="19" width="186" height="1"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<element kind="textField" uuid="9178eff2-bc75-42f0-a464-7b7a7bbf3106" x="0" y="0" width="80" height="20" fontSize="9.0" vTextAlign="Middle">
+				<expression><![CDATA[$F{name}]]></expression>
+			</element>
+			<element kind="textField" uuid="d405f473-fdea-441a-8cb0-eb88905bc97d" x="80" y="0" width="30" height="20" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{quantity}]]></expression>
+			</element>
+			<element kind="textField" uuid="a25c3722-347c-4be7-b685-856705f556b1" x="110" y="0" width="40" height="20" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$F{price}]]></expression>
+			</element>
+			<element kind="textField" uuid="66d1df88-bb50-41ab-98f1-a816fe8453c9" x="150" y="0" width="36" height="20" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$F{total}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<summary height="130" splitType="Stretch">
+		<element kind="line" uuid="935c2233-a423-45d3-a3de-2cff7dacac5b" x="0" y="0" width="186" height="1"/>
+		<element kind="textField" uuid="dfc58be8-184a-448d-829a-44f161753ba8" x="100" y="10" width="86" height="15" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Subtotal: " + $P{Subtotal}]]></expression>
+		</element>
+		<element kind="textField" uuid="de584942-d6cd-4149-8013-21adcb16da65" x="100" y="25" width="86" height="15" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Tax (10%): " + $P{Tax}]]></expression>
+		</element>
+		<element kind="textField" uuid="f68d514c-0cd6-4498-af5d-607551d54077" x="100" y="45" width="86" height="20" fontSize="11.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Total: " + $P{Total}]]></expression>
+		</element>
+		<element kind="staticText" uuid="03002a1d-ec9a-45fa-b5c1-c863811c13ca" x="0" y="90" width="186" height="40" fontSize="9.0" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Thank you for your purchase!
+Enjoy the movie!
+
+Receipt generated by Elite Cinema]]></text>
+		</element>
+	</summary>
+</jasperReport>

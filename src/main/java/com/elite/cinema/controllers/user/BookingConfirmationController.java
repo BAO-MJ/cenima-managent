@@ -11,8 +11,6 @@ import com.elite.cinema.utils.TicketPrinter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -33,8 +31,6 @@ public class BookingConfirmationController extends MainController {
     @FXML private Label paymentStatusLabel;
     @FXML private Button printTicketsButton;
     @FXML private Button homeButton;
-    @FXML
-    private FontIcon checkIcon;
 
     private ReservationsRecord reservation;
 
@@ -99,7 +95,7 @@ public class BookingConfirmationController extends MainController {
 
     @FXML
     private void onPrintTicketsAgain() {
-        TicketPrinter.printTickets(reservation.getId().longValue(), movie, screening, room, seats);
+        TicketPrinter.printTickets(reservation.getId().longValue(), movie.getTitle(), screening.getScreeningTime(), room.getName(), seats);
     }
 
     @FXML

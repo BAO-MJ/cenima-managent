@@ -5,7 +5,6 @@ import static com.elite.cinema.models.Tables.SCREENINGS;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -180,7 +179,7 @@ public class MovieDetailsController extends MainController
             return;
         }
 
-        bookTicketButton.setVisible(movie.getReleaseDate().isBefore(LocalDate.now()));
+        bookTicketButton.setVisible(movie.getReleaseDate().isBefore(LocalDate.now().plusDays(15)));
         if (movie.getPoster() != null)
         {
             moviePoster.setImage(ImageHelper.byteArrayToImage(movie.getPoster()));

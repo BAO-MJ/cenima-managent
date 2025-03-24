@@ -12,18 +12,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.control.RadioButton;
 import org.jooq.types.UByte;
 import org.jooq.types.UInteger;
 
 import java.net.URL;
-import java.text.NumberFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -245,7 +244,7 @@ public class BookingTicketController extends MainController implements Initializ
         Movies movie = Objects.requireNonNull(DbSet.movies().findById(screening.getMovieId()));
         ScreeningRooms room = Objects.requireNonNull(DbSet.screeningRooms().findById(screening.getRoomId()));
 
-        reservation = DbSet.getContext().newRecord(RESERVATIONS, new Reservations(null, screening.getId(), null, null));
+        reservation = DbSet.getContext().newRecord(RESERVATIONS, new Reservations(null, screening.getId(), null, null, null));
         reservation.store();
 
         orderId.setText("#" + reservation.getId());
@@ -405,7 +404,11 @@ public class BookingTicketController extends MainController implements Initializ
     private void onConfirmPressed() {
         // Check if any seats are selected
         if (selectedRegularSeats.isEmpty() && selectedVipSeats.isEmpty() && selectedReclinerSeats.isEmpty()) {
-            System.out.println("Please select at least one seat");
+            var alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Seats Selected");
+            alert.setHeaderText("Please select at least one seat.");
+            alert.setContentText("You need to select at least one seat to proceed with the booking.");
+            alert.showAndWait();
             return;
         }
 
@@ -430,7 +433,7 @@ public class BookingTicketController extends MainController implements Initializ
         ScreeningRooms room = DbSet.screeningRooms().findById(screening.getRoomId());
 
         // Print individual tickets for each seat
-        TicketPrinter.printTickets(reservation.getId().longValue(), movie, screening, room, seats);
+        TicketPrinter.printTickets(reservation.getId().longValue(), movie != null ? movie.getTitle() : "", screening.getScreeningTime(), room != null ? room.getName() : "", seats);
 
         // Continue to confirmation page
         changeScene.accept("user/booking-confirmation.fxml", reservation);

@@ -1,6 +1,8 @@
 package com.elite.cinema.utils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateHelper
@@ -33,7 +35,7 @@ public class DateHelper
         return !date.isBefore(minDate) && !date.isAfter(maxDate);
     }
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public static String formatDate(LocalDate date)
     {
@@ -41,6 +43,25 @@ public class DateHelper
         {
             return "";
         }
-        return date.format(formatter);
+        return date.format(dateFormatter);
+    }
+
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+    public static String formatTime(LocalTime date)
+    {
+        if (date == null)
+        {
+            return "";
+        }
+        return date.format(timeFormatter);
+    }
+
+    public static String formatDateTime(LocalDateTime date)
+    {
+        if (date == null)
+        {
+            return "";
+        }
+        return date.format(dateFormatter) + " " + date.format(timeFormatter);
     }
 }

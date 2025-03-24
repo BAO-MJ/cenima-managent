@@ -3,8 +3,6 @@ package com.elite.cinema.controllers.admin;
 import com.elite.cinema.controllers.MainController;
 import com.elite.cinema.db.DailyRevenue;
 import com.elite.cinema.db.DbSet;
-import com.elite.cinema.models.tables.pojos.Movies;
-import com.elite.cinema.utils.ComboBoxHelper;
 import com.elite.cinema.utils.DateHelper;
 import com.elite.cinema.utils.PriceFormatter;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -20,19 +18,16 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-import org.jooq.*;
+import org.jooq.types.ULong;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.elite.cinema.models.Tables.*;
-import static org.jooq.impl.DSL.*;
 
 public class RevenueReportController extends MainController
 {
@@ -45,8 +40,6 @@ public class RevenueReportController extends MainController
     @FXML
     private ComboBox<String> reportTypeComboBox;
     @FXML
-    private ComboBox<Movies> movieFilterComboBox;
-    @FXML
     private ComboBox<String> comparisonPeriodComboBox;
 
     @FXML
@@ -56,16 +49,12 @@ public class RevenueReportController extends MainController
     @FXML
     private Label avgRevenuePerScreeningLabel;
     @FXML
-    private Label popularMovieLabel;
-    @FXML
     private Label statusLabel;
 
     @FXML
     private BarChart<String, Number> revenueChart;
     @FXML
     private PieChart movieRevenueChart;
-    @FXML
-    private BarChart<String, Number> comparisonChart;
 
     @FXML
     private TableView<DailyRevenue> revenueTable;
@@ -85,11 +74,11 @@ public class RevenueReportController extends MainController
     @FXML
     private TableColumn<ComparisonRecord, String> categoryColumn;
     @FXML
-    private TableColumn<ComparisonRecord, Long> currentPeriodColumn;
+    private TableColumn<ComparisonRecord, String> currentPeriodColumn;
     @FXML
-    private TableColumn<ComparisonRecord, Long> previousPeriodColumn;
+    private TableColumn<ComparisonRecord, String> previousPeriodColumn;
     @FXML
-    private TableColumn<ComparisonRecord, Long> differenceColumn;
+    private TableColumn<ComparisonRecord, String> differenceColumn;
     @FXML
     private TableColumn<ComparisonRecord, Double> percentageChangeColumn;
 
@@ -106,26 +95,43 @@ public class RevenueReportController extends MainController
     public void ready(Object params)
     {
         setDefaultDates();
-        loadFilters();
         refreshData();
     }
 
     private void initializeControls()
     {
         // Initialize ComboBoxes with options
-        reportTypeComboBox.setItems(FXCollections.observableArrayList(
-                "Daily", "Weekly", "Monthly"
-        ));
+        reportTypeComboBox.setItems(FXCollections.observableArrayList("Daily", "Monthly", "Quarterly", "Yearly"));
         reportTypeComboBox.setValue("Daily");
 
-        comparisonPeriodComboBox.setItems(FXCollections.observableArrayList(
-                "Previous Week", "Previous Month", "Previous Quarter", "Previous Year"
-        ));
+        comparisonPeriodComboBox.setItems(FXCollections.observableArrayList("Previous Week", "Previous Month", "Previous Quarter", "Previous Year"));
         comparisonPeriodComboBox.setValue("Previous Week");
 
         // Connect table data
         revenueTable.setItems(revenueData);
         comparisonTable.setItems(comparisonData);
+
+        startDatePicker.setOnAction(_ -> {
+            if (startDatePicker.getValue() != null) {
+                if (startDatePicker.getValue().isAfter(endDatePicker.getValue())) {
+                    endDatePicker.setValue(startDatePicker.getValue());
+                }
+                else {
+                    loadRevenueData();
+                }
+            }
+
+            endDatePicker.setDayCellFactory(_ -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    setDisable(date.isBefore(startDatePicker.getValue()));
+                }
+            });
+
+        });
+
+        endDatePicker.setOnAction(_ -> loadRevenueData());
     }
 
     private void setupTableColumns()
@@ -159,15 +165,10 @@ public class RevenueReportController extends MainController
 
         // Comparison table columns
         categoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().category()));
-        currentPeriodColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().currentPeriod()).asObject());
-        previousPeriodColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().previousPeriod()).asObject());
-        differenceColumn.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().difference()).asObject());
+        currentPeriodColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().currentPeriod()));
+        previousPeriodColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().previousPeriod()));
+        differenceColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().difference()));
         percentageChangeColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().percentageChange()).asObject());
-
-        // Format currency cells
-        currentPeriodColumn.setCellFactory(getMoneyTableCellFactory());
-        previousPeriodColumn.setCellFactory(getMoneyTableCellFactory());
-        differenceColumn.setCellFactory(getMoneyTableCellFactory());
 
         // Format percentage in change column
         percentageChangeColumn.setCellFactory(_ -> new TableCell<>()
@@ -185,12 +186,14 @@ public class RevenueReportController extends MainController
                     if (item < 0)
                     {
                         setStyle("-fx-text-fill: red;");
-                    } else if (item > 0)
+                    }
+                    else if (item > 0)
                     {
                         setStyle("-fx-text-fill: green;");
-                    } else
+                    }
+                    else
                     {
-                        setStyle("-fx-text-fill: black;");
+                        setStyle("-fx-text-fill: white;");
                     }
                 }
             }
@@ -216,15 +219,6 @@ public class RevenueReportController extends MainController
         };
     }
 
-    private void loadFilters()
-    {
-        // Load movies for filter
-        List<Movies> movies = DbSet.movies().findAll().stream().sorted((a, b) -> a.getTitle().compareToIgnoreCase(b.getTitle())).collect(Collectors.toList());
-
-        movieFilterComboBox.setItems(FXCollections.observableArrayList(movies));
-        movieFilterComboBox.setConverter(ComboBoxHelper.getStringConverter(Movies::getTitle));
-    }
-
     private void setDefaultDates()
     {
         LocalDate endDate = LocalDate.now();
@@ -232,6 +226,7 @@ public class RevenueReportController extends MainController
 
         startDatePicker.setValue(startDate);
         endDatePicker.setValue(endDate);
+        loadRevenueData();
     }
 
     @FXML
@@ -253,8 +248,6 @@ public class RevenueReportController extends MainController
 
         try
         {
-            loadRevenueData();
-            updateSummaryStats();
             createCharts();
             statusLabel.setText("Report generated successfully");
         }
@@ -269,23 +262,14 @@ public class RevenueReportController extends MainController
     {
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
-        var dailyRevenues = DbSet.revenues().dailyMovieRevenue(startDate, endDate);
 
-        var stream = dailyRevenues.stream();
-
-        // Apply filters if selected
-        Movies selectedMovie = movieFilterComboBox.getValue();
-        if (selectedMovie != null)
-        {
-            stream = stream.filter(rev -> rev.movieId().equals(selectedMovie.getId()));
-        }
-
-        revenueData.setAll(stream.collect(Collectors.toList()));
+        revenueData.setAll(DbSet.revenues().dailyMovieRevenue(startDate, endDate));
+        updateSummaryStats(startDate, endDate);
     }
 
-    private void updateSummaryStats()
+    private void updateSummaryStats(LocalDate startDate, LocalDate endDate)
     {
-        var revenues = DbSet.revenues().dailyMovieRevenue(startDatePicker.getValue(), endDatePicker.getValue());
+        var revenues = DbSet.revenues().dailyMovieRevenue(startDate, endDate);
 
         long totalRevenue = 0;
         long totalTickets = 0;
@@ -296,41 +280,41 @@ public class RevenueReportController extends MainController
             totalTickets += revenue.ticketsSold();
         }
 
-        long averageRevenuePerScreening = totalRevenue / revenues.size();
+        long averageRevenuePerScreening = revenues.isEmpty() ? 0 : totalRevenue / revenues.size();
 
         totalRevenueLabel.setText(PriceFormatter.format(totalRevenue));
         totalTicketsLabel.setText(String.valueOf(totalTickets));
         avgRevenuePerScreeningLabel.setText(PriceFormatter.format(averageRevenuePerScreening));
-
-//        var popularMovie = context.select(MOVIES.TITLE)
-//                .from(MOVIES)
-//                .join(SCREENINGS).on(MOVIES.ID.eq(SCREENINGS.MOVIE_ID))
-//                .join(RESERVATIONS).on(SCREENINGS.ID.eq(RESERVATIONS.SCREENING_ID))
-//                .where(validReservation())
-//                .orderBy(count(RESERVATIONS.reservedSeats()))
-//                .limit(1)
-//                .fetchAny();
-//
-//        popularMovieLabel.setText(popularMovie != null ? popularMovie.get(MOVIES.TITLE) : "N/A");
     }
 
-    private void createCharts()
-    {
+    private void createCharts() {
+        var revenues = DbSet.revenues().dailyMovieRevenue();
+        // Get selected report type
+        String reportType = reportTypeComboBox.getValue();
+
         // Revenue trend chart
         XYChart.Series<String, Number> revenueSeries = new XYChart.Series<>();
         revenueSeries.setName("Revenue");
 
-        Map<LocalDate, Long> revenueByDate = revenueData.stream()
-                .collect(Collectors.groupingBy(
-                        DailyRevenue::screeningDate,
-                        Collectors.summingLong(DailyRevenue::revenue)
-                ));
+        // Group data based on selected period type
+        Map<String, Long> revenueByPeriod = new LinkedHashMap<>();
 
-        revenueByDate.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(entry ->
-                        revenueSeries.getData().add(new XYChart.Data<>(DateHelper.formatDate(entry.getKey()), entry.getValue()))
-                );
+        for (var revenue : revenues) {
+            String periodKey = switch (reportType) {
+                case "Monthly" -> DateTimeFormatter.ofPattern("yyyy-MM").format(revenue.screeningDate());
+                case "Quarterly" -> {
+                    int quarter = (revenue.screeningDate().getMonthValue() - 1) / 3 + 1;
+                    yield revenue.screeningDate().getYear() + " Q" + quarter;
+                }
+                case "Yearly" -> String.valueOf(revenue.screeningDate().getYear());
+                default -> DateHelper.formatDate(revenue.screeningDate()); // Daily is default
+            };
+
+            revenueByPeriod.merge(periodKey, revenue.revenue(), Long::sum);
+        }
+
+        // Add data to chart series
+        revenueByPeriod.forEach((key, value) -> revenueSeries.getData().add(new XYChart.Data<>(key, value)));
 
         revenueChart.getData().clear();
         revenueChart.getData().add(revenueSeries);
@@ -338,27 +322,15 @@ public class RevenueReportController extends MainController
         // Movie revenue pie chart
         ObservableList<PieChart.Data> movieData = FXCollections.observableArrayList();
 
-        Map<String, Long> revenueByMovie = revenueData.stream()
+        Map<ULong, Long> revenueByMovie = revenueData.stream()
                 .collect(Collectors.groupingBy(
-                        DailyRevenue::movieTitle,
+                        DailyRevenue::movieId,
                         Collectors.summingLong(DailyRevenue::revenue)
                 ));
 
-        revenueByMovie.forEach((movie, revenue) -> movieData.add(new PieChart.Data(movie, revenue)));
+        revenueByMovie.forEach((movie, revenue) -> movieData.add(
+                new PieChart.Data(Objects.requireNonNull(DbSet.movies().findById(movie)).getTitle(), revenue)));
         movieRevenueChart.setData(movieData);
-    }
-
-    @FXML
-    private void applyFilters()
-    {
-        generateReport();
-    }
-
-    @FXML
-    private void resetFilters()
-    {
-        movieFilterComboBox.setValue(null);
-        generateReport();
     }
 
     @FXML
@@ -421,43 +393,41 @@ public class RevenueReportController extends MainController
         }
 
         String periodType = comparisonPeriodComboBox.getValue();
-        LocalDate currentStart = startDatePicker.getValue();
-        LocalDate currentEnd = endDatePicker.getValue();
 
         LocalDate previousStart, previousEnd;
-        long daysDifference = ChronoUnit.DAYS.between(currentStart, currentEnd) + 1;
+        LocalDate currentStart, currentEnd = LocalDate.now();
 
-        previousEnd = switch (periodType)
+        switch (periodType)
         {
             case "Previous Week" ->
             {
+                currentStart = currentEnd.minusDays(currentEnd.getDayOfWeek().getValue() - 2);
                 previousStart = currentStart.minusWeeks(1);
-                yield currentEnd.minusWeeks(1);
+                previousEnd = previousStart.plusDays(6);
             }
             case "Previous Month" ->
             {
+                currentStart = currentEnd.minusDays(currentEnd.getDayOfMonth() - 1);
                 previousStart = currentStart.minusMonths(1);
-                yield currentEnd.minusMonths(1);
+                previousEnd = previousStart.plusMonths(1).minusDays(1);
             }
             case "Previous Quarter" ->
             {
+                currentStart = currentEnd.minusDays(currentEnd.getDayOfMonth() - 1);
+                int currentQuarter = (currentStart.getMonthValue() - 1) / 3 + 1;
                 previousStart = currentStart.minusMonths(3);
-                yield currentEnd.minusMonths(3);
+                previousEnd = previousStart.withMonth((currentQuarter - 1) * 3 + 3).minusDays(1);
             }
             case "Previous Year" ->
             {
+                currentStart = currentEnd.minusDays(currentEnd.getDayOfYear() - 1);
                 previousStart = currentStart.minusYears(1);
-                yield currentEnd.minusYears(1);
+                previousEnd = previousStart.plusYears(1).minusDays(1);
             }
-            default ->
-            {
-                previousStart = currentStart.minusDays(daysDifference);
-                yield currentStart.minusDays(1);
-            }
-        };
+            default -> throw new IllegalStateException("Unexpected value: " + periodType);
+        }
 
         loadComparisonData(currentStart, currentEnd, previousStart, previousEnd);
-        createComparisonChart();
     }
 
     private void loadComparisonData(LocalDate currentStart, LocalDate currentEnd,
@@ -471,11 +441,11 @@ public class RevenueReportController extends MainController
 
         // Calculate comparisons
         comparisonData.clear();
-        comparisonData.add(createComparisonRecord("Total Revenue", currentStats.totalRevenue(), previousStats.totalRevenue()));
+        comparisonData.add(createComparisonMoneyRecord("Total Revenue", currentStats.totalRevenue(), previousStats.totalRevenue()));
         comparisonData.add(createComparisonRecord("Tickets Sold", currentStats.ticketsSold(), previousStats.ticketsSold()));
-        comparisonData.add(createComparisonRecord("Avg Ticket Price", currentStats.avgTicketPrice(), previousStats.avgTicketPrice()));
+        comparisonData.add(createComparisonMoneyRecord("Avg Ticket Price", currentStats.avgTicketPrice(), previousStats.avgTicketPrice()));
         comparisonData.add(createComparisonRecord("Screenings Count", currentStats.screeningsCount(), previousStats.screeningsCount()));
-        comparisonData.add(createComparisonRecord("Avg Revenue per Screening", currentStats.avgRevenuePerScreening(), previousStats.avgRevenuePerScreening()));
+        comparisonData.add(createComparisonMoneyRecord("Avg Revenue per Screening", currentStats.avgRevenuePerScreening(), previousStats.avgRevenuePerScreening()));
     }
 
     private ComparisonRecord createComparisonRecord(String category, long currentValue, long previousValue)
@@ -483,7 +453,15 @@ public class RevenueReportController extends MainController
         long difference = currentValue - previousValue;
         double percentChange = previousValue == 0 ? 0 : ((double)difference / previousValue) * 100;
 
-        return new ComparisonRecord(category, currentValue, previousValue, difference, percentChange);
+        return new ComparisonRecord(category, String.valueOf(currentValue), String.valueOf(previousValue), String.valueOf(difference), percentChange);
+    }
+
+    private ComparisonRecord createComparisonMoneyRecord(String category, long currentValue, long previousValue)
+    {
+        long difference = currentValue - previousValue;
+        double percentChange = previousValue == 0 ? 0 : ((double)difference / previousValue) * 100;
+
+        return new ComparisonRecord(category, PriceFormatter.format(currentValue), PriceFormatter.format(previousValue), PriceFormatter.format(difference), percentChange);
     }
 
     private record PeriodStats(long totalRevenue, long ticketsSold, long avgTicketPrice, long screeningsCount, long avgRevenuePerScreening) {}
@@ -518,31 +496,9 @@ public class RevenueReportController extends MainController
         return new PeriodStats(totalRevenue, totalTickets, avgTicketPrice, revenues.size(), avgRevenuePerScreening);
     }
 
-    private void createComparisonChart()
-    {
-        XYChart.Series<String, Number> currentSeries = new XYChart.Series<>();
-        currentSeries.setName("Current Period");
-
-        XYChart.Series<String, Number> previousSeries = new XYChart.Series<>();
-        previousSeries.setName("Previous Period");
-
-        for (ComparisonRecord record : comparisonData)
-        {
-            currentSeries.getData().add(new XYChart.Data<>(record.category(), record.currentPeriod()));
-            previousSeries.getData().add(new XYChart.Data<>(record.category(), record.previousPeriod()));
-        }
-
-        var series = new ArrayList<XYChart.Series<String, Number>>();
-        series.add(currentSeries);
-        series.add(previousSeries);
-
-        comparisonChart.getData().setAll(series);
-    }
-
     @FXML
     private void refreshData()
     {
-        loadFilters();
         generateReport();
     }
 
@@ -555,5 +511,5 @@ public class RevenueReportController extends MainController
         alert.showAndWait();
     }
 
-    public record ComparisonRecord(String category, long currentPeriod, long previousPeriod, long difference, double percentageChange) {}
+    public record ComparisonRecord(String category, String currentPeriod, String previousPeriod, String difference, double percentageChange) {}
 }

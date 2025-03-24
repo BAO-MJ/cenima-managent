@@ -6,6 +6,8 @@ package com.elite.cinema.models.tables.records;
 
 import com.elite.cinema.models.tables.Reservations;
 
+import java.time.LocalDateTime;
+
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 import org.jooq.types.UInteger;
@@ -76,6 +78,20 @@ public class ReservationsRecord extends UpdatableRecordImpl<ReservationsRecord> 
         return (Boolean) get(3);
     }
 
+    /**
+     * Setter for <code>cinema.reservations.created_at</code>.
+     */
+    public void setCreatedAt(LocalDateTime value) {
+        set(4, value);
+    }
+
+    /**
+     * Getter for <code>cinema.reservations.created_at</code>.
+     */
+    public LocalDateTime getCreatedAt() {
+        return (LocalDateTime) get(4);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -99,13 +115,14 @@ public class ReservationsRecord extends UpdatableRecordImpl<ReservationsRecord> 
     /**
      * Create a detached, initialised ReservationsRecord
      */
-    public ReservationsRecord(ULong id, ULong screeningId, UInteger total, Boolean paid) {
+    public ReservationsRecord(ULong id, ULong screeningId, UInteger total, Boolean paid, LocalDateTime createdAt) {
         super(Reservations.RESERVATIONS);
 
         setId(id);
         setScreeningId(screeningId);
         setTotal(total);
         setPaid(paid);
+        setCreatedAt(createdAt);
         resetTouchedOnNotNull();
     }
 
@@ -120,6 +137,7 @@ public class ReservationsRecord extends UpdatableRecordImpl<ReservationsRecord> 
             setScreeningId(value.getScreeningId());
             setTotal(value.getTotal());
             setPaid(value.getPaid());
+            setCreatedAt(value.getCreatedAt());
             resetTouchedOnNotNull();
         }
     }

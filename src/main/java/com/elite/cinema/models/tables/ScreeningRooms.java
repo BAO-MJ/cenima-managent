@@ -58,7 +58,7 @@ public class ScreeningRooms extends TableImpl<ScreeningRoomsRecord> {
     /**
      * The column <code>cinema.screening_rooms.id</code>.
      */
-    public final TableField<ScreeningRoomsRecord, ULong> ID = createField(DSL.name("id"), SQLDataType.BIGINTUNSIGNED.nullable(false).defaultValue(DSL.inline("0", SQLDataType.BIGINTUNSIGNED)), this, "");
+    public final TableField<ScreeningRoomsRecord, ULong> ID = createField(DSL.name("id"), SQLDataType.BIGINTUNSIGNED.nullable(false).defaultValue(DSL.field(DSL.raw("0"), SQLDataType.BIGINTUNSIGNED)), this, "");
 
     /**
      * The column <code>cinema.screening_rooms.name</code>.

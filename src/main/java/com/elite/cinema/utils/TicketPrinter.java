@@ -3,41 +3,31 @@ package com.elite.cinema.utils;
 import com.elite.cinema.models.tables.pojos.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
 import net.sf.jasperreports.view.JasperViewer;
 
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.Copies;
 import java.io.InputStream;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 public class TicketPrinter {
 
-    public static void printTickets(long reservationId, Movies movie, Screenings screening, ScreeningRooms room, List<ReservedSeats> seats) {
+    public static void printTickets(long reservationId, String movie, LocalDateTime showTime, String room, List<ReservedSeats> seats) {
 
         try {
             // Prepare data for each ticket
             List<Map<String, String>> ticketsData = new ArrayList<>();
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 
             for (ReservedSeats seat : seats) {
                 Map<String, String> ticketData = new HashMap<>();
 
                 // Basic reservation info
                 ticketData.put("orderId", Long.toString(reservationId));
-                ticketData.put("movieTitle", movie.getTitle());
-                ticketData.put("roomName", room.getName());
-                ticketData.put("screeningDate", DateHelper.formatDate(screening.getScreeningTime().toLocalDate()));
-                ticketData.put("screeningTime", screening.getScreeningTime().format(timeFormatter));
+                ticketData.put("movieTitle", movie);
+                ticketData.put("roomName", room);
+                ticketData.put("screeningDate", DateHelper.formatDate(showTime.toLocalDate()));
+                ticketData.put("screeningTime", DateHelper.formatTime(showTime.toLocalTime()));
 
                 // Seat information
                 int row = seat.getRow().intValue();
@@ -85,7 +75,7 @@ public class TicketPrinter {
         return String.format("%s-%02d-%02d", reservationId, row, col);
     }
 
-    private static void showPreviewAndPrint(JasperPrint jasperPrint) {
+    public static void showPreviewAndPrint(JasperPrint jasperPrint) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Print Tickets");
         alert.setHeaderText("Your tickets are ready");
@@ -109,16 +99,16 @@ public class TicketPrinter {
         }
     }
 
-    private static void printReport(JasperPrint jasperPrint) {
+    public static void printReport(JasperPrint jasperPrint) {
         try {
             JasperPrintManager.printReport(jasperPrint, true);
-            showSuccess("Printing", "Tickets sent to printer");
+            showSuccess();
         } catch (JRException e) {
             showError("Printing Error", e.getMessage());
         }
     }
 
-    private static void showError(String title, String message) {
+    public static void showError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -126,11 +116,11 @@ public class TicketPrinter {
         alert.showAndWait();
     }
 
-    private static void showSuccess(String title, String message) {
+    private static void showSuccess() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
+        alert.setTitle("Printing");
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText("Tickets sent to printer");
         alert.showAndWait();
     }
 }

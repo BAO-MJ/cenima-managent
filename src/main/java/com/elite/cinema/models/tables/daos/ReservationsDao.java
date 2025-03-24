@@ -7,6 +7,7 @@ package com.elite.cinema.models.tables.daos;
 import com.elite.cinema.models.tables.Reservations;
 import com.elite.cinema.models.tables.records.ReservationsRecord;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -113,5 +114,20 @@ public class ReservationsDao extends DAOImpl<ReservationsRecord, com.elite.cinem
      */
     public List<com.elite.cinema.models.tables.pojos.Reservations> fetchByPaid(Boolean... values) {
         return fetch(Reservations.RESERVATIONS.PAID, values);
+    }
+
+    /**
+     * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<com.elite.cinema.models.tables.pojos.Reservations> fetchRangeOfCreatedAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(Reservations.RESERVATIONS.CREATED_AT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>created_at IN (values)</code>
+     */
+    public List<com.elite.cinema.models.tables.pojos.Reservations> fetchByCreatedAt(LocalDateTime... values) {
+        return fetch(Reservations.RESERVATIONS.CREATED_AT, values);
     }
 }
