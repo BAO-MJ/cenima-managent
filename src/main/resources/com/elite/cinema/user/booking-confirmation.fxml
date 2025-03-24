@@ -16,7 +16,7 @@
    <padding>
       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
    </padding>
-   <FontIcon fx:id="checkIcon" iconLiteral="far-check-circle" iconSize="64" styleClass="success-icon"/>
+   <FontIcon iconLiteral="far-check-circle" iconSize="64" styleClass="success-icon"/>
    <Label styleClass="heading" text="Booking Confirmed!">
       <font>
          <Font name="System Bold" size="24.0"/>
