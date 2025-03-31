@@ -13,17 +13,13 @@ import com.elite.cinema.ui.ScreeningHourPanel;
 import com.elite.cinema.utils.ComboBoxHelper;
 import com.elite.cinema.utils.DateHelper;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
-import javafx.util.StringConverter;
 
 import org.jooq.DatePart;
 import org.jooq.impl.DSL;
@@ -34,7 +30,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -65,7 +60,6 @@ public class ScreeningController extends MainController implements Initializable
 
     // Data
     private final ObservableList<ScreeningInfo> screenings = FXCollections.observableArrayList();
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     private final ScreeningHourPanel[] hourSlots = new ScreeningHourPanel[24];
 
     @Override
@@ -188,7 +182,7 @@ public class ScreeningController extends MainController implements Initializable
     }
 
     private void refreshHours() {
-        Movies selectedMovie = movieComboBox.getValue();
+        Movies selectedMovie = movieComboBox.getSelectionModel().getSelectedItem();
         LocalDate selectedDate = datePicker.getValue();
 
         if (selectedMovie == null || selectedDate == null) {
